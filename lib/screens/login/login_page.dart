@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class PaginaLogin extends StatefulWidget {
+  const PaginaLogin({Key? key}) : super(key: key);
 
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _PaginaLoginState createState() => _PaginaLoginState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _PaginaLoginState extends State<PaginaLogin> {
 
   bool _isButtonPressed = false;
   bool _isCheckboxChecked = false;
@@ -18,7 +18,7 @@ class _LoginPageState extends State<LoginPage> {
     final slideUpHeight = screenHeight * 0.7;
 
     return Scaffold(
-      body: GestureDetector(
+        body: GestureDetector(
         onTap: () {
           setState(() {
             _isButtonPressed = false;
