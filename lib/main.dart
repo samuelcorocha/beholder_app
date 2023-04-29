@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 void main() {
   runApp(
     const MaterialApp(
-      //home: PaginaLogin(),
-      home: TelaDePesquisa(),
+      home: PaginaLogin(),
+      //home: TelaDePesquisa(),
     ),
   );
 }

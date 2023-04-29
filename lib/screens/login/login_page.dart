@@ -1,3 +1,4 @@
+import 'package:beholder_companion/screens/search/search_page.dart';
 import 'package:flutter/material.dart';
 
 class PaginaLogin extends StatefulWidget {
@@ -149,7 +150,12 @@ class _PaginaLoginState extends State<PaginaLogin> {
                       ),
                       const SizedBox(height: 24),
                       ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const TelaDePesquisa()),
+                          );
+                        },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.black,
                           shape: RoundedRectangleBorder(
