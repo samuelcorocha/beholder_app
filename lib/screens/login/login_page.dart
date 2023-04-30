@@ -5,10 +5,10 @@ class PaginaLogin extends StatefulWidget {
   const PaginaLogin({Key? key}) : super(key: key);
 
   @override
-  _PaginaLoginState createState() => _PaginaLoginState();
+  PaginaLoginState createState() => PaginaLoginState();
 }
 
-class _PaginaLoginState extends State<PaginaLogin> {
+class PaginaLoginState extends State<PaginaLogin> {
 
   bool _isButtonPressed = false;
   bool _isCheckboxChecked = false;

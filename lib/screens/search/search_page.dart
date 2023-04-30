@@ -5,10 +5,10 @@ class TelaDePesquisa extends StatefulWidget {
   const TelaDePesquisa({Key? key}) : super(key: key);
 
   @override
-  _TelaDePesquisaState createState() => _TelaDePesquisaState();
+  TelaDePesquisaState createState() => TelaDePesquisaState();
 }
 
-class _TelaDePesquisaState extends State<TelaDePesquisa> {
+class TelaDePesquisaState extends State<TelaDePesquisa> {
   final TextEditingController _textEditingController = TextEditingController();
 
   @override
@@ -53,6 +53,7 @@ class _TelaDePesquisaState extends State<TelaDePesquisa> {
                   hintText: "Pesquisa rápida",
                   border: OutlineInputBorder(),
                   prefixIcon: Icon(Icons.search),
+                  contentPadding: EdgeInsets.symmetric(vertical: 8.0),
                 ),
               ),
               const SizedBox(height: 16),
@@ -137,23 +138,43 @@ class _TelaDePesquisaState extends State<TelaDePesquisa> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.white,
-        items: const <BottomNavigationBarItem>[
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: Colors.grey[800],
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home, color: Colors.grey),
+              icon: Container(
+                height: 32,
+                color: null,
+                child: Image.asset("assets/navbar_casa.png"),
+              ),
+              label: ''
+          ),
+          BottomNavigationBarItem(
+            icon: Container(
+              height: 32,
+              color: null,
+              child: Image.asset("assets/navbar_mapa.png"),
+            ),
             label: ''
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search, color: Colors.grey),
+            icon: Container(
+              height: 32,
+              color: null,
+              child: Image.asset("assets/navbar_pesquisa.png"),
+            ),
             label: ''
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person, color: Colors.grey),
+            icon: Container(
+              height: 32,
+              color: null,
+              child: Image.asset("assets/navbar_perfil.png"),
+              ),
             label: ''
           ),
         ],
         currentIndex: 0,
-        selectedItemColor: Colors.blue,
         showSelectedLabels: false,
         showUnselectedLabels: false,
         onTap: (index) {
@@ -163,7 +184,7 @@ class _TelaDePesquisaState extends State<TelaDePesquisa> {
               MaterialPageRoute(builder: (context) => const TelaDePesquisa()),
             );
           }
-        }
+        },
       ),
     );
   }
