@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:beholder_companion/screens/tela_de_login/tela_de_login.dart';
+import 'package:beholder_companion/screens/tela_de_pesquisa/racas/tela_de_racas.dart';
+import 'package:beholder_companion/screens/tela_de_pesquisa/classes/tela_de_classes.dart';
+import 'package:beholder_companion/screens/tela_de_pesquisa/itens/tela_de_itens.dart';
 
 class TelaDePesquisa extends StatefulWidget {
   const TelaDePesquisa({Key? key}) : super(key: key);
@@ -60,75 +63,99 @@ class TelaDePesquisaState extends State<TelaDePesquisa> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Container(
-                    height: 150,
-                    width: MediaQuery.of(context).size.width / 3 - 24,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Image.asset(
-                          'assets/icone_racas.png',
-                          height: 64,
-                          width: 64,
-                        ),
-                        const SizedBox(height: 8),
-                        const Text(
-                          'Raças',
-                          style: TextStyle(fontSize: 16),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  Container(
-                    height: 150,
-                    width: MediaQuery.of(context).size.width / 3 - 24,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Image.asset(
-                          'assets/icone_classes.png',
-                          height: 64,
-                          width: 64,
-                        ),
-                        const SizedBox(height: 8),
-                        const Text(
-                          'Classes',
-                          style: TextStyle(fontSize: 16),
-                        ),
-                      ],
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const TelaDeRacas()),
+                      );
+                    },
+                    child: Container(
+                      height: 150,
+                      width: MediaQuery.of(context).size.width / 3 - 24,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Image.asset(
+                            'assets/icone_racas.png',
+                            height: 64,
+                            width: 64,
+                          ),
+                          const SizedBox(height: 8),
+                          const Text(
+                            'Raças',
+                            style: TextStyle(fontSize: 16),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   const SizedBox(width: 8),
-                  Container(
-                    height: 150,
-                    width: MediaQuery.of(context).size.width / 3 - 24,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(8),
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const TelaDeClasses()),
+                      );
+                    },
+                    child: Container(
+                      height: 150,
+                      width: MediaQuery.of(context).size.width / 3 - 24,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Image.asset(
+                            'assets/icone_classes.png',
+                            height: 64,
+                            width: 64,
+                          ),
+                          const SizedBox(height: 8),
+                          const Text(
+                            'Classes',
+                            style: TextStyle(fontSize: 16),
+                          ),
+                        ],
+                      ),
                     ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Image.asset(
-                          'assets/icone_itens.png',
-                          height: 64,
-                          width: 64,
-                        ),
-                        const SizedBox(height: 8),
-                        const Text(
-                          'Itens',
-                          style: TextStyle(fontSize: 16),
-                        ),
-                      ],
+                  ),
+                  const SizedBox(width: 8),
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const TelaDeItens()),
+                      );
+                    },
+                    child: Container(
+                      height: 150,
+                      width: MediaQuery.of(context).size.width / 3 - 24,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Image.asset(
+                            'assets/icone_itens.png',
+                            height: 64,
+                            width: 64,
+                          ),
+                          const SizedBox(height: 8),
+                          const Text(
+                            'Itens',
+                            style: TextStyle(fontSize: 16),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],
