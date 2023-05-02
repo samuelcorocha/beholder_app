@@ -1,14 +1,14 @@
-import 'package:beholder_companion/screens/search/search_page.dart';
 import 'package:flutter/material.dart';
+import 'package:beholder_companion/screens/tela_de_pesquisa/tela_de_pesquisa.dart';
 
-class PaginaLogin extends StatefulWidget {
-  const PaginaLogin({Key? key}) : super(key: key);
+class TelaDeLogin extends StatefulWidget {
+  const TelaDeLogin({Key? key}) : super(key: key);
 
   @override
-  PaginaLoginState createState() => PaginaLoginState();
+  TelaDeLoginState createState() => TelaDeLoginState();
 }
 
-class PaginaLoginState extends State<PaginaLogin> {
+class TelaDeLoginState extends State<TelaDeLogin> {
 
   bool _isButtonPressed = false;
   bool _isCheckboxChecked = false;

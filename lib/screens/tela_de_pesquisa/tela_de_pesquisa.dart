@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../login/login_page.dart';
+import 'package:beholder_companion/screens/tela_de_login/tela_de_login.dart';
 
 class TelaDePesquisa extends StatefulWidget {
   const TelaDePesquisa({Key? key}) : super(key: key);
@@ -32,7 +32,7 @@ class TelaDePesquisaState extends State<TelaDePesquisa> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const PaginaLogin()),
+                      MaterialPageRoute(builder: (context) => const TelaDeLogin()),
                     );
                   },
                   child: Padding(
