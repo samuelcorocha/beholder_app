@@ -1,7 +1,28 @@
 import 'package:flutter/material.dart';
 
-class OnBoardingScreen extends StatelessWidget {
+class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({Key? key}) : super(key: key);
+
+  @override
+  State<OnBoardingScreen> createState() => _OnBoardingScreenState();
+}
+
+class _OnBoardingScreenState extends State<OnBoardingScreen> {
+  late PageController _pageController;
+
+  int _pageIndex = 0;
+
+  @override
+  void initState() {
+    _pageController = PageController(initialPage: 0);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -11,11 +32,17 @@ class OnBoardingScreen extends StatelessWidget {
         alignment: Alignment.topCenter,
         child: Stack(children: [
           PageView.builder(
-              itemBuilder: (context, index) => const OnBoardContent(
-                  image: "assets/onBoarding/Screen01.png",
-                  description:
-                      "O Beholder Companion é uma ferramenta completa para as suas sessões de RPG")
-          ),
+              itemCount: data_show.length,
+              controller: _pageController,
+              onPageChanged: (index) {
+                setState(() {
+                  _pageIndex = index;
+                });
+              },
+              itemBuilder: (context, index) => OnBoardContent(
+                  image: data_show[index].image,
+                  description: data_show[index].description,
+              )),
           Align(
             alignment: Alignment.bottomRight,
             child: Padding(
@@ -25,18 +52,38 @@ class OnBoardingScreen extends StatelessWidget {
                 width: 60,
                 child: TextButton(
                   style: ButtonStyle(
-                    side: MaterialStateProperty.resolveWith((states) => const BorderSide(
-                      width: 0,
-                      color: Colors.transparent,
-                      style: BorderStyle.solid,
-                    )),
-                    shape: MaterialStateProperty.resolveWith((states) => RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ))
-                  ),
-                  onPressed: () {},
+                      side: MaterialStateProperty.resolveWith(
+                          (states) => const BorderSide(
+                                width: 0,
+                                color: Colors.transparent,
+                                style: BorderStyle.solid,
+                              )),
+                      shape: MaterialStateProperty.resolveWith(
+                          (states) => RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ))),
+                  onPressed: () {
+                    _pageController.nextPage(
+                        duration: const Duration(milliseconds: 300),
+                        curve: Curves.ease);
+                  },
                   child: Image.asset("assets/icons/Arrow 1.png"),
                 ),
+              ),
+            ),
+          ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 40.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ...List.generate(data_show.length, (index) => Padding(
+                    padding: const EdgeInsets.only(right: 20.0),
+                    child: DotIndicator(isActive: index == _pageIndex),
+                  ))
+                ],
               ),
             ),
           )
@@ -45,6 +92,48 @@ class OnBoardingScreen extends StatelessWidget {
     );
   }
 }
+
+class DotIndicator extends StatelessWidget {
+  const DotIndicator({
+    Key ? key,
+    this.isActive = false,
+  }) : super(key: key);
+
+  final bool isActive;
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 300),
+      height: isActive ? 12 : 10,
+      width: isActive ? 12 : 10,
+      decoration: BoxDecoration(
+        color: isActive ? const Color(0xffEFE7E9) : const Color(0xffC6A9B0),
+        borderRadius: const BorderRadius.all(Radius.circular(200)),
+      ),
+    );
+  }
+}
+
+class Onboard {
+  final String image, description;
+
+  Onboard({required this.image, required this.description});
+}
+
+final List<Onboard> data_show = [
+  Onboard(
+      image: "assets/onBoarding/Screen01.png",
+      description:
+          "O Beholder Companion é uma\n ferramenta completa para as\n suas sessões de RPG"),
+  Onboard(
+      image: "assets/onBoarding/Screen02.png",
+      description:
+          "Onde você pode encontrar\n jogadores e mestres\n próximos a você"),
+  Onboard(
+      image: "assets/onBoarding/Screen03.png",
+      description: "Cadastre-se e descubra sua\n próxima grande aventura já!"),
+];
 
 class OnBoardContent extends StatelessWidget {
   const OnBoardContent({
