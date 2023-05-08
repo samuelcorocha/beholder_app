@@ -12,6 +12,7 @@ class TelaDePesquisa extends StatefulWidget {
 class TelaDePesquisaState extends State<TelaDePesquisa> {
   final TextEditingController _textEditingController = TextEditingController();
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
