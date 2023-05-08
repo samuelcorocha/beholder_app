@@ -60,6 +60,14 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
+    - assets/onBoarding/Screen01.png
+    - assets/onBoarding/Screen02.png
+    - assets/onBoarding/Screen03.png
+    - assets/icons/
+  fonts:
+    - family: Chivo
+      fonts:
+        - asset: fonts/ChivoMono-VariableFont_wght.ttf
 
   # To add assets to your application, add an assets section, like this:
   # assets:
