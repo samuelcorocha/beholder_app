@@ -25,27 +25,7 @@ class TelaDeItensState extends State<TelaDeItens> {
               const SizedBox(height: 32),
               Row(
                 children: <Widget>[
-                  Ink(
-                    decoration: const ShapeDecoration(
-                      color: Colors.white,
-                      shape: CircleBorder(),
-                    ),
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => const TelaDeLogin()),
-                        );
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Image.asset(
-                          'assets/logo.png',
-                          height: 40,
-                        ),
-                      ),
-                    ),
-                  ),
+                  const IconeDoApp(),
                   const SizedBox(width: 16),
                   ElevatedButton.icon(
                     onPressed: () {
@@ -63,6 +43,7 @@ class TelaDeItensState extends State<TelaDeItens> {
           ),
         ),
       ),
+      bottomNavigationBar: const BarraDeNavegacao(),
     );
   }
 }

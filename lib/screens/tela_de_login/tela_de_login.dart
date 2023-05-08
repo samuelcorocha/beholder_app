@@ -1,23 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:beholder_companion/screens/tela_de_pesquisa/tela_de_pesquisa.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class TelaDeLogin extends StatefulWidget {
+  const TelaDeLogin({Key? key}) : super(key: key);
 
   @override
-  _LoginPageState createState() => _LoginPageState();
+  TelaDeLoginState createState() => TelaDeLoginState();
 }
 
+class TelaDeLoginState extends State<TelaDeLogin> {
 
-class _LoginPageState extends State<LoginPage> {
   bool _isButtonPressed = false;
+  bool _isCheckboxChecked = false;
 
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
-    final slideUpHeight = screenHeight * 0.4;
+    final slideUpHeight = screenHeight * 0.7;
 
     return Scaffold(
-      body: GestureDetector(
+        body: GestureDetector(
         onTap: () {
           setState(() {
             _isButtonPressed = false;
@@ -28,7 +30,7 @@ class _LoginPageState extends State<LoginPage> {
             Container(
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('assets/login.png'),
+                  image: AssetImage('assets/tela_de_login/fundo_login.png'),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -111,9 +113,117 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                       const SizedBox(height: 16),
+                      Row(
+                        children: [
+                          Checkbox(
+                            value: _isCheckboxChecked,
+                            onChanged: (newValue) {
+                              setState(() {
+                                _isCheckboxChecked = newValue!;
+                              });
+                            },
+                          ),
+                          const Text('Salvar informações de login'),
+                        ],
+                      ),
+                      const SizedBox(height: 16),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text(
+                            'Esqueceu sua senha?',
+                            style: TextStyle(
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                            },
+                            child: const Text(
+                              ' Clique aqui',
+                              style: TextStyle(
+                                color: Colors.red,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 24),
                       ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const TelaDePesquisa()),
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.black,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(18.0),
+                          )
+                        ),
                         child: const Text('Entrar'),
+                      ),
+                      const SizedBox(height: 24),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ElevatedButton(
+                            onPressed: () {
+                            },
+                            style: ElevatedButton.styleFrom(
+                              foregroundColor: Colors.black,
+                              backgroundColor: Colors.white,
+                              padding: const EdgeInsets.all(8.0),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(18.0),
+                              ),
+                            ),
+                            child: Image.asset(
+                              'assets/tela_de_login/metodos_de_login/logo_facebook.png',
+                              height: 48,
+                            ),
+                          ),
+                          const SizedBox(width: 16),
+                          ElevatedButton(
+                            onPressed: () {
+                            },
+                            style: ElevatedButton.styleFrom(
+                              foregroundColor: Colors.black,
+                              backgroundColor: Colors.white,
+                              padding: const EdgeInsets.all(8.0),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(18.0),
+                              ),
+                            ),
+                            child: Image.asset(
+                              'assets/tela_de_login/metodos_de_login/logo_google.png',
+                              height: 48,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 36),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text(
+                            'Não tem uma conta? ',
+                            style: TextStyle(
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                            },
+                            child: const Text(
+                              'Registre-se',
+                              style: TextStyle(
+                                color: Colors.red,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                       const SizedBox(height: 16),
                     ],
