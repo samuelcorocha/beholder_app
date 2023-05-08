@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:beholder_companion/screens/tela_de_login/tela_de_login.dart';
 import 'package:beholder_companion/screens/tela_de_pesquisa/racas/tela_de_racas.dart';
-import 'package:beholder_companion/screens/tela_de_pesquisa/classes/tela_de_classes.dart';
-import 'package:beholder_companion/screens/tela_de_pesquisa/itens/tela_de_itens.dart';
 
 class TelaDePesquisa extends StatefulWidget {
   const TelaDePesquisa({Key? key}) : super(key: key);
@@ -26,27 +24,7 @@ class TelaDePesquisaState extends State<TelaDePesquisa> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               const SizedBox(height: 32),
-              Ink(
-                decoration: const ShapeDecoration(
-                  color: Colors.white,
-                  shape: CircleBorder(),
-                ),
-                child: InkWell(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const TelaDeLogin()),
-                    );
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Image.asset(
-                      'assets/logo.png',
-                      height: 40,
-                    ),
-                  ),
-                ),
-              ),
+              const IconeDoApp(),
               const SizedBox(height: 16),
               TextField(
                 controller: _textEditingController,
@@ -62,157 +40,152 @@ class TelaDePesquisaState extends State<TelaDePesquisa> {
               const SizedBox(height: 16),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  InkWell(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => const TelaDeRacas()),
-                      );
-                    },
-                    child: Container(
-                      height: 150,
-                      width: MediaQuery.of(context).size.width / 3 - 24,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Image.asset(
-                            'assets/icone_racas.png',
-                            height: 64,
-                            width: 64,
-                          ),
-                          const SizedBox(height: 8),
-                          const Text(
-                            'Raças',
-                            style: TextStyle(fontSize: 16),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  InkWell(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => const TelaDeClasses()),
-                      );
-                    },
-                    child: Container(
-                      height: 150,
-                      width: MediaQuery.of(context).size.width / 3 - 24,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Image.asset(
-                            'assets/icone_classes.png',
-                            height: 64,
-                            width: 64,
-                          ),
-                          const SizedBox(height: 8),
-                          const Text(
-                            'Classes',
-                            style: TextStyle(fontSize: 16),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  InkWell(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => const TelaDeItens()),
-                      );
-                    },
-                    child: Container(
-                      height: 150,
-                      width: MediaQuery.of(context).size.width / 3 - 24,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Image.asset(
-                            'assets/icone_itens.png',
-                            height: 64,
-                            width: 64,
-                          ),
-                          const SizedBox(height: 8),
-                          const Text(
-                            'Itens',
-                            style: TextStyle(fontSize: 16),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+                children: const <Widget>[
+                  ItensDaPesquisa(titulo: 'Raças', caminhoImagem: 'assets/tela_de_pesquisa/botao1_racas/icone_racas.png'),
+                  SizedBox(width: 8),
+                  ItensDaPesquisa(titulo: 'Classes', caminhoImagem: 'assets/tela_de_pesquisa/botao2_classes/icone_classes.png'),
+                  SizedBox(width: 8),
+                  ItensDaPesquisa(titulo: 'Itens', caminhoImagem: 'assets/tela_de_pesquisa/botao3_itens/icone_itens.png')
                 ],
               ),
             ],
           ),
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.grey[800],
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-              icon: Container(
-                height: 32,
-                color: null,
-                child: Image.asset("assets/navbar_casa.png"),
-              ),
-              label: ''
-          ),
-          BottomNavigationBarItem(
-            icon: Container(
-              height: 32,
-              color: null,
-              child: Image.asset("assets/navbar_mapa.png"),
+      bottomNavigationBar: const BarraDeNavegacao(),
+    );
+  }
+}
+
+class ItensDaPesquisa extends StatelessWidget {
+  const ItensDaPesquisa({
+    super.key, required this.titulo, required this.caminhoImagem,
+  });
+
+  final String titulo, caminhoImagem;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const TelaDeRacas()),
+        );
+      },
+      child: Container(
+        height: 150,
+        width: MediaQuery.of(context).size.width / 3 - 24,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Image.asset(
+              caminhoImagem,
+              height: 64,
+              width: 64,
             ),
-            label: ''
-          ),
-          BottomNavigationBarItem(
-            icon: Container(
-              height: 32,
-              color: null,
-              child: Image.asset("assets/navbar_pesquisa.png"),
+            const SizedBox(height: 8),
+            Text(
+              titulo,
+              style: const TextStyle(fontSize: 16),
             ),
-            label: ''
-          ),
-          BottomNavigationBarItem(
-            icon: Container(
-              height: 32,
-              color: null,
-              child: Image.asset("assets/navbar_perfil.png"),
-              ),
-            label: ''
-          ),
-        ],
-        currentIndex: 0,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        onTap: (index) {
-          if (index == 1) { // índice do botão "Busca"
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const TelaDePesquisa()),
-            );
-          }
-        },
+          ],
+        ),
       ),
+    );
+  }
+}
+
+class IconeDoApp extends StatelessWidget {
+  const IconeDoApp({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Ink(
+      decoration: const ShapeDecoration(
+        color: Colors.white,
+        shape: CircleBorder(),
+      ),
+      child: InkWell(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const TelaDeLogin()),
+          );
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Image.asset(
+            'assets/tela_de_login/logo_beholder.png',
+            height: 40,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class BarraDeNavegacao extends StatelessWidget {
+  const BarraDeNavegacao({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return BottomNavigationBar(
+      type: BottomNavigationBarType.fixed,
+      backgroundColor: Colors.grey[800],
+      items: <BottomNavigationBarItem>[
+        BottomNavigationBarItem(
+            icon: Container(
+              height: 32,
+              color: null,
+              child: Image.asset("assets/barra_de_navegacao/icone_casa.png"),
+            ),
+            label: ''
+        ),
+        BottomNavigationBarItem(
+          icon: Container(
+            height: 32,
+            color: null,
+            child: Image.asset("assets/barra_de_navegacao/icone_mapa.png"),
+          ),
+          label: ''
+        ),
+        BottomNavigationBarItem(
+          icon: Container(
+            height: 32,
+            color: null,
+            child: Image.asset("assets/barra_de_navegacao/icone_pesquisa.png"),
+          ),
+          label: ''
+        ),
+        BottomNavigationBarItem(
+          icon: Container(
+            height: 32,
+            color: null,
+            child: Image.asset("assets/barra_de_navegacao/icone_perfil.png"),
+            ),
+          label: ''
+        ),
+      ],
+      currentIndex: 0,
+      showSelectedLabels: false,
+      showUnselectedLabels: false,
+      onTap: (index) {
+        if (index == 2) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const TelaDePesquisa()),
+          );
+        }
+      },
     );
   }
 }

@@ -30,7 +30,7 @@ class TelaDeLoginState extends State<TelaDeLogin> {
             Container(
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('assets/login.png'),
+                  image: AssetImage('assets/tela_de_login/fundo_login.png'),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -180,7 +180,7 @@ class TelaDeLoginState extends State<TelaDeLogin> {
                               ),
                             ),
                             child: Image.asset(
-                              'assets/logo_google_quadrado.png',
+                              'assets/tela_de_login/metodos_de_login/logo_facebook.png',
                               height: 48,
                             ),
                           ),
@@ -197,7 +197,7 @@ class TelaDeLoginState extends State<TelaDeLogin> {
                               ),
                             ),
                             child: Image.asset(
-                              'assets/logo_facebook_quadrado.png',
+                              'assets/tela_de_login/metodos_de_login/logo_google.png',
                               height: 48,
                             ),
                           ),
