@@ -71,6 +71,10 @@ flutter:
     - assets/tela_de_pesquisa/botao2_classes/classes/
     - assets/tela_de_pesquisa/botao3_itens/
     - assets/tela_de_pesquisa/botao3_itens/itens/
+  fonts:
+    - family: Chivo
+      fonts:
+        - asset: assets/fontes/Chivo.ttf
 
   # To add assets to your application, add an assets section, like this:
   # assets:
