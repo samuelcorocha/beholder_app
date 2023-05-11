@@ -1,6 +1,8 @@
+import 'package:beholder_companion/screens/tela_inicial/tela_inicial.dart';
 import 'package:flutter/material.dart';
 import 'package:beholder_companion/screens/tela_de_login/tela_de_login.dart';
 import 'package:beholder_companion/screens/tela_de_pesquisa/racas/tela_de_racas.dart';
+import 'package:beholder_companion/screens/tela_de_social/tela_de_social.dart';
 
 class TelaDePesquisa extends StatefulWidget {
   const TelaDePesquisa({Key? key}) : super(key: key);
@@ -175,16 +177,38 @@ class BarraDeNavegacao extends StatelessWidget {
             ),
           label: ''
         ),
+        BottomNavigationBarItem(
+            icon: Container(
+              height: 32,
+              color: null,
+              child: Image.asset("assets/barra_de_navegacao/icone-jogar.png"),
+            ),
+            label: ''
+        ),
       ],
       currentIndex: 0,
       showSelectedLabels: false,
       showUnselectedLabels: false,
       onTap: (index) {
-        if (index == 2) {
-          Navigator.push(
+        switch (index) {
+          case 0:
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const TelaInicial()),
+            );
+            break;
+          case 1:
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => TelaDeSocial()),
+            );
+            break;
+          case 2:
+            Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => const TelaDePesquisa()),
           );
+          break;
         }
       },
     );
