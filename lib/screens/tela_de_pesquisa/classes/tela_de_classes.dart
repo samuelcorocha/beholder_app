@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:beholder_companion/screens/tela_de_login/tela_de_login.dart';
+
 import 'package:beholder_companion/screens/tela_de_pesquisa/tela_de_pesquisa.dart';
+
+import 'package:beholder_companion/screens/tela_de_pesquisa/classes/tela_do_arqueiro.dart';
+import 'package:beholder_companion/screens/tela_de_pesquisa/classes/tela_do_bardo.dart';
+import 'package:beholder_companion/screens/tela_de_pesquisa/classes/tela_do_bruxo.dart';
 
 class TelaDeClasses extends StatefulWidget {
   const TelaDeClasses({Key? key}) : super(key: key);
@@ -10,7 +14,6 @@ class TelaDeClasses extends StatefulWidget {
 }
 
 class TelaDeClassesState extends State<TelaDeClasses> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,19 +27,30 @@ class TelaDeClassesState extends State<TelaDeClasses> {
             children: <Widget>[
               const SizedBox(height: 32),
               Row(
-                children: <Widget>[
-                  const IconeDoApp(),
-                  const SizedBox(width: 16),
-                  ElevatedButton.icon(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => const TelaDePesquisa()),
-                      );
-                    },
-                    icon: const Icon(Icons.arrow_back),
-                    label: const Text('Voltar'),
-                  ),
+                children: const <Widget>[
+                  IconeDoApp(),
+                  SizedBox(width: 16),
+                  BotaoDeVoltar(),
+                ],
+              ),
+              const SizedBox(height: 32),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: const <Widget>[
+                  Classes(
+                      titulo: 'Arqueiro',
+                      caminhoImagem:
+                      'assets/tela_de_pesquisa/botao2_classes/classes/arqueiro.png'),
+                  SizedBox(width: 8),
+                  Classes(
+                      titulo: 'Bardo',
+                      caminhoImagem:
+                      'assets/tela_de_pesquisa/botao2_classes/classes/bardo.png'),
+                  SizedBox(width: 8),
+                  Classes(
+                      titulo: 'Bruxo',
+                      caminhoImagem:
+                          'assets/tela_de_pesquisa/botao2_classes/classes/bruxo.png'),
                 ],
               ),
             ],
@@ -44,6 +58,41 @@ class TelaDeClassesState extends State<TelaDeClasses> {
         ),
       ),
       bottomNavigationBar: const BarraDeNavegacao(),
+    );
+  }
+}
+
+class Classes extends StatelessWidget {
+  const Classes({
+    super.key,
+    required this.titulo,
+    required this.caminhoImagem,
+  });
+
+  final String titulo, caminhoImagem;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        if (titulo == 'Arqueiro') {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const TelaDoArqueiro()),
+          );
+        } else if (titulo == 'Arqueiro') {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const TelaDoBardo()),
+          );
+        } else if (titulo == 'Arqueiro') {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const TelaDoBruxo()),
+          );
+        }
+      },
+      child: ContainerPadrao(caminhoImagem: caminhoImagem, titulo: titulo),
     );
   }
 }
