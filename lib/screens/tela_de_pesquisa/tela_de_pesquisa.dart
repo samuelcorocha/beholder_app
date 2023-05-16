@@ -1,3 +1,4 @@
+import 'package:beholder_companion/screens/profile/profile.dart';
 import 'package:beholder_companion/screens/tela_inicial/tela_inicial.dart';
 import 'package:flutter/material.dart';
 import 'package:beholder_companion/screens/tela_de_login/tela_de_login.dart';
@@ -119,7 +120,7 @@ class IconeDoApp extends StatelessWidget {
         onTap: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const TelaDeLogin()),
+            MaterialPageRoute(builder: (context) => const ProfilePage()),
           );
         },
         child: Padding(
