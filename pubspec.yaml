@@ -73,6 +73,11 @@ flutter:
     - assets/tela_de_pesquisa/botao2_classes/
     - assets/tela_de_pesquisa/botao2_classes/classes/
     - assets/tela_de_pesquisa/botao3_itens/
+    - assets/tela_de_pesquisa/botao3_itens/
+    - assets/tela_de_social/axalote.png
+    - assets/onBoarding/
+    - assets/Icons/
+    - assets/profile/
     - assets/tela_de_pesquisa/botao3_itens/itens/
   fonts:
     - family: Chivo
