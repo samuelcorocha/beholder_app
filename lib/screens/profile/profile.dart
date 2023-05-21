@@ -20,7 +20,7 @@ class ProfilePageState extends State<ProfilePage> {
         centerTitle: true,
         leading: IconButton(
             onPressed: () {
-              Navigator.push(
+              Navigator.pop(
                 context,
                 MaterialPageRoute(builder: (context) => const TelaInicial()),
               );
