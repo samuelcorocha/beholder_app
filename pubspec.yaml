@@ -30,6 +30,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_otp_text_field: ^1.1.0+2
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -63,6 +64,7 @@ flutter:
     - assets/barra_de_navegacao/
     - assets/tela_de_carregamento/
     - assets/tela_de_cadastro/
+    - assets/tela_de_cadastro/cadastro_1/
     - assets/tela_de_cadastro/cadastro_2/
     - assets/tela_de_login/
     - assets/tela_de_login/metodos_de_login/
