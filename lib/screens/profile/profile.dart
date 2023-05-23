@@ -19,19 +19,14 @@ class ProfilePageState extends State<ProfilePage> {
         elevation: 0,
         centerTitle: true,
         leading: IconButton(
-          onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const TelaInicial()),
-          );
-        },
-          icon: const Icon(
-            Icons.arrow_back_sharp,
-            color: Color(0xff000000),
-          ),
-        ),
-        title:
-        const Text(
+            onPressed: () {
+              Navigator.pop(
+                context,
+                MaterialPageRoute(builder: (context) => const TelaInicial()),
+              );
+            },
+            icon: const Icon(Icons.arrow_back_sharp, color: Color(0xff000000))),
+        title: const Text(
           'Profile',
           style: TextStyle(color: Color(0xff000000),
           ),

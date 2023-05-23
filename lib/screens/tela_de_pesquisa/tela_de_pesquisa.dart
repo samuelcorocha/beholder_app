@@ -1,10 +1,8 @@
+import 'package:beholder_companion/screens/profile/profile.dart';
 import 'package:flutter/material.dart';
-
-import 'package:beholder_companion/screens/tela_de_login/tela_de_login.dart';
-
+import 'package:beholder_companion/screens/tela_de_pesquisa/racas/tela_de_racas.dart';
 import 'classes/tela_de_classes.dart';
 import 'itens/tela_de_itens.dart';
-import 'racas/tela_de_racas.dart';
 
 class TelaDePesquisa extends StatefulWidget {
   const TelaDePesquisa({Key? key}) : super(key: key);
@@ -100,6 +98,13 @@ class BarraDeNavegacao extends StatelessWidget {
               child: Image.asset("assets/barra_de_navegacao/icone_perfil.png"),
             ),
             label: ''),
+        BottomNavigationBarItem(
+            icon: Container(
+              height: 32,
+              color: null,
+              child: Image.asset("assets/barra_de_navegacao/icone_jogar.png"),
+            ),
+            label: '')
       ],
       currentIndex: 0,
       showSelectedLabels: false,
@@ -224,7 +229,7 @@ class IconeDoApp extends StatelessWidget {
         onTap: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const TelaDeLogin()),
+            MaterialPageRoute(builder: (context) => const ProfilePage()),
           );
         },
         child: Padding(

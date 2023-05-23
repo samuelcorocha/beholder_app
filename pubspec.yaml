@@ -37,6 +37,8 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   flutter_native_splash: ^2.2.19
+  firebase_core: ^2.13.0
+  firebase_auth: ^4.6.1
 
 dev_dependencies:
   flutter_test:
@@ -76,6 +78,11 @@ flutter:
     - assets/tela_de_pesquisa/botao2_classes/
     - assets/tela_de_pesquisa/botao2_classes/classes/
     - assets/tela_de_pesquisa/botao3_itens/
+    - assets/tela_de_pesquisa/botao3_itens/
+    - assets/tela_de_social/axalote.png
+    - assets/onBoarding/
+    - assets/Icons/
+    - assets/profile/
     - assets/tela_de_pesquisa/botao3_itens/itens/
   fonts:
     - family: Chivo
