@@ -20,17 +20,14 @@ class ProfilePageState extends State<ProfilePage> {
         centerTitle: true,
         leading: IconButton(
             onPressed: () {
-              Navigator.pop(
+              Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => const TelaInicial()),
               );
             },
             icon: const Icon(Icons.arrow_back_sharp, color: Color(0xff000000))),
-        title: const Text(
-          'Profile',
-          style: TextStyle(color: Color(0xff000000),
-          ),
-        ),
+        title:
+        const Text('Profile', style: TextStyle(color: Color(0xff000000))),
       ),
       body: Container(
         alignment: Alignment.center,
@@ -64,7 +61,7 @@ class ProfilePageState extends State<ProfilePage> {
                         bottom: 0,
                         right: 0,
                         child: Stack(
-                          children: <Widget>[
+                          children: [
                             SizedBox(
                               width: 50,
                               height: 50,
@@ -74,7 +71,7 @@ class ProfilePageState extends State<ProfilePage> {
                                 },
                                 icon: Stack(
                                   alignment: Alignment.center,
-                                  children: <Widget>[
+                                  children: [
                                     Container(
                                       width: 30,
                                       height: 30,
@@ -104,54 +101,97 @@ class ProfilePageState extends State<ProfilePage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Expanded(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                    const Flexible(
-                          child: Align(
-                            alignment: Alignment.center,
-                            child: Text(
-                              'ARTHUR',
-                              style: TextStyle(
-                                fontSize: 18,
-                                color: Colors.black,
+                  Stack(
+                    children: <Widget>[
+                      const SizedBox(
+                        child: Text(
+                          'ARTHUR',
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        bottom: -5,
+                        right: -25,
+                        child: Stack(
+                          children: [
+                            SizedBox(
+                              width: 50,
+                              height: 50,
+                              child: IconButton(
+                                onPressed: () {
+                                  // Lógica do botão de edição
+                                },
+                                icon: Stack(
+                                  alignment: Alignment.center,
+                                  children: [
+                                    Container(
+                                      width: 30,
+                                      height: 30,
+                                      decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: Colors.red,
+                                      ),
+                                    ),
+                                    const Icon(
+                                      Icons.edit,
+                                      color: Colors.white,
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
+                          ],
                         ),
-                        const SizedBox(width: 10),
-                        SizedBox(
-                          width: 50,
-                          height: 50,
-                          child: IconButton(
-                            onPressed: () {
-                              // Lógica do botão de edição
-                            },
-                            icon: Stack(
-                              alignment: Alignment.center,
-                              children: <Widget>[
-                                Container(
-                                  width: 30,
-                                  height: 30,
-                                  decoration: const BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: Colors.red,
-                                  ),
-                                ),
-                                const Icon(
-                                  Icons.edit,
-                                  color: Colors.white,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ],
               ),
+            ),
+            Container(
+              alignment: Alignment.center,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Stack(
+                    children: const <Widget>[
+                      SizedBox(
+                        child: Text(
+                          '@arthur',
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Spacer(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment
+                  .spaceEvenly, // use whichever suits your need
+              children: const <Widget>[
+                Text("Seguidores: "),
+                SizedBox(
+                  width: 75,
+                ),
+                Text("Seguindo: "),
+              ],
+            ),
+            Spacer(),
+            Row(
+              children: <Widget>[
+                SizedBox(
+                  width: 45,
+                ),
+                Text("20 anos, nerd e otaku fedido "),
+              ],
             ),
           ],
         ),

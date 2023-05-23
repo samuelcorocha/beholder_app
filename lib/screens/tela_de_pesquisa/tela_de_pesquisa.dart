@@ -1,6 +1,8 @@
 import 'package:beholder_companion/screens/profile/profile.dart';
+import 'package:beholder_companion/screens/tela_inicial/tela_inicial.dart';
 import 'package:flutter/material.dart';
 import 'package:beholder_companion/screens/tela_de_pesquisa/racas/tela_de_racas.dart';
+import '../tela_de_social/tela_de_social.dart';
 import 'classes/tela_de_classes.dart';
 import 'itens/tela_de_itens.dart';
 
@@ -110,11 +112,28 @@ class BarraDeNavegacao extends StatelessWidget {
       showSelectedLabels: false,
       showUnselectedLabels: false,
       onTap: (index) {
+        switch (index) {
+          case 0:
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const TelaInicial()),
+            );
+            break;
+          case 1:
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => TelaDeSocial()),
+            );
+            break;
+          case 2:
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const TelaDePesquisa()),
+            );
+            break;
+        }
         if (index == 2) {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const TelaDePesquisa()),
-          );
+
         }
       },
     );
