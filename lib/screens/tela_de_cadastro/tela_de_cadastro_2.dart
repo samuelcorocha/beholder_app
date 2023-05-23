@@ -4,6 +4,8 @@ import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 
 import 'package:beholder_companion/screens/tela_de_cadastro/tela_de_cadastro_1.dart';
 
+import '../tela_de_login/tela_de_login.dart';
+
 class TelaDeCadastro2 extends StatefulWidget {
   const TelaDeCadastro2({Key? key}) : super(key: key);
 
@@ -69,7 +71,7 @@ class TelaDeCadastro2State extends State<TelaDeCadastro2> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const TelaDeCadastro1()));
+                      MaterialPageRoute(builder: (context) => const TelaDeLogin()));
                   },
                   style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(

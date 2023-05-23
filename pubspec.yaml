@@ -61,6 +61,8 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
+    - assets/onBoarding/
+    - assets/icons/
     - assets/barra_de_navegacao/
     - assets/tela_de_carregamento/
     - assets/tela_de_cadastro/

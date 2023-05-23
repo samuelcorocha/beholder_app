@@ -1,3 +1,4 @@
+import 'package:beholder_companion/screens/tela_de_cadastro/tela_de_cadastro_1.dart';
 import 'package:flutter/material.dart';
 import 'package:beholder_companion/screens/tela_de_pesquisa/tela_de_pesquisa.dart';
 
@@ -214,6 +215,10 @@ class TelaDeLoginState extends State<TelaDeLogin> {
                           ),
                           GestureDetector(
                             onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => const TelaDeCadastro1())
+                              );
                             },
                             child: const Text(
                               'Registre-se',
