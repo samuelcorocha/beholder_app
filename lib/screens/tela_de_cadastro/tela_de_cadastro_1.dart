@@ -9,7 +9,7 @@ class TelaDeCadastro1 extends StatefulWidget {
   TelaDeCadastro1State createState() => TelaDeCadastro1State();
 }
 
-//Teste
+//Testes
 
 class TelaDeCadastro1State extends State<TelaDeCadastro1> {
   @override
