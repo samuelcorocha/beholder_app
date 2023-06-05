@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:beholder_companion/screens/tela_de_login/tela_de_login.dart';
+
 import 'package:beholder_companion/screens/tela_de_pesquisa/tela_de_pesquisa.dart';
+
+import 'package:beholder_companion/screens/tela_de_pesquisa/racas/tela_do_anao.dart';
+import 'package:beholder_companion/screens/tela_de_pesquisa/racas/tela_do_elfo.dart';
+import 'package:beholder_companion/screens/tela_de_pesquisa/racas/tela_do_humano.dart';
 
 class TelaDeRacas extends StatefulWidget {
   const TelaDeRacas({Key? key}) : super(key: key);
@@ -10,7 +14,6 @@ class TelaDeRacas extends StatefulWidget {
 }
 
 class TelaDeRacasState extends State<TelaDeRacas> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,19 +27,30 @@ class TelaDeRacasState extends State<TelaDeRacas> {
             children: <Widget>[
               const SizedBox(height: 32),
               Row(
-                children: <Widget>[
-                  const IconeDoApp(),
-                  const SizedBox(width: 16),
-                  ElevatedButton.icon(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => const TelaDePesquisa()),
-                      );
-                    },
-                    icon: const Icon(Icons.arrow_back),
-                    label: const Text('Voltar'),
-                  ),
+                children: const <Widget>[
+                  IconeDoApp(),
+                  SizedBox(width: 16),
+                  BotaoDeVoltar(),
+                ],
+              ),
+              const SizedBox(height: 32),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: const <Widget>[
+                  Racas(
+                      titulo: 'Anão',
+                      caminhoImagem:
+                          'assets/tela_de_pesquisa/botao1_racas/racas/anao.png'),
+                  SizedBox(width: 8),
+                  Racas(
+                      titulo: 'Elfo',
+                      caminhoImagem:
+                          'assets/tela_de_pesquisa/botao1_racas/racas/elf.png'),
+                  SizedBox(width: 8),
+                  Racas(
+                      titulo: 'Humano',
+                      caminhoImagem:
+                          'assets/tela_de_pesquisa/botao1_racas/racas/humano.png')
                 ],
               ),
             ],
@@ -44,6 +58,41 @@ class TelaDeRacasState extends State<TelaDeRacas> {
         ),
       ),
       bottomNavigationBar: const BarraDeNavegacao(),
+    );
+  }
+}
+
+class Racas extends StatelessWidget {
+  const Racas({
+    super.key,
+    required this.titulo,
+    required this.caminhoImagem,
+  });
+
+  final String titulo, caminhoImagem;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        if (titulo == 'Anão') {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const TelaDoAnao()),
+          );
+        } else if (titulo == 'Elfo') {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const TelaDoElfo()),
+          );
+        } else if (titulo == 'Humano') {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const TelaDoHumano()),
+          );
+        }
+      },
+      child: ContainerPadrao(caminhoImagem: caminhoImagem, titulo: titulo),
     );
   }
 }
