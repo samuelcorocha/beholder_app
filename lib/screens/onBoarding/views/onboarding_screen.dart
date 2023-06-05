@@ -1,4 +1,3 @@
-import 'package:beholder_companion/screens/tela_de_login/tela_de_login.dart';
 import 'package:flutter/material.dart';
 
 class OnBoardingScreen extends StatefulWidget {
@@ -64,16 +63,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                                 borderRadius: BorderRadius.circular(30),
                               ))),
                   onPressed: () {
-                    if (_pageIndex == 2) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => const TelaDeLogin()),
-                      );
-                    } else {
-                      _pageController.nextPage(
-                          duration: const Duration(milliseconds: 300),
-                          curve: Curves.ease);
-                    }
+                    _pageController.nextPage(
+                        duration: const Duration(milliseconds: 300),
+                        curve: Curves.ease);
                   },
                   child: Image.asset("assets/icons/Arrow 1.png"),
                 ),

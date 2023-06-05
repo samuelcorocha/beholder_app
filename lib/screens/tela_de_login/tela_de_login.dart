@@ -1,7 +1,5 @@
-import 'package:beholder_companion/screens/tela_de_cadastro/tela_de_cadastro_1.dart';
 import 'package:flutter/material.dart';
 import 'package:beholder_companion/screens/tela_de_pesquisa/tela_de_pesquisa.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class TelaDeLogin extends StatefulWidget {
   const TelaDeLogin({Key? key}) : super(key: key);
@@ -14,15 +12,6 @@ class TelaDeLoginState extends State<TelaDeLogin> {
 
   bool _isButtonPressed = false;
   bool _isCheckboxChecked = false;
-  String message = "";
-  TextEditingController emailAddress = TextEditingController();
-  TextEditingController password = TextEditingController();
-
-  void updateMessage(String men) {
-    setState(() {
-      message = men;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -111,31 +100,19 @@ class TelaDeLoginState extends State<TelaDeLogin> {
                         ),
                       ),
                       const SizedBox(height: 16),
-                      TextField(
-                        controller: emailAddress,
-                        decoration: const InputDecoration(
+                      const TextField(
+                        decoration: InputDecoration(
                           hintText: 'Email',
                         ),
                       ),
                       const SizedBox(height: 16),
-                      TextField(
+                      const TextField(
                         obscureText: true,
-                        controller: password,
-                        decoration: const InputDecoration(
+                        decoration: InputDecoration(
                           hintText: 'Senha',
                         ),
                       ),
                       const SizedBox(height: 16),
-                      Text(
-                        message,
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          fontFamily: 'Chivo',
-                          fontSize: 13.0,
-                          color: Colors.red,
-                          fontWeight: FontWeight.normal,
-                        ),
-                      ),
                       Row(
                         children: [
                           Checkbox(
@@ -173,33 +150,11 @@ class TelaDeLoginState extends State<TelaDeLogin> {
                       ),
                       const SizedBox(height: 24),
                       ElevatedButton(
-                        onPressed: () async {
-                          try {
-                            await FirebaseAuth.instance.signInWithEmailAndPassword(
-                                email: emailAddress.text,
-                                password: password.text,
-                            );
-                            FirebaseAuth.instance
-                            .authStateChanges()
-                            .listen((User ? user) {
-                              if (user == null) {
-                                updateMessage("Problema de autenticação!");
-                              } else {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(builder: (context) => const TelaDePesquisa()),
-                                );
-                              }
-                            });
-                          } on FirebaseAuthException catch (e) {
-                            if (e.code == 'user-not-found') {
-                                updateMessage("Usuário não encontrado!");
-                            } else if (e.code == 'wrong-password') {
-                              updateMessage("Senha incorreta!");
-                            } else {
-                              updateMessage("Erro de login!");
-                            }
-                          }
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const TelaDePesquisa()),
+                          );
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.black,
@@ -259,10 +214,6 @@ class TelaDeLoginState extends State<TelaDeLogin> {
                           ),
                           GestureDetector(
                             onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(builder: (context) => const TelaDeCadastro1())
-                              );
                             },
                             child: const Text(
                               'Registre-se',

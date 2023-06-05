@@ -30,15 +30,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_otp_text_field: ^1.1.0+2
 
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   flutter_native_splash: ^2.2.19
-  firebase_core: ^2.13.0
-  firebase_auth: ^4.6.1
 
 dev_dependencies:
   flutter_test:
@@ -63,33 +60,21 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
-    - assets/onBoarding/
-    - assets/icons/
     - assets/barra_de_navegacao/
     - assets/tela_de_carregamento/
-    - assets/tela_de_cadastro/
-    - assets/tela_de_cadastro/cadastro_1/
-    - assets/tela_de_cadastro/cadastro_2/
     - assets/tela_de_login/
     - assets/tela_de_login/metodos_de_login/
     - assets/tela_de_pesquisa/
     - assets/tela_de_pesquisa/botao1_racas/
-    - assets/tela_de_pesquisa/botao1_racas/racas/
+    #- assets/tela_de_pesquisa/botao1_racas/racas/
     - assets/tela_de_pesquisa/botao2_classes/
-    - assets/tela_de_pesquisa/botao2_classes/classes/
+    #- assets/tela_de_pesquisa/botao2_classes/classes/
     - assets/tela_de_pesquisa/botao3_itens/
     - assets/tela_de_pesquisa/botao3_itens/
     - assets/tela_de_social/axalote.png
     - assets/onBoarding/
     - assets/Icons/
     - assets/profile/
-    - assets/tela_de_pesquisa/botao3_itens/itens/
-  fonts:
-    - family: Chivo
-      fonts:
-        - asset: assets/fontes/Chivo-Regular.ttf
-        - asset: assets/fontes/Chivo-Italic.ttf
-          style: italic
 
   # To add assets to your application, add an assets section, like this:
   # assets:
@@ -124,20 +109,20 @@ flutter:
 
 flutter_native_splash:
   color: "#D72638"
-  image: assets/fundo_carregamento.png
-  branding: assets/texto_carregamento.png
+  image: assets/tela_de_carregamento/fundo_carregamento.png
+  branding: assets/tela_de_carregamento/texto_carregamento.png
   branding_mode: bottom
   color_dark: "#D72638"
-  image_dark: assets/fundo_carregamento.png
-  branding_dark: assets/texto_carregamento.png
+  image_dark: assets/tela_de_carregamento/fundo_carregamento.png
+  branding_dark: assets/tela_de_carregamento/texto_carregamento.png
 
   android_12:
-    image: assets/fundo_carregamento.png
+    image: assets/tela_de_carregamento/fundo_carregamento.png
     icon_background_color: "#ffffff"
-    image_dark: assets/fundo_carregamento.png
+    image_dark: assets/tela_de_carregamento/fundo_carregamento.png
     icon_background_color_dark: "#121212"
-    branding: assets/texto_carregamento.png
+    branding: assets/tela_de_carregamento/texto_carregamento.png
     branding_mode: bottom
-    branding_dark: assets/texto_carregamento.png
+    branding_dark: assets/tela_de_carregamento/texto_carregamento.png
 
   web: false

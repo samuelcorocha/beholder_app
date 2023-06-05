@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:beholder_companion/screens/tela_de_login/tela_de_login.dart';
 import 'package:beholder_companion/screens/tela_de_pesquisa/tela_de_pesquisa.dart';
-
-import 'package:beholder_companion/screens/tela_de_pesquisa/racas/tela_do_anao.dart';
-import 'package:beholder_companion/screens/tela_de_pesquisa/racas/tela_do_elfo.dart';
-import 'package:beholder_companion/screens/tela_de_pesquisa/racas/tela_do_humano.dart';
 
 class TelaDeItens extends StatefulWidget {
   const TelaDeItens({Key? key}) : super(key: key);
@@ -14,6 +10,7 @@ class TelaDeItens extends StatefulWidget {
 }
 
 class TelaDeItensState extends State<TelaDeItens> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,30 +24,19 @@ class TelaDeItensState extends State<TelaDeItens> {
             children: <Widget>[
               const SizedBox(height: 32),
               Row(
-                children: const <Widget>[
-                  IconeDoApp(),
-                  SizedBox(width: 16),
-                  BotaoDeVoltar(),
-                ],
-              ),
-              const SizedBox(height: 32),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const <Widget>[
-                  Itens(
-                      titulo: 'Armas',
-                      caminhoImagem:
-                      'assets/tela_de_pesquisa/botao3_itens/itens/espada.png'),
-                  SizedBox(width: 8),
-                  Itens(
-                      titulo: 'Vestes',
-                      caminhoImagem:
-                      'assets/tela_de_pesquisa/botao3_itens/itens/armaduras.png'),
-                  SizedBox(width: 8),
-                  Itens(
-                      titulo: 'Utilidade',
-                      caminhoImagem:
-                      'assets/tela_de_pesquisa/botao3_itens/itens/pocao.png')
+                children: <Widget>[
+                  const IconeDoApp(),
+                  const SizedBox(width: 16),
+                  ElevatedButton.icon(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const TelaDePesquisa()),
+                      );
+                    },
+                    icon: const Icon(Icons.arrow_back),
+                    label: const Text('Voltar'),
+                  ),
                 ],
               ),
             ],
@@ -58,41 +44,6 @@ class TelaDeItensState extends State<TelaDeItens> {
         ),
       ),
       bottomNavigationBar: const BarraDeNavegacao(),
-    );
-  }
-}
-
-class Itens extends StatelessWidget {
-  const Itens({
-    super.key,
-    required this.titulo,
-    required this.caminhoImagem,
-  });
-
-  final String titulo, caminhoImagem;
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        if (titulo == 'Armas') {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const TelaDoAnao()),
-          );
-        } else if (titulo == 'Vestes') {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const TelaDoElfo()),
-          );
-        } else if (titulo == 'Utilidade') {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const TelaDoHumano()),
-          );
-        }
-      },
-      child: ContainerPadrao(caminhoImagem: caminhoImagem, titulo: titulo),
     );
   }
 }

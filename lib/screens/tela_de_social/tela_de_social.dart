@@ -135,7 +135,7 @@ class TelaDeSocial extends StatelessWidget{
               icon: Container(
                 height: 32,
                 color: null,
-                child: Image.asset("assets/barra_de_navegacao/icone_jogar.png"),
+                child: Image.asset("assets/barra_de_navegacao/icone-jogar.png"),
               ),
               label: ''
           ),
