@@ -52,9 +52,9 @@ class TelaDeLoginState extends State<TelaDeLogin> {
                     borderRadius: BorderRadius.circular(18.0),
                   ),
                 ),
-                child: Column(
+                child: const Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
+                  children: [
                     Icon(
                       Icons.arrow_upward,
                       color: Colors.white,

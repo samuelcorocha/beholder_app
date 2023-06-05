@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:beholder_companion/screens/tela_de_login/tela_de_login.dart';
 import 'package:beholder_companion/screens/tela_de_pesquisa/racas/tela_de_racas.dart';
 
+import '../tela_de_social/tela_de_social.dart';
+import '../tela_inicial/tela_inicial.dart';
+
 class TelaDePesquisa extends StatefulWidget {
   const TelaDePesquisa({Key? key}) : super(key: key);
 
@@ -11,7 +14,6 @@ class TelaDePesquisa extends StatefulWidget {
 
 class TelaDePesquisaState extends State<TelaDePesquisa> {
   final TextEditingController _textEditingController = TextEditingController();
-
 
   @override
   Widget build(BuildContext context) {
@@ -39,14 +41,23 @@ class TelaDePesquisaState extends State<TelaDePesquisa> {
                 ),
               ),
               const SizedBox(height: 16),
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: const <Widget>[
-                  ItensDaPesquisa(titulo: 'Raças', caminhoImagem: 'assets/tela_de_pesquisa/botao1_racas/icone_racas.png'),
+                  ItensDaPesquisa(
+                      titulo: 'Raças',
+                      caminhoImagem:
+                          'assets/tela_de_pesquisa/botao1_racas/icone_racas.png'),
                   SizedBox(width: 8),
-                  ItensDaPesquisa(titulo: 'Classes', caminhoImagem: 'assets/tela_de_pesquisa/botao2_classes/icone_classes.png'),
+                  ItensDaPesquisa(
+                      titulo: 'Classes',
+                      caminhoImagem:
+                          'assets/tela_de_pesquisa/botao2_classes/icone_classes.png'),
                   SizedBox(width: 8),
-                  ItensDaPesquisa(titulo: 'Itens', caminhoImagem: 'assets/tela_de_pesquisa/botao3_itens/icone_itens.png')
+                  ItensDaPesquisa(
+                      titulo: 'Itens',
+                      caminhoImagem:
+                          'assets/tela_de_pesquisa/botao3_itens/icone_itens.png')
                 ],
               ),
             ],
@@ -60,7 +71,9 @@ class TelaDePesquisaState extends State<TelaDePesquisa> {
 
 class ItensDaPesquisa extends StatelessWidget {
   const ItensDaPesquisa({
-    super.key, required this.titulo, required this.caminhoImagem,
+    super.key,
+    required this.titulo,
+    required this.caminhoImagem,
   });
 
   final String titulo, caminhoImagem;
@@ -149,37 +162,54 @@ class BarraDeNavegacao extends StatelessWidget {
               color: null,
               child: Image.asset("assets/barra_de_navegacao/icone_casa.png"),
             ),
-            label: ''
-        ),
+            label: ''),
         BottomNavigationBarItem(
-          icon: Container(
-            height: 32,
-            color: null,
-            child: Image.asset("assets/barra_de_navegacao/icone_mapa.png"),
-          ),
-          label: ''
-        ),
-        BottomNavigationBarItem(
-          icon: Container(
-            height: 32,
-            color: null,
-            child: Image.asset("assets/barra_de_navegacao/icone_pesquisa.png"),
-          ),
-          label: ''
-        ),
-        BottomNavigationBarItem(
-          icon: Container(
-            height: 32,
-            color: null,
-            child: Image.asset("assets/barra_de_navegacao/icone_perfil.png"),
+            icon: Container(
+              height: 32,
+              color: null,
+              child: Image.asset("assets/barra_de_navegacao/icone_mapa.png"),
             ),
-          label: ''
-        ),
+            label: ''),
+        BottomNavigationBarItem(
+            icon: Container(
+              height: 32,
+              color: null,
+              child:
+                  Image.asset("assets/barra_de_navegacao/icone_pesquisa.png"),
+            ),
+            label: ''),
+        BottomNavigationBarItem(
+            icon: Container(
+              height: 32,
+              color: null,
+              child: Image.asset("assets/barra_de_navegacao/icone_perfil.png"),
+            ),
+            label: ''),
       ],
       currentIndex: 0,
       showSelectedLabels: false,
       showUnselectedLabels: false,
       onTap: (index) {
+        switch (index) {
+          case 0:
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const TelaInicial()),
+            );
+            break;
+          case 1:
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const TelaDeSocial()),
+            );
+            break;
+          case 2:
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const TelaDePesquisa()),
+            );
+            break;
+        }
         if (index == 2) {
           Navigator.push(
             context,

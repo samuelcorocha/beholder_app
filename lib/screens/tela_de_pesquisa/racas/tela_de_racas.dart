@@ -17,14 +17,15 @@ class TelaDeRacasState extends State<TelaDeRacas> {
       backgroundColor: Colors.grey[800],
       body: Container(
         margin: const EdgeInsets.all(16),
-        child: Padding(
-          padding: const EdgeInsets.all(8),
+        child: const Padding(
+          padding: EdgeInsets.all(8),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              const SizedBox(height: 32),
+              SizedBox(height: 32),
               Row(
                 children: <Widget>[
+<<<<<<< Updated upstream
                   const IconeDoApp(),
                   const SizedBox(width: 16),
                   ElevatedButton.icon(
@@ -37,6 +38,31 @@ class TelaDeRacasState extends State<TelaDeRacas> {
                     icon: const Icon(Icons.arrow_back),
                     label: const Text('Voltar'),
                   ),
+=======
+                  IconeDoApp(),
+                  SizedBox(width: 16),
+                  BotaoDeVoltar(),
+                ],
+              ),
+              SizedBox(height: 32),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Racas(
+                      titulo: 'Anão',
+                      caminhoImagem:
+                          'assets/tela_de_pesquisa/botao1_racas/racas/anao.png'),
+                  SizedBox(width: 8),
+                  Racas(
+                      titulo: 'Elfo',
+                      caminhoImagem:
+                          'assets/tela_de_pesquisa/botao1_racas/racas/elf.png'),
+                  SizedBox(width: 8),
+                  Racas(
+                      titulo: 'Humano',
+                      caminhoImagem:
+                          'assets/tela_de_pesquisa/botao1_racas/racas/humano.png')
+>>>>>>> Stashed changes
                 ],
               ),
             ],

@@ -17,14 +17,15 @@ class TelaDeItensState extends State<TelaDeItens> {
       backgroundColor: Colors.grey[800],
       body: Container(
         margin: const EdgeInsets.all(16),
-        child: Padding(
-          padding: const EdgeInsets.all(8),
+        child: const Padding(
+          padding: EdgeInsets.all(8),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              const SizedBox(height: 32),
+              SizedBox(height: 32),
               Row(
                 children: <Widget>[
+<<<<<<< Updated upstream
                   const IconeDoApp(),
                   const SizedBox(width: 16),
                   ElevatedButton.icon(
@@ -37,6 +38,31 @@ class TelaDeItensState extends State<TelaDeItens> {
                     icon: const Icon(Icons.arrow_back),
                     label: const Text('Voltar'),
                   ),
+=======
+                  IconeDoApp(),
+                  SizedBox(width: 16),
+                  BotaoDeVoltar(),
+                ],
+              ),
+              SizedBox(height: 32),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Itens(
+                      titulo: 'Armas',
+                      caminhoImagem:
+                      'assets/tela_de_pesquisa/botao3_itens/itens/espada.png'),
+                  SizedBox(width: 8),
+                  Itens(
+                      titulo: 'Vestes',
+                      caminhoImagem:
+                      'assets/tela_de_pesquisa/botao3_itens/itens/armaduras.png'),
+                  SizedBox(width: 8),
+                  Itens(
+                      titulo: 'Utilidade',
+                      caminhoImagem:
+                      'assets/tela_de_pesquisa/botao3_itens/itens/pocao.png')
+>>>>>>> Stashed changes
                 ],
               ),
             ],
