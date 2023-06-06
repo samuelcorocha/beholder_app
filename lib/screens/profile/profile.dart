@@ -145,15 +145,27 @@ class profilePageState extends State<profilePage> {
                   const SizedBox(
                     width: 50,
                   ),
-                  SizedBox(
-                    child: Text(
-                      _nickname,
-                      style: const TextStyle(
-                        fontSize: 18,
-                        color: Colors.black,
+                  Column(
+                    children: [
+                      SizedBox(
+                        child: Text(
+                          _nickname,
+                          style: const TextStyle(
+                            fontSize: 18,
+                            color: Colors.black,
+                          ),
+                        ),
                       ),
-                    ),
+                      Text(
+                        '@$_username',
+                        style: const TextStyle(
+                          fontSize: 12,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ],
                   ),
+
                   Stack(
                     children: [
                       SizedBox(
@@ -184,6 +196,7 @@ class profilePageState extends State<profilePage> {
                       ),
                     ],
                   ),
+
                 ],
               ),
               Row(
@@ -191,13 +204,7 @@ class profilePageState extends State<profilePage> {
                 children: <Widget>[
                   Stack(
                     children: <Widget>[
-                      Text(
-                        '@$_username',
-                        style: const TextStyle(
-                          fontSize: 12,
-                          color: Colors.grey,
-                        ),
-                      ),
+
                     ],
                   ),
                 ],
@@ -219,7 +226,7 @@ class profilePageState extends State<profilePage> {
               const SizedBox(
                 height: 20,
               ),
-              const SizedBox(
+              SizedBox(
                 width: 350,
                 child: Row(
                   children: <Widget>[
@@ -282,7 +289,7 @@ class profilePageState extends State<profilePage> {
                 onPressed: () {
                   // Ação ao pressionar o botão
                 },
-                child: const Row(
+                child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
