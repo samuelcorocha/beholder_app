@@ -80,6 +80,10 @@ flutter:
     - assets/onBoarding/
     - assets/Icons/
     - assets/profile/
+    - assets/tela_de_cadastro/cadastro_1/
+    - assets/tela_de_cadastro/cadastro_2/
+    - assets/tela_de_cadastro/cadastro_3/
+    - assets/tela_de_cadastro/cadastro_4/
 
   # To add assets to your application, add an assets section, like this:
   # assets:
