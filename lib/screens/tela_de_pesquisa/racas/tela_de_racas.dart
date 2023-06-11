@@ -57,7 +57,6 @@ class TelaDeRacasState extends State<TelaDeRacas> {
           ),
         ),
       ),
-      bottomNavigationBar: const BarraDeNavegacao(),
     );
   }
 }

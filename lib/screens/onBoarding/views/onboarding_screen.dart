@@ -1,3 +1,4 @@
+import 'package:beholder_companion/screens/tela_de_login/nova_tela_de_login.dart';
 import 'package:beholder_companion/screens/tela_de_login/tela_de_login.dart';
 import 'package:flutter/material.dart';
 
@@ -67,7 +68,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     if (_pageIndex == 2) {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const TelaDeLogin()),
+                        MaterialPageRoute(builder: (context) =>  const NovaTelaDeLogin()),
                       );
                     } else {
                       _pageController.nextPage(

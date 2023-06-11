@@ -1,6 +1,8 @@
+import 'package:beholder_companion/screens/home/home.dart';
 import 'package:beholder_companion/screens/tela_de_cadastro/tela_de_cadastro_1.dart';
 import 'package:beholder_companion/screens/tela_de_pesquisa/tela_de_pesquisa.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class NovaTelaDeLogin extends StatefulWidget {
   const NovaTelaDeLogin({Key? key}) : super(key: key);
@@ -10,6 +12,18 @@ class NovaTelaDeLogin extends StatefulWidget {
 }
 
 class NovaTelaDeLoginState extends State<NovaTelaDeLogin> {
+  bool _isButtonPressed = false;
+  bool _isCheckboxChecked = false;
+  String message = "";
+  TextEditingController emailAddress = TextEditingController();
+  TextEditingController password = TextEditingController();
+
+  void updateMessage(String men) {
+    setState(() {
+      message = men;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,27 +61,40 @@ class NovaTelaDeLoginState extends State<NovaTelaDeLogin> {
             ),
             const SizedBox(height: 24.0),
             Column(
-              children: const [
-                CampoDeLoginVisivel(textoSuperior: 'Nome de usuário'),
+              children: [
+                CampoDeLoginVisivel(textoSuperior: 'Nome de usuário', emailAddress: emailAddress,),
                 SizedBox(height: 16.0),
-                CampoDeLoginInvisivel(textoSuperior: 'Senha'),
+                CampoDeLoginInvisivel(textoSuperior: 'Senha', password: password),
               ],
             ),
             const SizedBox(height: 24.0),
-            RichText(
+            Text(
+              message,
               textAlign: TextAlign.center,
-              text: const TextSpan(
-                style: TextStyle(
-                  fontFamily: 'Chivo', fontSize: 18, color: Colors.black),
-                children: <TextSpan>[
-                  TextSpan(text: "Esqueceu seu usuário ou senha?\n"),
-                  TextSpan(
-                    text: "Clique aqui.",
-                    style: TextStyle(
-                      color: Colors.red, fontWeight: FontWeight.bold)
-                  ),
-                ]
-              )
+              style: const TextStyle(
+                fontFamily: 'Chivo',
+                fontSize: 13.0,
+                color: Colors.red,
+                fontWeight: FontWeight.normal,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 23.0),
+              child: RichText(
+                textAlign: TextAlign.center,
+                text: const TextSpan(
+                  style: TextStyle(
+                    fontFamily: 'Chivo', fontSize: 16, color: Colors.black),
+                  children: <TextSpan>[
+                    TextSpan(text: "Esqueceu seu usuário ou senha?\n"),
+                    TextSpan(
+                      text: "Clique aqui.",
+                      style: TextStyle(
+                        color: Colors.red, fontWeight: FontWeight.bold)
+                    ),
+                  ]
+                )
+              ),
             ),
             const SizedBox(height: 16.0),
             Column(
@@ -76,12 +103,33 @@ class NovaTelaDeLoginState extends State<NovaTelaDeLogin> {
                   width: MediaQuery.of(context).size.width,
                   height: 55,
                   child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const NovaTelaDeLogin()),
-                      );
+                    onPressed: () async {
+                      try {
+                        await FirebaseAuth.instance.signInWithEmailAndPassword(
+                          email: emailAddress.text,
+                          password: password.text,
+                        );
+                        FirebaseAuth.instance
+                            .authStateChanges()
+                            .listen((User ? user) {
+                          if (user == null) {
+                            updateMessage("Problema de autenticação!");
+                          } else {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => Home()),
+                            );
+                          }
+                        });
+                      } on FirebaseAuthException catch (e) {
+                        if (e.code == 'user-not-found') {
+                          updateMessage("Usuário não encontrado!");
+                        } else if (e.code == 'wrong-password') {
+                          updateMessage("Senha incorreta!");
+                        } else {
+                          updateMessage("Erro de login!");
+                        }
+                      }
                     },
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.black,
@@ -172,21 +220,34 @@ class NovaTelaDeLoginState extends State<NovaTelaDeLogin> {
                 ),
               ],
             ),
-            const SizedBox(height: 16.0),
-            RichText(
-              textAlign: TextAlign.center,
-              text: const TextSpan(
-                style: TextStyle(
-                  fontFamily: 'Chivo', fontSize: 18, color: Colors.black),
-                children: <TextSpan>[
-                  TextSpan(text: "Não tem uma conta?\n"),
-                  TextSpan(
-                    text: "Registre-se.",
-                    style: TextStyle(
-                        color: Colors.red, fontWeight: FontWeight.bold)
+            const SizedBox(height: 30.0),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const TelaDeCadastro1()),
+                );
+              },
+              child: RichText(
+                textAlign: TextAlign.center,
+                text: const TextSpan(
+                  style: TextStyle(
+                    fontFamily: 'Chivo',
+                    fontSize: 16,
+                    color: Colors.black,
                   ),
-                ]
-              )
+                  children: <TextSpan>[
+                    TextSpan(text: "Não tem uma conta?\n"),
+                    TextSpan(
+                      text: "Registre-se.",
+                      style: TextStyle(
+                        color: Colors.red,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ]),
         ),
@@ -239,25 +300,30 @@ class BotaoDeLogin extends StatelessWidget {
 }
 
 class CampoDeLoginInvisivel extends StatefulWidget {
-  const CampoDeLoginInvisivel({
+  CampoDeLoginInvisivel({
     super.key,
     required this.textoSuperior,
+    required this.password
   });
 
   final String textoSuperior;
+  TextEditingController password = TextEditingController();
+
 
   @override
   State<CampoDeLoginInvisivel> createState() =>
-      _CampoDeLoginInvisivelState(textoSuperior: textoSuperior);
+      _CampoDeLoginInvisivelState(textoSuperior: textoSuperior, password: password);
 }
 
 class _CampoDeLoginInvisivelState extends State<CampoDeLoginInvisivel> {
   _CampoDeLoginInvisivelState({
     required this.textoSuperior,
+    required this.password
   });
 
   final String textoSuperior;
   bool passwordObscured = false;
+  TextEditingController password = TextEditingController();
 
   @override
   void initState() {
@@ -279,6 +345,7 @@ class _CampoDeLoginInvisivelState extends State<CampoDeLoginInvisivel> {
       TextFormField(
         keyboardType: TextInputType.text,
         obscureText: !passwordObscured,
+        controller: password,
         decoration: InputDecoration(
           border: const OutlineInputBorder(),
           suffixIcon: IconButton(
@@ -299,9 +366,10 @@ class _CampoDeLoginInvisivelState extends State<CampoDeLoginInvisivel> {
 }
 
 class CampoDeLoginVisivel extends StatelessWidget {
-  const CampoDeLoginVisivel({super.key, required this.textoSuperior});
+  CampoDeLoginVisivel({super.key, required this.textoSuperior, required this.emailAddress});
 
   final String textoSuperior;
+  TextEditingController emailAddress = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -315,6 +383,7 @@ class CampoDeLoginVisivel extends StatelessWidget {
         ),
       ),
       TextFormField(
+        controller: emailAddress,
         decoration: const InputDecoration(
           border: OutlineInputBorder(),
         ),

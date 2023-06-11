@@ -34,7 +34,6 @@ class TelaDoAnaoState extends State<TelaDoAnao> {
           ),
         ),
       ),
-      bottomNavigationBar: const BarraDeNavegacao(),
     );
   }
 }

@@ -57,7 +57,6 @@ class TelaDeClassesState extends State<TelaDeClasses> {
           ),
         ),
       ),
-      bottomNavigationBar: const BarraDeNavegacao(),
     );
   }
 }

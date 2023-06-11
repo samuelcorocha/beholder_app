@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:beholder_companion/screens/tela_de_login/nova_tela_de_login.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -236,7 +237,7 @@ class TelaDeCadastro4State extends State<TelaDeCadastro4> {
                 onPressed: () => Navigator.push(
                   context,
                   PageTransition(
-                    child: const TelaDeCadastro4(),
+                    child: const NovaTelaDeLogin(),
                     type: PageTransitionType.rightToLeft,
                     duration: const Duration(milliseconds: 300),
                     reverseDuration: const Duration(milliseconds: 300)

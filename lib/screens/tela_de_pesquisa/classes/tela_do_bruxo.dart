@@ -35,7 +35,6 @@ class TelaDoBruxoState extends State<TelaDoBruxo> {
           ),
         ),
       ),
-      bottomNavigationBar: const BarraDeNavegacao(),
     );
   }
 }

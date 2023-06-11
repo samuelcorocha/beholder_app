@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../tela_inicial/tela_inicial.dart';
-
 class profilePage extends StatefulWidget {
   const profilePage({Key? key}) : super(key: key);
 
@@ -29,9 +27,8 @@ class profilePageState extends State<profilePage> {
         centerTitle: true,
         leading: IconButton(
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const TelaInicial()),
+              Navigator.pop(
+                context
               );
             },
             icon: const Icon(Icons.arrow_back_sharp, color: Color(0xff000000))),

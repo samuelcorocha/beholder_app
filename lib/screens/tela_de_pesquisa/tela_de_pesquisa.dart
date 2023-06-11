@@ -1,5 +1,4 @@
 import 'package:beholder_companion/screens/profile/profile.dart';
-import 'package:beholder_companion/screens/tela_inicial/tela_inicial.dart';
 import 'package:flutter/material.dart';
 import 'package:beholder_companion/screens/tela_de_pesquisa/racas/tela_de_racas.dart';
 import '../tela_de_social/tela_de_social.dart';
@@ -55,87 +54,6 @@ class TelaDePesquisaState extends State<TelaDePesquisa> {
           ),
         ),
       ),
-      bottomNavigationBar: const BarraDeNavegacao(),
-    );
-  }
-}
-
-class BarraDeNavegacao extends StatelessWidget {
-  const BarraDeNavegacao({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      type: BottomNavigationBarType.fixed,
-      backgroundColor: Colors.grey[800],
-      items: <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
-            icon: Container(
-              height: 32,
-              color: null,
-              child: Image.asset("assets/barra_de_navegacao/icone_casa.png"),
-            ),
-            label: ''),
-        BottomNavigationBarItem(
-            icon: Container(
-              height: 32,
-              color: null,
-              child: Image.asset("assets/barra_de_navegacao/icone_mapa.png"),
-            ),
-            label: ''),
-        BottomNavigationBarItem(
-            icon: Container(
-              height: 32,
-              color: null,
-              child:
-                  Image.asset("assets/barra_de_navegacao/icone_pesquisa.png"),
-            ),
-            label: ''),
-        BottomNavigationBarItem(
-            icon: Container(
-              height: 32,
-              color: null,
-              child: Image.asset("assets/barra_de_navegacao/icone_perfil.png"),
-            ),
-            label: ''),
-        BottomNavigationBarItem(
-            icon: Container(
-              height: 32,
-              color: null,
-              child: Image.asset("assets/barra_de_navegacao/icone_jogar.png"),
-            ),
-            label: '')
-      ],
-      currentIndex: 0,
-      showSelectedLabels: false,
-      showUnselectedLabels: false,
-      onTap: (index) {
-        switch (index) {
-          case 0:
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const TelaInicial()),
-            );
-            break;
-          case 1:
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => TelaDeSocial()),
-            );
-            break;
-          case 2:
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const TelaDePesquisa()),
-            );
-            break;
-        }
-        if (index == 2) {
-
-        }
-      },
     );
   }
 }

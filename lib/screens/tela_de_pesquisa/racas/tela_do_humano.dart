@@ -34,7 +34,6 @@ class TelaDoHumanoState extends State<TelaDoHumano> {
           ),
         ),
       ),
-      bottomNavigationBar: const BarraDeNavegacao(),
     );
   }
 }

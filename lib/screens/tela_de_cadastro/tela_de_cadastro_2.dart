@@ -1,3 +1,4 @@
+import 'package:beholder_companion/screens/tela_de_cadastro/tela_de_cadastro_3.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
@@ -71,7 +72,7 @@ class TelaDeCadastro2State extends State<TelaDeCadastro2> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const TelaDeLogin()));
+                      MaterialPageRoute(builder: (context) => const TelaDeCadastro3()));
                   },
                   style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(

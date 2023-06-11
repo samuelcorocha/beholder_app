@@ -34,7 +34,6 @@ class TelaDoBardoState extends State<TelaDoBardo> {
           ),
         ),
       ),
-      bottomNavigationBar: const BarraDeNavegacao(),
     );
   }
 }

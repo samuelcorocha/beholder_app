@@ -34,7 +34,6 @@ class TelaDoArqueiroState extends State<TelaDoArqueiro> {
           ),
         ),
       ),
-      bottomNavigationBar: const BarraDeNavegacao(),
     );
   }
 }

@@ -34,7 +34,6 @@ class TelaDoElfoState extends State<TelaDoElfo> {
           ),
         ),
       ),
-      bottomNavigationBar: const BarraDeNavegacao(),
     );
   }
 }
