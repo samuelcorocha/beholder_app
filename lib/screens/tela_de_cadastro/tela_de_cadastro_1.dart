@@ -1,5 +1,6 @@
 import 'package:beholder_companion/screens/tela_de_cadastro/tela_de_cadastro_2.dart';
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 
 class TelaDeCadastro1 extends StatefulWidget {
   const TelaDeCadastro1({Key? key}) : super(key: key);

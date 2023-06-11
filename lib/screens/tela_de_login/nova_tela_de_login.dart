@@ -55,17 +55,20 @@ class NovaTelaDeLoginState extends State<NovaTelaDeLogin> {
             ),
             const SizedBox(height: 24.0),
             RichText(
-                textAlign: TextAlign.center,
-                text: const TextSpan(
+              textAlign: TextAlign.center,
+              text: const TextSpan(
+                style: TextStyle(
+                  fontFamily: 'Chivo', fontSize: 18, color: Colors.black),
+                children: <TextSpan>[
+                  TextSpan(text: "Esqueceu seu usuário ou senha?\n"),
+                  TextSpan(
+                    text: "Clique aqui.",
                     style: TextStyle(
-                        fontFamily: 'Chivo', fontSize: 18, color: Colors.black),
-                    children: <TextSpan>[
-                      TextSpan(text: "Esqueceu seu usuário ou senha?\n"),
-                      TextSpan(
-                          text: "Clique aqui.",
-                          style: TextStyle(
-                              color: Colors.red, fontWeight: FontWeight.bold)),
-                    ])),
+                      color: Colors.red, fontWeight: FontWeight.bold)
+                  ),
+                ]
+              )
+            ),
             const SizedBox(height: 16.0),
             Column(
               children: [
@@ -171,17 +174,20 @@ class NovaTelaDeLoginState extends State<NovaTelaDeLogin> {
             ),
             const SizedBox(height: 16.0),
             RichText(
-                textAlign: TextAlign.center,
-                text: const TextSpan(
+              textAlign: TextAlign.center,
+              text: const TextSpan(
+                style: TextStyle(
+                  fontFamily: 'Chivo', fontSize: 18, color: Colors.black),
+                children: <TextSpan>[
+                  TextSpan(text: "Não tem uma conta?\n"),
+                  TextSpan(
+                    text: "Registre-se.",
                     style: TextStyle(
-                        fontFamily: 'Chivo', fontSize: 18, color: Colors.black),
-                    children: <TextSpan>[
-                      TextSpan(text: "Não tem uma conta?\n"),
-                      TextSpan(
-                          text: "Registre-se.",
-                          style: TextStyle(
-                              color: Colors.red, fontWeight: FontWeight.bold)),
-                    ])),
+                        color: Colors.red, fontWeight: FontWeight.bold)
+                  ),
+                ]
+              )
+            ),
           ]),
         ),
       ),
