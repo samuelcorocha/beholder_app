@@ -219,7 +219,7 @@ class profilePageState extends State<profilePage> {
               const SizedBox(
                 height: 20,
               ),
-              const SizedBox(
+              SizedBox(
                 width: 350,
                 child: Row(
                   children: <Widget>[
@@ -282,7 +282,7 @@ class profilePageState extends State<profilePage> {
                 onPressed: () {
                   // Ação ao pressionar o botão
                 },
-                child: const Row(
+                child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(

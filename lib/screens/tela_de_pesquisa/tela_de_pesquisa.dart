@@ -248,7 +248,7 @@ class IconeDoApp extends StatelessWidget {
         onTap: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const ProfilePage()),
+            MaterialPageRoute(builder: (context) => const profilePage()),
           );
         },
         child: Padding(
