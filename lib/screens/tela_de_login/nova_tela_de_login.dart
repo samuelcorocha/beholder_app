@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class NovaTelaDeLogin extends StatefulWidget {
-  const NovaTelaDeLogin({Key? key}) : super(key: key);
+  final MaterialColor colorPalette;
+
+  const NovaTelaDeLogin({Key? key, required this.colorPalette}) : super(key: key);
 
   @override
   NovaTelaDeLoginState createState() => NovaTelaDeLoginState();
@@ -132,7 +134,7 @@ class NovaTelaDeLoginState extends State<NovaTelaDeLogin> {
                       }
                     },
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.black,
+                        backgroundColor: widget.colorPalette.shade500,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(18.0),
                         )),
@@ -162,7 +164,7 @@ class NovaTelaDeLoginState extends State<NovaTelaDeLogin> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const NovaTelaDeLogin()),
+                            builder: (context) => NovaTelaDeLogin(colorPalette: widget.colorPalette)),
                       );
                     },
                     style: ElevatedButton.styleFrom(
@@ -194,7 +196,7 @@ class NovaTelaDeLoginState extends State<NovaTelaDeLogin> {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const NovaTelaDeLogin()),
+                        MaterialPageRoute(builder: (context) => NovaTelaDeLogin(colorPalette: widget.colorPalette)),
                       );
                     },
                     style: ElevatedButton.styleFrom(
@@ -257,8 +259,10 @@ class NovaTelaDeLoginState extends State<NovaTelaDeLogin> {
 }
 
 class BotaoDeLogin extends StatelessWidget {
+  final MaterialColor colorPalette;
+
   const BotaoDeLogin(
-      {super.key, required this.caminhoImagem, required this.texto});
+      {super.key, required this.caminhoImagem, required this.texto, required this.colorPalette});
 
   final String caminhoImagem;
   final String texto;
@@ -274,7 +278,7 @@ class BotaoDeLogin extends StatelessWidget {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const NovaTelaDeLogin()),
+            MaterialPageRoute(builder: (context) => NovaTelaDeLogin(colorPalette: colorPalette,)),
           );
         },
         style: ElevatedButton.styleFrom(

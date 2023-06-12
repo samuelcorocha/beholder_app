@@ -16,6 +16,22 @@ class TelaDeCadastro4 extends StatefulWidget {
 }
 
 class TelaDeCadastro4State extends State<TelaDeCadastro4> {
+  final MaterialColor colorPalette = const MaterialColor(
+    0xFF0000FF,
+    <int, Color>{
+      50: Color(0xFFD72638),
+      100: Color(0xFFE05260),
+      200: Color(0xFF9C1C28),
+      300: Color(0xFF463239),
+      400: Color(0xFFEFE7E9),
+      500: Color(0xFF000000),
+      600: Color(0xFFDFDFDF),
+      700: Color(0xFFEAEAEA),
+      800: Color(0xFFFAFAFA),
+      900: Color(0xFFFFFFFF),
+      1000: Color(0x8C000000),
+    },
+  );
 
   DateTime data = DateTime.now();
 
@@ -237,7 +253,7 @@ class TelaDeCadastro4State extends State<TelaDeCadastro4> {
                 onPressed: () => Navigator.push(
                   context,
                   PageTransition(
-                    child: const NovaTelaDeLogin(),
+                    child: NovaTelaDeLogin(colorPalette: colorPalette),
                     type: PageTransitionType.rightToLeft,
                     duration: const Duration(milliseconds: 300),
                     reverseDuration: const Duration(milliseconds: 300)
