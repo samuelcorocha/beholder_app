@@ -17,7 +17,6 @@ class NovaTelaDePesquisaState extends State<NovaTelaDePesquisa> {
         slivers: [
           barraSuperior(),
           method(),
-
         ],
       ),
       bottomNavigationBar: const BarraInferior(),
@@ -34,7 +33,7 @@ class NovaTelaDePesquisaState extends State<NovaTelaDePesquisa> {
       leading: const Icon(Icons.person, color: Colors.black),
       actions: const [
         Icon(Icons.list, color: Colors.black),
-        SizedBox(width: 15)
+        SizedBox(width: 18)
       ],
       bottom: AppBar(
         backgroundColor: Colors.white,
@@ -43,20 +42,35 @@ class NovaTelaDePesquisaState extends State<NovaTelaDePesquisa> {
           width: double.infinity,
           height: 50,
           color: Colors.white,
-          child: const Center(
-            child: TextField(
-              textAlignVertical: TextAlignVertical.bottom,
-              decoration: InputDecoration(
-                hintText: 'Pesquisar...',
-                prefixIcon: Icon(Icons.search, color: Colors.black),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.black, width: 1.5)
+          child: Row(
+            children: <Widget> [
+              const Flexible(
+                child: TextField(
+                  textAlignVertical: TextAlignVertical.bottom,
+                  decoration: InputDecoration(
+                    hintText: 'Pesquisar...',
+                    prefixIcon: Icon(Icons.search, color: Colors.black),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black, width: 1.5)
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black, width: 1.5)
+                    )
+                  ),
                 ),
-                focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black, width: 1.5)
-                )
               ),
-            ),
+              const SizedBox(width: 16),
+              IconButton(
+                icon: const Icon(Icons.filter_alt),
+                color: Colors.black,
+                onPressed: () => showModalBottomSheet(
+                  isScrollControlled: false,
+                  backgroundColor: Colors.white,
+                  context: context,
+                  builder: (_) => const Demo()
+                ),
+              )
+            ],
           ),
         ),
       )
@@ -126,7 +140,6 @@ class NovaTelaDePesquisaState extends State<NovaTelaDePesquisa> {
       ],
     ),
   );
-
 }
 
 class BarraInferior extends StatelessWidget {
@@ -203,6 +216,50 @@ class BotaoDeClasseState extends State<BotaoDeClasse> {
             Text(widget.texto, style: const TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold))
           ],
         ),
+      ),
+    );
+  }
+}
+
+class Demo extends StatefulWidget {
+  const Demo({super.key});
+
+  @override
+  DemoState createState() => DemoState();
+}
+
+class DemoState extends State<Demo> {
+  Map<String, bool> values = {
+    'Classes': false,
+    'Itens': false,
+    'Raças': false,
+    'Monstros': false,
+    'Magias': false,
+    'Artefatos': false,
+    'Outros': false,
+    'Livros':  false,
+    'Favoritos': false
+  };
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Filtros'),
+        centerTitle: true,
+      ),
+      body: ListView(
+        children: values.keys.map((String key) {
+          return CheckboxListTile(
+            title: Text(key),
+            value: values[key],
+            onChanged: (bool? value) {
+              setState(() {
+                values[key] = value!;
+              });
+            },
+          );
+        }).toList(),
       ),
     );
   }

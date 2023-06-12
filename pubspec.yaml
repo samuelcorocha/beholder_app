@@ -36,6 +36,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_native_splash: ^2.2.19
   google_fonts: ^4.0.4
+  slide_popup_dialog_null_safety: ^1.0.0
+  checkbox_grouped: ^1.9.0
 
 dev_dependencies:
   flutter_test:
