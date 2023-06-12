@@ -134,7 +134,7 @@ class BarraDePesquisa extends StatelessWidget {
         fillColor: Colors.white,
         hintText: "Pesquisa rápida",
         enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.black, width: 2.5)),
+          borderSide: BorderSide(color: Colors.black, width: 2.5)),
         prefixIcon: Icon(Icons.search),
         contentPadding: EdgeInsets.symmetric(vertical: 8.0),
       ),
