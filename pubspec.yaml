@@ -38,6 +38,7 @@ dependencies:
   google_fonts: ^4.0.4
   slide_popup_dialog_null_safety: ^1.0.0
   checkbox_grouped: ^1.9.0
+  http: ^1.0.0
 
 dev_dependencies:
   flutter_test:
@@ -67,14 +68,9 @@ flutter:
     - assets/tela_de_login/
     - assets/tela_de_login/metodos_de_login/
     - assets/tela_de_pesquisa/
-    - assets/tela_de_pesquisa/botao1_racas/
-    - assets/tela_de_pesquisa/botao1_racas/racas/
-    - assets/tela_de_pesquisa/botao2_classes/
-    - assets/tela_de_pesquisa/botao2_classes/classes/
-    - assets/tela_de_pesquisa/botao3_itens/
-    - assets/tela_de_pesquisa/botao3_itens/itens/
     - assets/tela_de_pesquisa/botoes/
     - assets/tela_de_pesquisa/sistemas/
+    - assets/tela_de_pesquisa/classes/
   fonts:
     - family: Chivo
       fonts:

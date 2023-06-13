@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:beholder_companion/screens/tela_de_pesquisa/tela_de_pesquisa.dart';
+import '../tela_de_pesquisa/nova_tela_de_pesquisa.dart';
 
 class TelaDeLogin extends StatefulWidget {
   const TelaDeLogin({Key? key}) : super(key: key);
@@ -52,9 +52,9 @@ class TelaDeLoginState extends State<TelaDeLogin> {
                     borderRadius: BorderRadius.circular(18.0),
                   ),
                 ),
-                child: Column(
+                child: const Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
+                  children: [
                     Icon(
                       Icons.arrow_upward,
                       color: Colors.white,
@@ -153,7 +153,7 @@ class TelaDeLoginState extends State<TelaDeLogin> {
                         onPressed: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => const TelaDePesquisa()),
+                            MaterialPageRoute(builder: (context) => const NovaTelaDePesquisa()),
                           );
                         },
                         style: ElevatedButton.styleFrom(

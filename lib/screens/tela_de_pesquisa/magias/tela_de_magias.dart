@@ -3,21 +3,21 @@ import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 
-class TelaDeItens extends StatefulWidget {
-  const TelaDeItens ({Key? key}) : super(key: key);
+class TelaDeMagias extends StatefulWidget {
+  const TelaDeMagias ({Key? key}) : super(key: key);
 
   @override
-  TelaDeItensState createState() => TelaDeItensState();
+  TelaDeMagiasState createState() => TelaDeMagiasState();
 }
 
-class TelaDeItensState extends State<TelaDeItens> {
+class TelaDeMagiasState extends State<TelaDeMagias> {
 
-  List<dynamic> equipments = [];
+  List<dynamic> spells = [];
 
   @override
   void initState() {
     super.initState();
-    fetchEquipments();
+    fetchSpells();
   }
 
   @override
@@ -25,14 +25,14 @@ class TelaDeItensState extends State<TelaDeItens> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('Itens'),
+        title: const Text('Spells'),
         centerTitle: true,
       ),
       body: ListView.builder(
-          itemCount: equipments.length,
+          itemCount: spells.length,
           itemBuilder: (context, index){
-            final equipment = equipments[index];
-            final name = equipment['name'];
+            final spell = spells[index];
+            final name = spell['name'];
             return ListTile(
               leading: CircleAvatar(child: Text('${index + 1}')),
               title: Text(name, style: const TextStyle(color: Colors.black)),
@@ -41,20 +41,20 @@ class TelaDeItensState extends State<TelaDeItens> {
       ),
     );
   }
-  void fetchEquipments() async {
+  void fetchSpells() async {
     if (kDebugMode) {
-      print('fetchEquipments called');
+      print('fetchSpells called');
     }
-    const url = 'https://www.dnd5eapi.co/api/equipment';
+    const url = 'https://www.dnd5eapi.co/api/spells';
     final uri = Uri.parse(url);
     final response = await http.get(uri);
     final body = response.body;
     final json = jsonDecode(body);
     setState(() {
-      equipments = json['results'];
+      spells = json['results'];
     });
     if (kDebugMode) {
-      print('fetchEquipments completed');
+      print('fetchSpells completed');
     }
   }
 }
