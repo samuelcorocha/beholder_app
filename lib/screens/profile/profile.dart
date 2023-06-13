@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 import '../tela_inicial/tela_inicial.dart';
 
-class profilePage extends StatefulWidget {
-  const profilePage({Key? key}) : super(key: key);
+class ProfilePage extends StatefulWidget {
+  const ProfilePage({Key? key}) : super(key: key);
 
   @override
-  profilePageState createState() => profilePageState();
+  ProfilePageState createState() => ProfilePageState();
 }
 
-class profilePageState extends State<profilePage> {
+class ProfilePageState extends State<ProfilePage> {
   String _nickname = "Arthur";
   String _username = "arthur";
   String _follows = "0";
