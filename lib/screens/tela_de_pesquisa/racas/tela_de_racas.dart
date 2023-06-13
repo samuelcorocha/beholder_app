@@ -13,6 +13,7 @@ class TelaDeRacas extends StatefulWidget {
 class TelaDeRacasState extends State<TelaDeRacas> {
 
   List<dynamic> races = [];
+  bool isLoading = true;
 
   @override
   void initState() {
@@ -28,16 +29,18 @@ class TelaDeRacasState extends State<TelaDeRacas> {
         title: const Text('Raças'),
         centerTitle: true,
       ),
-      body: ListView.builder(
-          itemCount: races.length,
-          itemBuilder: (context, index){
-            final race = races[index];
-            final name = race['name'];
-            return ListTile(
-              leading: CircleAvatar(child: Text('${index + 1}')),
-              title: Text(name, style: const TextStyle(color: Colors.black)),
-            );
-          }
+      body: isLoading
+      ? const Center(child: CircularProgressIndicator())
+      : ListView.builder(
+        itemCount: races.length,
+        itemBuilder: (context, index){
+          final race = races[index];
+          final name = race['name'];
+          return ListTile(
+            leading: CircleAvatar(child: Text('${index + 1}')),
+            title: Text(name, style: const TextStyle(color: Colors.black)),
+          );
+        }
       ),
     );
   }
@@ -52,6 +55,7 @@ class TelaDeRacasState extends State<TelaDeRacas> {
     final json = jsonDecode(body);
     setState(() {
       races = json['results'];
+      isLoading = false;
     });
     if (kDebugMode) {
       print('fetchRaces completed');

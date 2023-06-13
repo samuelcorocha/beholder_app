@@ -13,6 +13,7 @@ class TelaDeItens extends StatefulWidget {
 class TelaDeItensState extends State<TelaDeItens> {
 
   List<dynamic> equipments = [];
+  bool isLoading = true;
 
   @override
   void initState() {
@@ -28,16 +29,18 @@ class TelaDeItensState extends State<TelaDeItens> {
         title: const Text('Itens'),
         centerTitle: true,
       ),
-      body: ListView.builder(
-          itemCount: equipments.length,
-          itemBuilder: (context, index){
-            final equipment = equipments[index];
-            final name = equipment['name'];
-            return ListTile(
-              leading: CircleAvatar(child: Text('${index + 1}')),
-              title: Text(name, style: const TextStyle(color: Colors.black)),
-            );
-          }
+      body: isLoading
+      ? const Center(child: CircularProgressIndicator())
+      : ListView.builder(
+        itemCount: equipments.length,
+        itemBuilder: (context, index){
+          final equipment = equipments[index];
+          final name = equipment['name'];
+          return ListTile(
+            leading: CircleAvatar(child: Text('${index + 1}')),
+            title: Text(name, style: const TextStyle(color: Colors.black)),
+          );
+        }
       ),
     );
   }
@@ -52,6 +55,7 @@ class TelaDeItensState extends State<TelaDeItens> {
     final json = jsonDecode(body);
     setState(() {
       equipments = json['results'];
+      isLoading = false;
     });
     if (kDebugMode) {
       print('fetchEquipments completed');

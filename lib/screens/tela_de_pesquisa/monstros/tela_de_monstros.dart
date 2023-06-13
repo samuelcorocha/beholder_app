@@ -13,6 +13,7 @@ class TelaDeMonstros extends StatefulWidget {
 class TelaDeMonstrosState extends State<TelaDeMonstros> {
 
   List<dynamic> monsters = [];
+  bool isLoading = true;
 
   @override
   void initState() {
@@ -28,7 +29,9 @@ class TelaDeMonstrosState extends State<TelaDeMonstros> {
         title: const Text('Monsters'),
         centerTitle: true,
       ),
-      body: ListView.builder(
+      body: isLoading
+      ? const Center(child: CircularProgressIndicator())
+      : ListView.builder(
         itemCount: monsters.length,
         itemBuilder: (context, index){
           final monster = monsters[index];
@@ -52,6 +55,7 @@ class TelaDeMonstrosState extends State<TelaDeMonstros> {
     final json = jsonDecode(body);
     setState(() {
       monsters = json['results'];
+      isLoading = false;
     });
     if (kDebugMode) {
       print('fetchMonsters completed');

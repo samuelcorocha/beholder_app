@@ -13,6 +13,7 @@ class TelaDeMagias extends StatefulWidget {
 class TelaDeMagiasState extends State<TelaDeMagias> {
 
   List<dynamic> spells = [];
+  bool isLoading = true;
 
   @override
   void initState() {
@@ -28,16 +29,18 @@ class TelaDeMagiasState extends State<TelaDeMagias> {
         title: const Text('Spells'),
         centerTitle: true,
       ),
-      body: ListView.builder(
-          itemCount: spells.length,
-          itemBuilder: (context, index){
-            final spell = spells[index];
-            final name = spell['name'];
-            return ListTile(
-              leading: CircleAvatar(child: Text('${index + 1}')),
-              title: Text(name, style: const TextStyle(color: Colors.black)),
-            );
-          }
+      body: isLoading
+      ? const Center(child: CircularProgressIndicator())
+      : ListView.builder(
+        itemCount: spells.length,
+        itemBuilder: (context, index){
+          final spell = spells[index];
+          final name = spell['name'];
+          return ListTile(
+            leading: CircleAvatar(child: Text('${index + 1}')),
+            title: Text(name, style: const TextStyle(color: Colors.black)),
+          );
+        }
       ),
     );
   }
@@ -52,6 +55,7 @@ class TelaDeMagiasState extends State<TelaDeMagias> {
     final json = jsonDecode(body);
     setState(() {
       spells = json['results'];
+      isLoading = false;
     });
     if (kDebugMode) {
       print('fetchSpells completed');
