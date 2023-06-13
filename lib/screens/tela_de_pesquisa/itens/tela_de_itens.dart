@@ -1,97 +1,64 @@
+import 'dart:convert';
+import 'package:flutter/foundation.dart';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 
-import 'package:beholder_companion/screens/tela_de_pesquisa/tela_de_pesquisa.dart';
-
-import 'package:beholder_companion/screens/tela_de_pesquisa/racas/tela_do_anao.dart';
-import 'package:beholder_companion/screens/tela_de_pesquisa/racas/tela_do_elfo.dart';
-import 'package:beholder_companion/screens/tela_de_pesquisa/racas/tela_do_humano.dart';
-
 class TelaDeItens extends StatefulWidget {
-  const TelaDeItens({Key? key}) : super(key: key);
+  const TelaDeItens ({Key? key}) : super(key: key);
 
   @override
   TelaDeItensState createState() => TelaDeItensState();
 }
 
 class TelaDeItensState extends State<TelaDeItens> {
+
+  List<dynamic> equipments = [];
+  bool isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchEquipments();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[800],
-      body: Container(
-        margin: const EdgeInsets.all(16),
-        child: Padding(
-          padding: const EdgeInsets.all(8),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              const SizedBox(height: 32),
-              Row(
-                children: const <Widget>[
-                  IconeDoApp(),
-                  SizedBox(width: 16),
-                  BotaoDeVoltar(),
-                ],
-              ),
-              const SizedBox(height: 32),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const <Widget>[
-                  Itens(
-                      titulo: 'Armas',
-                      caminhoImagem:
-                      'assets/tela_de_pesquisa/botao3_itens/itens/espada.png'),
-                  SizedBox(width: 8),
-                  Itens(
-                      titulo: 'Vestes',
-                      caminhoImagem:
-                      'assets/tela_de_pesquisa/botao3_itens/itens/armaduras.png'),
-                  SizedBox(width: 8),
-                  Itens(
-                      titulo: 'Utilidade',
-                      caminhoImagem:
-                      'assets/tela_de_pesquisa/botao3_itens/itens/pocao.png')
-                ],
-              ),
-            ],
-          ),
-        ),
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        title: const Text('Itens'),
+        centerTitle: true,
+      ),
+      body: isLoading
+      ? const Center(child: CircularProgressIndicator())
+      : ListView.builder(
+        itemCount: equipments.length,
+        itemBuilder: (context, index){
+          final equipment = equipments[index];
+          final name = equipment['name'];
+          return ListTile(
+            leading: CircleAvatar(child: Text('${index + 1}')),
+            title: Text(name, style: const TextStyle(color: Colors.black)),
+          );
+        }
       ),
     );
   }
-}
-
-class Itens extends StatelessWidget {
-  const Itens({
-    super.key,
-    required this.titulo,
-    required this.caminhoImagem,
-  });
-
-  final String titulo, caminhoImagem;
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        if (titulo == 'Armas') {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const TelaDoAnao()),
-          );
-        } else if (titulo == 'Vestes') {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const TelaDoElfo()),
-          );
-        } else if (titulo == 'Utilidade') {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const TelaDoHumano()),
-          );
-        }
-      },
-      child: ContainerPadrao(caminhoImagem: caminhoImagem, titulo: titulo),
-    );
+  void fetchEquipments() async {
+    if (kDebugMode) {
+      print('fetchEquipments called');
+    }
+    const url = 'https://www.dnd5eapi.co/api/equipment';
+    final uri = Uri.parse(url);
+    final response = await http.get(uri);
+    final body = response.body;
+    final json = jsonDecode(body);
+    setState(() {
+      equipments = json['results'];
+      isLoading = false;
+    });
+    if (kDebugMode) {
+      print('fetchEquipments completed');
+    }
   }
 }

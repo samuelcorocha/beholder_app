@@ -3,22 +3,22 @@ import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 
-class TelaDeRacas extends StatefulWidget {
-  const TelaDeRacas ({Key? key}) : super(key: key);
+class TelaDeMagias extends StatefulWidget {
+  const TelaDeMagias ({Key? key}) : super(key: key);
 
   @override
-  TelaDeRacasState createState() => TelaDeRacasState();
+  TelaDeMagiasState createState() => TelaDeMagiasState();
 }
 
-class TelaDeRacasState extends State<TelaDeRacas> {
+class TelaDeMagiasState extends State<TelaDeMagias> {
 
-  List<dynamic> races = [];
+  List<dynamic> spells = [];
   bool isLoading = true;
 
   @override
   void initState() {
     super.initState();
-    fetchRaces();
+    fetchSpells();
   }
 
   @override
@@ -26,16 +26,16 @@ class TelaDeRacasState extends State<TelaDeRacas> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('Raças'),
+        title: const Text('Spells'),
         centerTitle: true,
       ),
       body: isLoading
       ? const Center(child: CircularProgressIndicator())
       : ListView.builder(
-        itemCount: races.length,
+        itemCount: spells.length,
         itemBuilder: (context, index){
-          final race = races[index];
-          final name = race['name'];
+          final spell = spells[index];
+          final name = spell['name'];
           return ListTile(
             leading: CircleAvatar(child: Text('${index + 1}')),
             title: Text(name, style: const TextStyle(color: Colors.black)),
@@ -44,21 +44,21 @@ class TelaDeRacasState extends State<TelaDeRacas> {
       ),
     );
   }
-  void fetchRaces() async {
+  void fetchSpells() async {
     if (kDebugMode) {
-      print('fetchRaces called');
+      print('fetchSpells called');
     }
-    const url = 'https://www.dnd5eapi.co/api/races';
+    const url = 'https://www.dnd5eapi.co/api/spells';
     final uri = Uri.parse(url);
     final response = await http.get(uri);
     final body = response.body;
     final json = jsonDecode(body);
     setState(() {
-      races = json['results'];
+      spells = json['results'];
       isLoading = false;
     });
     if (kDebugMode) {
-      print('fetchRaces completed');
+      print('fetchSpells completed');
     }
   }
 }
