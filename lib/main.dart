@@ -12,7 +12,6 @@ void main() async {
 
   runApp(MyApp());
 }
-import 'package:beholder_companion/screens/tela_de_login/tela_de_login.dart';
 
 class MyApp extends StatelessWidget {
   final MaterialColor colorPalette = const MaterialColor(
