@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
-class profilePage extends StatefulWidget {
-  const profilePage({Key? key}) : super(key: key);
+import '../tela_inicial/tela_inicial.dart';
+
+class ProfilePage extends StatefulWidget {
+  const ProfilePage({Key? key}) : super(key: key);
 
   @override
-  profilePageState createState() => profilePageState();
+  ProfilePageState createState() => ProfilePageState();
 }
 
-class profilePageState extends State<profilePage> {
+class ProfilePageState extends State<ProfilePage> {
   String _nickname = "Arthur";
   String _username = "arthur";
   String _follows = "0";
@@ -27,8 +29,9 @@ class profilePageState extends State<profilePage> {
         centerTitle: true,
         leading: IconButton(
             onPressed: () {
-              Navigator.pop(
-                context
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const TelaInicial()),
               );
             },
             icon: const Icon(Icons.arrow_back_sharp, color: Color(0xff000000))),
@@ -142,27 +145,15 @@ class profilePageState extends State<profilePage> {
                   const SizedBox(
                     width: 50,
                   ),
-                  Column(
-                    children: [
-                      SizedBox(
-                        child: Text(
-                          _nickname,
-                          style: const TextStyle(
-                            fontSize: 18,
-                            color: Colors.black,
-                          ),
-                        ),
+                  SizedBox(
+                    child: Text(
+                      _nickname,
+                      style: const TextStyle(
+                        fontSize: 18,
+                        color: Colors.black,
                       ),
-                      Text(
-                        '@$_username',
-                        style: const TextStyle(
-                          fontSize: 12,
-                          color: Colors.grey,
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
-
                   Stack(
                     children: [
                       SizedBox(
@@ -193,7 +184,6 @@ class profilePageState extends State<profilePage> {
                       ),
                     ],
                   ),
-
                 ],
               ),
               Row(
@@ -201,7 +191,13 @@ class profilePageState extends State<profilePage> {
                 children: <Widget>[
                   Stack(
                     children: <Widget>[
-
+                      Text(
+                        '@$_username',
+                        style: const TextStyle(
+                          fontSize: 12,
+                          color: Colors.grey,
+                        ),
+                      ),
                     ],
                   ),
                 ],
@@ -223,7 +219,7 @@ class profilePageState extends State<profilePage> {
               const SizedBox(
                 height: 20,
               ),
-              SizedBox(
+              const SizedBox(
                 width: 350,
                 child: Row(
                   children: <Widget>[
@@ -286,7 +282,7 @@ class profilePageState extends State<profilePage> {
                 onPressed: () {
                   // Ação ao pressionar o botão
                 },
-                child: Row(
+                child: const Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
