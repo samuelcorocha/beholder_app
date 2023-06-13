@@ -29,7 +29,6 @@ class NovaTelaDePesquisaState extends State<NovaTelaDePesquisa> {
           method(),
         ],
       ),
-      bottomNavigationBar: const BarraInferior(),
     );
   }
   
@@ -96,77 +95,6 @@ class NovaTelaDePesquisaState extends State<NovaTelaDePesquisa> {
       ],
     ),
   );
-}
-
-class BarraInferior extends StatelessWidget {
-  const BarraInferior({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      type: BottomNavigationBarType.fixed,
-      backgroundColor: Colors.grey[400],
-      unselectedItemColor: Colors.black,
-      selectedItemColor: Colors.black,
-      onTap: (index) {
-        if(index == 0) {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (context) => const NovaTelaDePesquisa()),
-          );
-        } else if(index == 1) {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (context) => const NovaTelaDePesquisa()),
-          );
-        } else if(index == 2) {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (context) => const NovaTelaDePesquisa()),
-          );
-        } else if(index == 3) {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (context) => const NovaTelaDePesquisa()),
-          );
-        } else if(index == 4) {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (context) => const NovaTelaDePesquisa()),
-          );
-        }
-      },
-      items: const <BottomNavigationBarItem> [
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          label: 'Início',
-          backgroundColor: Colors.white,
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.map),
-          label: 'Encontrar',
-          backgroundColor: Colors.white
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.search),
-          label: 'Pesquisar',
-          backgroundColor: Colors.white
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.person),
-          label: 'Personagens',
-          backgroundColor: Colors.white
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.play_arrow),
-          label: 'Mesas',
-          backgroundColor: Colors.white
-        ),
-      ]
-    );
-  }
 }
 
 class BotaoDeClasse extends StatefulWidget {

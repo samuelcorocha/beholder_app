@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:beholder_companion/screens/profile/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -6,7 +8,6 @@ import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
 import '../../classes/geolocator.dart';
 import '../tela_de_pesquisa/tela_de_pesquisa.dart';
-import '../tela_inicial/tela_inicial.dart';
 
 class SectionNavigator extends StatefulWidget {
   const SectionNavigator({super.key});
@@ -70,12 +71,12 @@ class _SectionNavigatorState extends State<SectionNavigator>
             child: Builder(builder: (context) {
               final local = context.watch<GeoController>();
 
-              // String message = local.error == ''
-              //     ? 'Latitude: ${local.lat} | Longitude: ${local.long}'
-              //     : local.error;
+              String message = local.error == ''
+                  ? 'Latitude: ${local.lat} | Longitude: ${local.long}'
+                  : local.error;
 
-              if (local.error == '') {
-                return _SocialCards(local);
+              if (local.error == '' && local.lat != 0.0000000 && local.long != 0.0000000) {
+                return _SocialCards(local, message);
               } else {
                 return Center(
                   child: Text(local.error),
@@ -88,78 +89,19 @@ class _SectionNavigatorState extends State<SectionNavigator>
           ),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.grey[800],
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-              icon: Container(
-                height: 32,
-                color: null,
-                child: Image.asset("assets/barra_de_navegacao/icone_casa.png"),
-              ),
-              label: ''),
-          BottomNavigationBarItem(
-              icon: Container(
-                height: 32,
-                color: null,
-                child: Image.asset("assets/barra_de_navegacao/icone_mapa.png"),
-              ),
-              label: ''),
-          BottomNavigationBarItem(
-              icon: Container(
-                height: 32,
-                color: null,
-                child:
-                    Image.asset("assets/barra_de_navegacao/icone_pesquisa.png"),
-              ),
-              label: ''),
-          BottomNavigationBarItem(
-              icon: Container(
-                height: 32,
-                color: null,
-                child:
-                    Image.asset("assets/barra_de_navegacao/icone_perfil.png"),
-              ),
-              label: ''),
-          BottomNavigationBarItem(
-              icon: Container(
-                height: 32,
-                color: null,
-                child: Image.asset("assets/barra_de_navegacao/icone_jogar.png"),
-              ),
-              label: ''),
-        ],
-        currentIndex: 0,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        onTap: (index) {
-          switch (index) {
-            case 0:
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const TelaInicial()),
-              );
-              break;
-            case 2:
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const TelaDePesquisa()),
-              );
-              break;
-          }
-        },
-      ),
     );
   }
 
-  _SocialCards(position) {
+  _SocialCards(position, message) {
     List<Container> cards = [];
 
     for (var i = 0; i < 10; i++) {
+      final random = Random();
+      double randomNumber = (random.nextInt(600) + 0) - (random.nextInt(600) + 0);
+      double randomNumber2 = (random.nextInt(600) + 0) - (random.nextInt(600) + 0);
       NumberFormat formatter = NumberFormat("00");
       String distance = formatter.format(num.parse((Geolocator.distanceBetween(
-                  position.lat, position.long, -19.123456, -43.451524) /
+                  position.lat, position.long, randomNumber, randomNumber2) /
               1000)
           .toStringAsPrecision(2)));
       cards.add(
@@ -169,8 +111,9 @@ class _SectionNavigatorState extends State<SectionNavigator>
             children: [
               Column(
                 children: <Widget>[
+                  Text(message),
                   const SizedBox(
-                    height: 50,
+                    height: 25,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -312,7 +255,7 @@ class _SectionNavigatorState extends State<SectionNavigator>
     }
 
     final CardSwiperController controller = CardSwiperController();
-    final cardsList = cards.toList();
+    final cardsList = cards;
 
     @override
     void dispose() {
@@ -326,11 +269,12 @@ class _SectionNavigatorState extends State<SectionNavigator>
           Flexible(
             child: CardSwiper(
               controller: controller,
+              isLoop: true,
               cardsCount: cardsList.length,
               onSwipe: _onSwipe,
               onUndo: _onUndo,
               numberOfCardsDisplayed: 10,
-              backCardOffset: const Offset(40, 40),
+              backCardOffset: const Offset(20, 20),
               padding: const EdgeInsets.all(8.0),
               cardBuilder: (context, index) => cardsList[index],
             ),
@@ -340,11 +284,6 @@ class _SectionNavigatorState extends State<SectionNavigator>
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                FloatingActionButton(
-                  onPressed: controller.undo,
-                  backgroundColor: Colors.grey,
-                  child: const Icon(Icons.rotate_left),
-                ),
                 FloatingActionButton(
                   onPressed: controller.swipeLeft,
                   backgroundColor: Colors.black,

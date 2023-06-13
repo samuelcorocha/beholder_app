@@ -13,7 +13,6 @@ class TelaDeArtefatosState extends State<TelaDeArtefatos> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      bottomNavigationBar: BarraInferior(),
     );
   }
 }

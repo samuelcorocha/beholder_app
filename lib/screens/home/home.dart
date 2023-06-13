@@ -1,6 +1,7 @@
-import 'package:beholder_companion/screens/tela_de_pesquisa/tela_de_pesquisa.dart';
 import 'package:beholder_companion/screens/tela_de_social/tela_de_social.dart';
 import 'package:flutter/material.dart';
+
+import '../tela_de_pesquisa/nova_tela_de_pesquisa.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -60,7 +61,7 @@ class HomeState extends State<Home> {
           index: _currentIndex,
           children: [
             TelaDeSocial(),
-            TelaDePesquisa(),
+            NovaTelaDePesquisa(),
           ],
         ),
       ),

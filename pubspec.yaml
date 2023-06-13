@@ -38,10 +38,6 @@ dependencies:
   flutter_native_splash: ^2.2.19
   firebase_core: ^2.13.0
   firebase_auth: ^4.6.1
-  page_transition: ^2.0.9
-  otp_text_field: ^1.1.3
-  image_picker: ^0.8.7+5
-  path_provider: ^2.0.15
   google_fonts: ^4.0.4
   slide_popup_dialog_null_safety: ^1.0.0
   checkbox_grouped: ^1.9.0
@@ -88,17 +84,10 @@ flutter:
     - assets/tela_de_login/
     - assets/tela_de_login/metodos_de_login/
     - assets/tela_de_pesquisa/
-    - assets/tela_de_pesquisa/botao1_racas/
-    - assets/tela_de_pesquisa/botao1_racas/racas/
-    - assets/tela_de_pesquisa/botao2_classes/
-    - assets/tela_de_pesquisa/botao2_classes/classes/
-    - assets/tela_de_pesquisa/botao3_itens/
-    - assets/tela_de_pesquisa/botao3_itens/
     - assets/tela_de_social/axalote.png
     - assets/onBoarding/
     - assets/Icons/
     - assets/profile/
-    - assets/tela_de_pesquisa/botao3_itens/itens/
     - assets/tela_de_cadastro/cadastro_1/
     - assets/tela_de_cadastro/cadastro_2/
     - assets/tela_de_cadastro/cadastro_3/
