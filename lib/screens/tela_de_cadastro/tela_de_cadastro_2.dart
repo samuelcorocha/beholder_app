@@ -1,20 +1,38 @@
 import 'package:beholder_companion/screens/tela_de_cadastro/tela_de_cadastro_3.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 
 import 'package:beholder_companion/screens/tela_de_cadastro/tela_de_cadastro_1.dart';
 
-import '../tela_de_login/tela_de_login.dart';
-
 class TelaDeCadastro2 extends StatefulWidget {
-  const TelaDeCadastro2({Key? key}) : super(key: key);
+  final tokenId;
+
+  const TelaDeCadastro2({Key? key, required this.tokenId}) : super(key: key);
 
   @override
   TelaDeCadastro2State createState() => TelaDeCadastro2State();
 }
 
 class TelaDeCadastro2State extends State<TelaDeCadastro2> {
+
+  TextEditingController _verificationCode = new TextEditingController();
+
+  Future<bool> verifyToken () async {
+    final ref = FirebaseDatabase.instance.ref();
+
+    final tokenRef = await ref.child("tokens/${widget.tokenId + 1}/token").get();
+
+    if (_verificationCode.text == tokenRef.value) {
+      return true;
+    } else {
+      print(tokenRef.value);
+      return false;
+    }
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,12 +74,13 @@ class TelaDeCadastro2State extends State<TelaDeCadastro2> {
                   },
                   //runs when every textfield is filled
                   onSubmit: (String verificationCode){
+                    _verificationCode.text = verificationCode;
                     showDialog(
                         context: context,
                         builder: (context){
                           return AlertDialog(
-                            title: const Text("Verification Code"),
-                            content: Text('Code entered is $verificationCode'),
+                            title: const Text("Código de verificação"),
+                            content: Text('O código digitado foi: $verificationCode'),
                           );
                         }
                     );
@@ -69,10 +88,22 @@ class TelaDeCadastro2State extends State<TelaDeCadastro2> {
                 ),
                 const SizedBox(height: 36.0),
                 ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const TelaDeCadastro3()));
+                  onPressed: () async {
+                    if(await verifyToken()) {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const TelaDeCadastro3()));
+                    } else {
+                      showDialog(
+                          context: context,
+                          builder: (context){
+                            return AlertDialog(
+                              title: const Text("Código de verificação"),
+                              content: Text('O código digitado está incorreto!'),
+                            );
+                          }
+                      );
+                    }
                   },
                   style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(

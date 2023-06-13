@@ -43,6 +43,8 @@ dependencies:
   otp_text_field: ^1.1.3
   image_picker: ^0.8.7+5
   path_provider: ^2.0.15
+  firebase_database: ^10.2.3
+  sendgrid_mailer: ^0.1.3
 
 dev_dependencies:
   flutter_test:
@@ -92,6 +94,7 @@ flutter:
     - assets/tela_de_cadastro/cadastro_2/
     - assets/tela_de_cadastro/cadastro_3/
     - assets/tela_de_cadastro/cadastro_4/
+    - assets/lembrar_senha/
   fonts:
     - family: Chivo
       fonts:

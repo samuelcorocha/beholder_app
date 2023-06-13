@@ -1,6 +1,10 @@
+import 'dart:math';
+import 'package:beholder_companion/email/email.dart';
 import 'package:beholder_companion/screens/tela_de_cadastro/tela_de_cadastro_2.dart';
+import 'package:beholder_companion/screens/tela_de_login/nova_tela_de_login.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 class TelaDeCadastro1 extends StatefulWidget {
   const TelaDeCadastro1({Key? key}) : super(key: key);
@@ -10,6 +14,32 @@ class TelaDeCadastro1 extends StatefulWidget {
 }
 
 class TelaDeCadastro1State extends State<TelaDeCadastro1> {
+  final firebaseApp = Firebase.app();
+  late final rtdb;
+
+  TextEditingController username = new TextEditingController();
+  TextEditingController email = new TextEditingController();
+  TextEditingController password = new TextEditingController();
+  TextEditingController passwordConfirm = new TextEditingController();
+
+  late final tokenId;
+
+  Future<void> send () async {
+    final ref = FirebaseDatabase.instance.ref();
+
+    final result = await ref.child("users").get();
+    final keys = result.value != null ? (result.value as Map).keys.cast<String>() : <String>[];
+
+    final maxNumber = keys.isEmpty ? 0 : keys.map<int>((key) => int.tryParse(key) ?? 0).reduce(max);
+
+    DatabaseReference userRef = FirebaseDatabase.instance.ref("users/${maxNumber + 1}");
+
+    await userRef.set({
+      "username": username.text,
+      "email": email.text,
+      "password": password.text,
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,18 +64,21 @@ class TelaDeCadastro1State extends State<TelaDeCadastro1> {
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 20.0),
-              const CampoDeCadastroVisivel(textoSuperior: 'Nome de usuário'),
+              CampoDeLoginVisivel(textoSuperior: 'Nome de usuário', emailAddress: username),
               const SizedBox(height: 16.0),
-              const CampoDeCadastroVisivel(textoSuperior: 'Email'),
+              CampoDeLoginVisivel(textoSuperior: 'Email', emailAddress: email),
               const SizedBox(height: 16.0),
-              const CampoDeCadastroInvisivel(textoSuperior: 'Senha'),
+              CampoDeLoginInvisivel(textoSuperior: 'Senha', password: password),
               const SizedBox(height: 16.0),
-              const CampoDeCadastroInvisivel(textoSuperior: 'Confirmar senha'),
+              CampoDeLoginInvisivel(textoSuperior: 'Confirmar senha', password: passwordConfirm),
               const SizedBox(height: 24.0),
               ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
+                  send();
+                  tokenId = await sendEmail(username.text, email.text);
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => const TelaDeCadastro2()));
+                        MaterialPageRoute(builder: (context) => TelaDeCadastro2(tokenId: tokenId)));
+
                 },
                 style: ElevatedButton.styleFrom(
                     shape:

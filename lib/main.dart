@@ -1,4 +1,5 @@
-import 'package:beholder_companion/screens/onBoarding/views/onboarding_screen.dart';
+import 'package:beholder_companion/screens/on_boarding/onboarding_screen.dart';
+import 'package:beholder_companion/screens/tela_de_login/nova_tela_de_login.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -33,33 +34,49 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      routes: {
+        '/Login': (context) => NovaTelaDeLogin(colorPalette: colorPalette),
+      },
       theme: ThemeData(
         brightness: Brightness.light,
         textTheme: TextTheme(
-            displayLarge: TextStyle(
-              fontSize: 20.0,
-              fontFamily: 'Chivo',
-              color: colorPalette.shade900,
-              fontWeight: FontWeight.normal,
-            ),
-            displayMedium: TextStyle(
-              fontSize: 20.0,
-              fontFamily: 'Chivo',
-              color: colorPalette.shade500,
-              fontWeight: FontWeight.normal,
-            ),
-            headlineLarge: TextStyle(
-              fontSize: 24.0,
-              fontFamily: 'Chivo',
-              color: colorPalette.shade50,
-              fontWeight: FontWeight.normal,
-            ),
-            displaySmall: TextStyle(
-              fontSize: 20.0,
-              fontFamily: 'Chivo',
-              color: colorPalette.shade500,
-              fontWeight: FontWeight.normal,
-            )),
+          displayLarge: TextStyle(
+            fontSize: 20.0,
+            fontFamily: 'Chivo',
+            color: colorPalette.shade900,
+            fontWeight: FontWeight.normal,
+          ),
+          displayMedium: TextStyle(
+            fontSize: 20.0,
+            fontFamily: 'Chivo',
+            color: colorPalette.shade500,
+            fontWeight: FontWeight.normal,
+          ),
+          headlineLarge: TextStyle(
+            fontSize: 24.0,
+            fontFamily: 'Chivo',
+            color: colorPalette.shade50,
+            fontWeight: FontWeight.normal,
+          ),
+          headlineMedium: TextStyle(
+            fontSize: 24.0,
+            fontFamily: 'Chivo',
+            color: colorPalette.shade500,
+            fontWeight: FontWeight.normal,
+          ),
+          displaySmall: TextStyle(
+            fontSize: 20.0,
+            fontFamily: 'Chivo',
+            color: colorPalette.shade500,
+            fontWeight: FontWeight.normal,
+          ),
+          headlineSmall: TextStyle(
+            fontSize: 20.0,
+            fontFamily: 'Chivo',
+            color: colorPalette.shade50,
+            fontWeight: FontWeight.normal,
+          ),
+        ),
         colorScheme: ColorScheme.fromSwatch(primarySwatch: colorPalette),
       ),
       home: OnBoardingScreen(colorPalette: colorPalette),
