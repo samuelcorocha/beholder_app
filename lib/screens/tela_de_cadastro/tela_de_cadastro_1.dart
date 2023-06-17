@@ -1,10 +1,10 @@
-import 'dart:math';
-import 'package:beholder_companion/email/email.dart';
+import 'dart:core';
 import 'package:beholder_companion/screens/tela_de_cadastro/tela_de_cadastro_2.dart';
 import 'package:beholder_companion/screens/tela_de_login/nova_tela_de_login.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class TelaDeCadastro1 extends StatefulWidget {
   const TelaDeCadastro1({Key? key}) : super(key: key);
@@ -21,10 +21,11 @@ class TelaDeCadastro1State extends State<TelaDeCadastro1> {
   TextEditingController email = new TextEditingController();
   TextEditingController password = new TextEditingController();
   TextEditingController passwordConfirm = new TextEditingController();
+  FirebaseAuth auth = FirebaseAuth.instance;
 
   late final tokenId;
 
-  Future<void> send () async {
+  /*Future<void> send () async {
     final ref = FirebaseDatabase.instance.ref();
 
     final result = await ref.child("users").get();
@@ -39,6 +40,73 @@ class TelaDeCadastro1State extends State<TelaDeCadastro1> {
       "email": email.text,
       "password": password.text,
     });
+  }*/
+
+  Future<bool?> checkUser(String username) async {
+    final ref = FirebaseDatabase.instance.ref();
+    bool check = true;
+    await ref.child("users").get().then((search) {
+      for (final data in search.children) {
+        //print(data.child("user").value);
+        if(data.child("user").value == username) {
+          check = false;
+        }
+      }
+    });
+    return check;
+  }
+
+  Future<bool?> checkEmail(String email) async {
+    final ref = FirebaseDatabase.instance.ref();
+    bool check = true;
+    await ref.child("users").get().then((search) {
+      for (final data in search.children) {
+        //print(data.child("email").value);
+        if(data.child("email").value == email) {
+          check = false;
+        }
+      }
+    });
+    return check;
+  }
+
+  Future<int?> send() async {
+    if(email.text != "" || password.text != "" || passwordConfirm.text != "" || username.text != "") {
+      if(password.text == passwordConfirm.text) {
+        if(await checkUser(username.text) == true) {
+          if(await checkEmail(email.text) == true) {
+            FirebaseAuth auth = FirebaseAuth.instance;
+            UserCredential userCredential = await auth.createUserWithEmailAndPassword(email: email.text, password: password.text);
+            String emailFormated = email.text.substring(0, email.text.indexOf('@'));
+            final ref = FirebaseDatabase.instance.ref("users/${emailFormated}");
+            await ref.update({
+              "username": username.text,
+              "email": email.text,
+            });
+
+            User? user = userCredential.user;
+            print(user.toString());
+            if (user != null) {
+              try {
+                await user.sendEmailVerification();
+                print("E-mail de verificação enviado para ${user.email}");
+              } catch (e) {
+                print("Erro ao enviar e-mail de verificação: $e");
+              }
+            }
+            return 1;
+          } else {
+            return 2;
+          }
+        } else {
+          return 3;
+        }
+      } else {
+        return 4;
+      }
+    } else {
+      return 5;
+    }
   }
   @override
   Widget build(BuildContext context) {
@@ -74,11 +142,55 @@ class TelaDeCadastro1State extends State<TelaDeCadastro1> {
               const SizedBox(height: 24.0),
               ElevatedButton(
                 onPressed: () async {
-                  send();
-                  tokenId = await sendEmail(username.text, email.text);
-                  Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => TelaDeCadastro2(tokenId: tokenId)));
-
+                  String mensagem = "";
+                  int? code = await send();
+                  if(code == 1) {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => TelaDeCadastro2()));
+                  } else if (code == 2) {
+                    mensagem = "Email já cadastrado no sistema";
+                    showDialog(
+                        context: context,
+                        builder: (context){
+                          return AlertDialog(
+                            title: const Text("Erro"),
+                            content: Text(mensagem),
+                          );
+                        }
+                    );
+                  } else if (code == 3) {
+                    mensagem = "Nome de usuario já em uso";
+                    showDialog(
+                        context: context,
+                        builder: (context){
+                          return AlertDialog(
+                            title: const Text("Erro"),
+                            content: Text(mensagem),
+                          );
+                        }
+                    );
+                  } else if (code == 4) {
+                    mensagem = "As senhas são diferentes";
+                    showDialog(
+                        context: context,
+                        builder: (context){
+                          return AlertDialog(
+                            title: const Text("Erro"),
+                            content: Text(mensagem),
+                          );
+                        }
+                    );
+                  } else {
+                    mensagem = "Um ou mais campos vazios";
+                    showDialog(
+                        context: context,
+                        builder: (context){
+                          return AlertDialog(
+                            title: const Text("Erro"),
+                            content: Text(mensagem),
+                          );
+                        }
+                    );
+                  }
                 },
                 style: ElevatedButton.styleFrom(
                     shape:
@@ -87,8 +199,11 @@ class TelaDeCadastro1State extends State<TelaDeCadastro1> {
                     textStyle: const TextStyle(fontSize: 20.0)),
                 child: const Text("Confirmar"),
               ),
-              const SizedBox(height: 12.0),
-              Image.asset('assets/tela_de_cadastro/cadastro_1/gato.png'),
+
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 54.0),
+                child: Image.asset('assets/tela_de_cadastro/cadastro_1/gato.png'),
+              ),
             ]),
           ),
         ),
