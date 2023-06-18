@@ -1,5 +1,5 @@
-import 'package:beholder_companion/screens/lembrar_senha/lembrar_senha_2.dart';
 import 'package:beholder_companion/screens/tela_de_login/nova_tela_de_login.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class TelaDeLembrarSenha extends StatefulWidget {
@@ -14,6 +14,8 @@ class TelaDeLembrarSenha extends StatefulWidget {
 
 class _TelaDeLembrarSenhaState extends State<TelaDeLembrarSenha> {
   TextEditingController email = new TextEditingController();
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +38,7 @@ class _TelaDeLembrarSenhaState extends State<TelaDeLembrarSenha> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  "Digite seu email para recuperar os dados",
+                  "Digite seu email para redefinir sua senha",
                   style: Theme.of(context).textTheme.headlineMedium,
                   textAlign: TextAlign.center,
                 ),
@@ -51,12 +53,12 @@ class _TelaDeLembrarSenhaState extends State<TelaDeLembrarSenha> {
                 CampoDeLoginVisivel(textoSuperior: "Email", emailAddress: email),
                 Spacer(),
                 Text(
-                  "Enviaremos um email com um token",
+                  "Enviamos um email para você!",
                   style: Theme.of(context).textTheme.displayMedium,
                   textAlign: TextAlign.center,
                 ),
                 Spacer(),
-                BotaoDeConfirmar(tela: TelaDeLembrarSenha2(colorPalette: widget.colorPalette)),
+                BotaoDeConfirmar(tela: NovaTelaDeLogin(colorPalette: widget.colorPalette), email: email),
               ],
             ),
           ),
@@ -69,11 +71,23 @@ class _TelaDeLembrarSenhaState extends State<TelaDeLembrarSenha> {
 
 class BotaoDeConfirmar extends StatelessWidget {
 
-  const BotaoDeConfirmar({
-    super.key, required this.tela
+  BotaoDeConfirmar({
+    super.key, required this.tela, required this.email
   });
 
+  TextEditingController email;
   final Widget tela;
+
+  Future<bool> resetPassword() async {
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+    try {
+      await _auth.sendPasswordResetEmail(email: email.text);
+      return true;
+    } catch (e) {
+      print(email.text);
+      return false;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -81,9 +95,20 @@ class BotaoDeConfirmar extends StatelessWidget {
       width: 150,
       height: 44,
       child: ElevatedButton(
-        onPressed: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => tela));
+        onPressed: () async {
+          if(await resetPassword()) {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => tela));
+          } else {
+            showDialog(
+                context: context,
+                builder: (context){
+                  return AlertDialog(
+                    title: const Text("Erro"),
+                    content: Text("Falha ao enviar email! Tente novamente"),
+                  );
+                }
+            );
+          }
         },
         style: ElevatedButton.styleFrom(
             shape:

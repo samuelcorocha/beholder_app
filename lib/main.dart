@@ -79,7 +79,7 @@ class MyApp extends StatelessWidget {
         ),
         colorScheme: ColorScheme.fromSwatch(primarySwatch: colorPalette),
       ),
-      home: OnBoardingScreen(colorPalette: colorPalette),
+      home: NovaTelaDeLogin(colorPalette: colorPalette,),//OnBoardingScreen(colorPalette: colorPalette),
     );
   }
 }
