@@ -1,5 +1,4 @@
 import 'package:beholder_companion/screens/tela_de_login/nova_tela_de_login.dart';
-import 'package:beholder_companion/screens/tela_de_login/tela_de_login.dart';
 import 'package:flutter/material.dart';
 
 class OnBoardingScreen extends StatefulWidget {
