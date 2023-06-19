@@ -38,7 +38,9 @@ dependencies:
   google_fonts: ^4.0.4
   slide_popup_dialog_null_safety: ^1.0.0
   checkbox_grouped: ^1.9.0
-  http: ^1.0.0
+  http: ^0.13.0
+  flutter_cache_manager: ^3.3.0
+  cached_network_image: ^3.2.3
 
 dev_dependencies:
   flutter_test:

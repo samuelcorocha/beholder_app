@@ -11,6 +11,7 @@ import 'historico/tela_de_historico.dart';
 import 'favoritos/tela_de_favoritos.dart';
 
 class NovaTelaDePesquisa extends StatefulWidget {
+
   const NovaTelaDePesquisa ({Key? key}) : super(key: key);
 
   @override
@@ -40,7 +41,7 @@ class NovaTelaDePesquisaState extends State<NovaTelaDePesquisa> {
         const Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            BotaoDeClasse(caminhoImagem: 'assets/tela_de_pesquisa/botoes/necromancer.png', texto: 'Classes', caminhoResultado: 'classes'),
+            BotaoDeClasse(caminhoImagem: 'assets/tela_de_pesquisa/botoes/necromante.png', texto: 'Classes', caminhoResultado: 'classes'),
             BotaoDeClasse(caminhoImagem: 'assets/tela_de_pesquisa/botoes/cajado.png', texto: 'Itens', caminhoResultado: 'itens'),
             BotaoDeClasse(caminhoImagem: 'assets/tela_de_pesquisa/botoes/elfa.png', texto: 'Raças', caminhoResultado: 'racas'),
           ],
@@ -99,6 +100,7 @@ class NovaTelaDePesquisaState extends State<NovaTelaDePesquisa> {
 }
 
 class BarraInferior extends StatelessWidget {
+
   const BarraInferior({
     super.key,
   });
@@ -170,6 +172,7 @@ class BarraInferior extends StatelessWidget {
 }
 
 class BotaoDeClasse extends StatefulWidget {
+
   const BotaoDeClasse ({
     super.key,
     required this.caminhoImagem,
@@ -193,7 +196,7 @@ class BotaoDeClasseState extends State<BotaoDeClasse> {
       height: 110,
       width: 110,
       child: ElevatedButton(
-        style: ElevatedButton.styleFrom(backgroundColor: Colors.grey[400]),
+        style: ElevatedButton.styleFrom(backgroundColor: Colors.grey[400], elevation: 10),
         onPressed: () {
           if(widget.caminhoResultado == 'classes')
           {
@@ -255,7 +258,7 @@ class BotaoDeClasseState extends State<BotaoDeClasse> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Image.asset(widget.caminhoImagem, height: 60.0),
-            Text(widget.texto, style: const TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold))
+            Text(widget.texto, style: const TextStyle(color: Colors.black, fontSize: 16.6, fontWeight: FontWeight.bold))
           ],
         ),
       ),
@@ -264,6 +267,7 @@ class BotaoDeClasseState extends State<BotaoDeClasse> {
 }
 
 class Demo extends StatefulWidget {
+
   const Demo({super.key});
 
   @override
@@ -308,63 +312,24 @@ class DemoState extends State<Demo> {
 }
 
 class BarraSuperior extends StatelessWidget {
+
   const BarraSuperior({
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    return SliverAppBar(
+    return const SliverAppBar(
       elevation: 0,
       centerTitle: true,
       backgroundColor: Colors.white,
       pinned: true,
-      title: const Text('Pesquisa', style: TextStyle(color: Colors.black)),
-      leading: const Icon(Icons.person, color: Colors.black),
-      actions: const [
+      title: Text('Pesquisa', style: TextStyle(color: Colors.black)),
+      leading: Icon(Icons.person, color: Colors.black),
+      actions: [
         Icon(Icons.list, color: Colors.black),
         SizedBox(width: 18)
       ],
-      bottom: AppBar(
-        iconTheme: const IconThemeData(color: Colors.black),
-        backgroundColor: Colors.white,
-        elevation: 0,
-        title: Container(
-          width: double.infinity,
-          height: 50,
-          color: Colors.white,
-          child: Row(
-            children: <Widget> [
-              const Flexible(
-                child: TextField(
-                  textAlignVertical: TextAlignVertical.bottom,
-                  decoration: InputDecoration(
-                    hintText: 'Pesquisar...',
-                    prefixIcon: Icon(Icons.search, color: Colors.black),
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.black, width: 1.5)
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.black, width: 1.5)
-                    )
-                  ),
-                ),
-              ),
-              const SizedBox(width: 16),
-              IconButton(
-                icon: const Icon(Icons.filter_alt),
-                color: Colors.black,
-                onPressed: () => showModalBottomSheet(
-                  isScrollControlled: false,
-                  backgroundColor: Colors.white,
-                  context: context,
-                  builder: (_) => const Demo()
-                ),
-              )
-            ],
-          ),
-        ),
-      )
     );
   }
 }
