@@ -79,14 +79,12 @@ class _SectionNavigatorState extends State<SectionNavigator>
                 return _SocialCards(local, message);
               } else {
                 return Center(
-                  child: Text(local.error),
+                  child: Text(local.error), // aqui
                 );
               }
             }),
           ),
-          const Center(
-            child: Text("O chat ainda não foi implementado!"),
-          ),
+          ConversationList(),
         ],
       ),
     );
@@ -326,6 +324,87 @@ class _SectionNavigatorState extends State<SectionNavigator>
 
   _SocialFind() {
     return null;
+  }
+}
+
+class ConversationList extends StatefulWidget{
+  const ConversationList({super.key});
+
+  @override
+  State<StatefulWidget> createState() => _ConversationList();
+
+}
+
+class _ConversationList extends State<ConversationList>{
+
+  List<Widget> itemList = [];
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+        scrollDirection: Axis.vertical,
+        shrinkWrap: true,
+      children: [
+        Column(
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  itemList.add(Conversation());
+                });
+              },
+              child: Text("teste"),
+            ),
+            ListView.builder(
+              scrollDirection: Axis.vertical,
+              shrinkWrap: true,
+              itemCount: itemList.length,
+              itemBuilder: (context, index) {
+                return itemList[index];
+              },
+            ),
+          ],
+        ),
+      ]
+    );
+  }
+}
+
+class Conversation extends StatefulWidget {
+
+  const Conversation({super.key});
+
+  @override
+  State<StatefulWidget> createState() => _Conversation();
+}
+
+class _Conversation extends State<Conversation> {
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 8.0, bottom: 8.0, left: 24.0, right: 24.0),
+      child: Container(
+        color: const Color(0xFFC6A9B0),
+        width: 363,
+        height: 68,
+        child: Row(
+          children: [
+            const IconeDoApp(),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("Nome do Arthur", style: Theme.of(context).textTheme.headlineMedium),
+                Text("Envie uma mensagem...", style: Theme.of(context).textTheme.headlineSmall),
+              ],
+            ),
+            Spacer(),
+            const Icon(Icons.more_vert)
+          ],
+        )
+      ),
+    );
   }
 }
 
