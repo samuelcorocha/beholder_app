@@ -96,7 +96,7 @@ class _SectionNavigatorState extends State<SectionNavigator>
   }
 
   _Card(String message, String distance, String username, String experienceText,
-      String gender, bool isMaster, bool isPlayer) async {
+      String gender, bool isMaster, bool isPlayer) {
     return Container(
       color: Colors.white,
       child: ListView(
@@ -135,29 +135,29 @@ class _SectionNavigatorState extends State<SectionNavigator>
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    username,
+                    'Arthur',
                     style: TextStyle(fontSize: 16, fontFamily: 'Chivo'),
                   ),
                 ],
               ),
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    '@$username',
+                    '@Arthur',
                     style: TextStyle(
                         fontSize: 12, fontFamily: 'Chivo', color: Colors.grey),
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 50,
                 width: 300,
                 child: Row(
@@ -167,7 +167,7 @@ class _SectionNavigatorState extends State<SectionNavigator>
                     SizedBox(
                       width: 100,
                       child: Text(
-                        'Menos de um ano de Beholder',
+                        '5 anos de Beholder',
                         style: TextStyle(fontFamily: 'Chivo'),
                       ),
                     ),
@@ -176,14 +176,14 @@ class _SectionNavigatorState extends State<SectionNavigator>
                     SizedBox(
                       width: 100,
                       child: Text(
-                        'Nível $experienceText',
+                        '5 anos de Beholder',
                         style: TextStyle(fontFamily: 'Chivo'),
                       ),
                     ),
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 50,
                 width: 300,
                 child: Row(
@@ -202,14 +202,14 @@ class _SectionNavigatorState extends State<SectionNavigator>
                     SizedBox(
                       width: 100,
                       child: Text(
-                        gender,
+                        'Masculino',
                         style: TextStyle(fontFamily: 'Chivo'),
                       ),
                     ),
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 50,
                 width: 300,
                 child: Row(
@@ -219,7 +219,7 @@ class _SectionNavigatorState extends State<SectionNavigator>
                     SizedBox(
                       width: 100,
                       child: Text(
-                        'Player',
+                        '5 anos de Beholder',
                         style: TextStyle(fontFamily: 'Chivo'),
                       ),
                     ),
@@ -242,10 +242,10 @@ class _SectionNavigatorState extends State<SectionNavigator>
     );
   }
 
-  _SocialCards(position, message) async {
+  _SocialCards(position, message) {
     List<Container> cards = [];
 
-    Future<List> getDados() async {
+    Future<void> teste() async {
       final ref = FirebaseDatabase.instance.ref();
       await ref.child("users").get().then((search) async {
         for (final data in search.children) {
@@ -313,52 +313,54 @@ class _SectionNavigatorState extends State<SectionNavigator>
           );
         }
       });
-      return cards;
     }
 
     final CardSwiperController controller = CardSwiperController();
+    final cardsList = cards;
 
-    final cardsList = await getDados();
-
-    if (cardsList.length > 0) {
-      return SafeArea(
-        child: Column(
-          children: [
-            Flexible(
-              child: CardSwiper(
-                controller: controller,
-                isLoop: true,
-                cardsCount: cardsList.length,
-                onSwipe: _onSwipe,
-                onUndo: _onUndo,
-                numberOfCardsDisplayed: 10,
-                backCardOffset: const Offset(20, 20),
-                padding: const EdgeInsets.all(8.0),
-                cardBuilder: (context, index) => cardsList[index],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  FloatingActionButton(
-                    onPressed: controller.swipeLeft,
-                    backgroundColor: Colors.black,
-                    child: const Icon(Icons.close),
-                  ),
-                  FloatingActionButton(
-                    onPressed: controller.swipeRight,
-                    backgroundColor: Colors.red,
-                    child: const Icon(Icons.done),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      );
+    @override
+    void dispose() {
+      controller.dispose();
+      super.dispose();
     }
+
+    return SafeArea(
+      child: Column(
+        children: [
+          Flexible(
+            child: CardSwiper(
+              controller: controller,
+              isLoop: true,
+              cardsCount: cardsList.length,
+              onSwipe: _onSwipe,
+              onUndo: _onUndo,
+              numberOfCardsDisplayed: 10,
+              backCardOffset: const Offset(20, 20),
+              padding: const EdgeInsets.all(8.0),
+              cardBuilder: (context, index) => cardsList[index],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                FloatingActionButton(
+                  onPressed: controller.swipeLeft,
+                  backgroundColor: Colors.black,
+                  child: const Icon(Icons.close),
+                ),
+                FloatingActionButton(
+                  onPressed: controller.swipeRight,
+                  backgroundColor: Colors.red,
+                  child: const Icon(Icons.done),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   bool _onSwipe(

@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 
@@ -13,6 +15,7 @@ class GeoController extends ChangeNotifier {
   getPosition() async {
     try {
       Position position = await _actualPosition();
+      sendLocation(position);
 
       lat = position.latitude;
       long = position.longitude;
@@ -49,5 +52,18 @@ class GeoController extends ChangeNotifier {
     }
 
     return await Geolocator.getCurrentPosition();
+  }
+
+  Future<bool> sendLocation(position) async {
+    FirebaseAuth auth = FirebaseAuth.instance;
+    User? currentUser = auth.currentUser;
+    String emailFormated =
+        currentUser!.email!.substring(0, currentUser.email!.indexOf('@'));
+    final ref = FirebaseDatabase.instance.ref("users/${emailFormated}");
+    await ref.update({
+      "lastKnowLocationLat": position.latitude,
+      "lastKnowLocationLong": position.longitude,
+    });
+    return true;
   }
 }

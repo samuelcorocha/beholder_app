@@ -298,10 +298,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_native_splash
-      sha256: af665ef80a213a9ed502845a3d7a61b9acca4100ee7e9f067a7440bc3acd6730
+      sha256: ba45d8cfbd778478a74696b012f33ffb6b1760c9bc531b21e2964444a4870dae
       url: "https://pub.dev"
     source: hosted
-    version: "2.2.19"
+    version: "2.3.1"
   flutter_otp_text_field:
     dependency: "direct main"
     description:
@@ -340,10 +340,10 @@ packages:
     dependency: transitive
     description:
       name: geolocator_android
-      sha256: "6cd3c622df085a79fd61f5c14fa024c3ba593aa6b1df2ee809ac59f45e6a9861"
+      sha256: "94c2cf51f4a8387335cc2d1a21cc50897bc93069e05fc09aee29bd353a14f6f5"
       url: "https://pub.dev"
     source: hosted
-    version: "4.1.8"
+    version: "4.1.9"
   geolocator_apple:
     dependency: transitive
     description:
@@ -380,10 +380,10 @@ packages:
     dependency: "direct main"
     description:
       name: google_fonts
-      sha256: "2776c66b3e97c6cdd58d1bd3281548b074b64f1fd5c8f82391f7456e38849567"
+      sha256: "6b6f10f0ce3c42f6552d1c70d2c28d764cf22bb487f50f66cca31dcd5194f4d6"
       url: "https://pub.dev"
     source: hosted
-    version: "4.0.5"
+    version: "4.0.4"
   html:
     dependency: transitive
     description:
@@ -396,10 +396,10 @@ packages:
     dependency: "direct main"
     description:
       name: http
-      sha256: "4c3f04bfb64d3efd508d06b41b825542f08122d30bda4933fb95c069d22a4fa3"
+      sha256: "5895291c13fa8a3bd82e76d5627f69e0d85ca6a30dcac95c4ea19a5d555879c2"
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.0"
+    version: "0.13.6"
   http_parser:
     dependency: transitive
     description:
@@ -479,8 +479,7 @@ packages:
       sha256: c3066601ea42113922232c7b7b3330a2d86f029f685bba99d82c30e799914952
       url: "https://pub.dev"
     source: hosted
-<<<<<<< HEAD
-    version: "0.2.0"
+    version: "0.2.1"
   intl:
     dependency: "direct main"
     description:
@@ -489,7 +488,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.18.1"
->>>>>>> origin/cadastro_backend
   js:
     dependency: transitive
     description:
@@ -502,10 +500,10 @@ packages:
     dependency: transitive
     description:
       name: lints
-      sha256: "5e4a9cd06d447758280a8ac2405101e0e2094d2a1dbdd3756aec3fe7775ba593"
+      sha256: "0a217c6c989d21039f1498c3ed9f3ed71b354e69873f13a8dfc3c9fe76f1b452"
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.1"
+    version: "2.1.1"
   matcher:
     dependency: transitive
     description:
@@ -529,16 +527,7 @@ packages:
       sha256: "3c74dbf8763d36539f114c799d8a2d87343b5067e9d796ca22b5eb8437090ee3"
       url: "https://pub.dev"
     source: hosted
-<<<<<<< HEAD
     version: "1.9.1"
-  nested:
-    dependency: transitive
-    description:
-      name: nested
-      sha256: "03bac4c528c64c95c722ec99280375a6f2fc708eec17c7b3f07253b626cd2a20"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.8.0"
   mime:
     dependency: transitive
     description:
@@ -547,6 +536,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.4"
+  nested:
+    dependency: transitive
+    description:
+      name: nested
+      sha256: "03bac4c528c64c95c722ec99280375a6f2fc708eec17c7b3f07253b626cd2a20"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   otp_text_field:
     dependency: "direct main"
     description:
@@ -623,10 +620,10 @@ packages:
     dependency: transitive
     description:
       name: petitparser
-      sha256: "49392a45ced973e8d94a85fdb21293fbb40ba805fc49f2965101ae748a3683b4"
+      sha256: cb3798bef7fc021ac45b308f4b51208a152792445cce0448c9a4ba5879dd8750
       url: "https://pub.dev"
     source: hosted
-    version: "5.1.0"
+    version: "5.4.0"
   platform:
     dependency: transitive
     description:
@@ -659,7 +656,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.2.4"
-<<<<<<< HEAD
   provider:
     dependency: "direct main"
     description:
@@ -668,16 +664,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.0.5"
-=======
-  sendgrid_mailer:
-    dependency: "direct main"
-    description:
-      name: sendgrid_mailer
-      sha256: "36e5d50094045f3ab13b6ed0212d5fccf9743e9948f283a2e1ecc6931c1213e7"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.1.3"
->>>>>>> origin/cadastro_backend
   sky_engine:
     dependency: transitive
     description: flutter
@@ -751,10 +737,18 @@ packages:
     dependency: transitive
     description:
       name: universal_io
-      sha256: "06866290206d196064fd61df4c7aea1ffe9a4e7c4ccaa8fcded42dd41948005d"
+      sha256: "1722b2dcc462b4b2f3ee7d188dad008b6eb4c40bbd03a3de451d82c78bba9aad"
       url: "https://pub.dev"
     source: hosted
-    version: "2.2.0"
+    version: "2.2.2"
+  uuid:
+    dependency: transitive
+    description:
+      name: uuid
+      sha256: "648e103079f7c64a36dc7d39369cabb358d377078a051d6ae2ad3aa539519313"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.7"
   vector_math:
     dependency: transitive
     description:
@@ -767,10 +761,10 @@ packages:
     dependency: transitive
     description:
       name: win32
-      sha256: "5a751eddf9db89b3e5f9d50c20ab8612296e4e8db69009788d6c8b060a84191c"
+      sha256: "7dacfda1edcca378031db9905ad7d7bd56b29fd1a90b0908b71a52a12c41e36b"
       url: "https://pub.dev"
     source: hosted
-    version: "4.1.4"
+    version: "5.0.3"
   xdg_directories:
     dependency: transitive
     description:
@@ -783,10 +777,10 @@ packages:
     dependency: transitive
     description:
       name: xml
-      sha256: "979ee37d622dec6365e2efa4d906c37470995871fe9ae080d967e192d88286b5"
+      sha256: "5bc72e1e45e941d825fd7468b9b4cc3b9327942649aeb6fc5cdbf135f0a86e84"
       url: "https://pub.dev"
     source: hosted
-    version: "6.2.2"
+    version: "6.3.0"
   yaml:
     dependency: transitive
     description:
@@ -796,5 +790,5 @@ packages:
     source: hosted
     version: "3.1.2"
 sdks:
-  dart: ">=3.0.0 <4.0.0"
+  dart: ">=3.0.0 <=3.0.2"
   flutter: ">=3.3.0"
