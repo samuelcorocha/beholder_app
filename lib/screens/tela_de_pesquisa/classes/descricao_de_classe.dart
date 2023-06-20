@@ -213,8 +213,6 @@ class DescricaoDeClasseState extends State<DescricaoDeClasse> {
 
   void requisitarClasse(String index) async {
 
-    String aux;
-
     if (kDebugMode) {
       print('A requisição dessa classe foi iniciada...');
     }
@@ -229,7 +227,7 @@ class DescricaoDeClasseState extends State<DescricaoDeClasse> {
 
       try {
         possuiMagias = true;
-        aux = dados['spellcasting']['info'][0]['name'].toString();
+        dados['spellcasting']['info'][0]['name'].toString();
       } catch (e) {
         possuiMagias = false;
       }

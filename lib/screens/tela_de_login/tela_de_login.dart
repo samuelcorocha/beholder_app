@@ -1,7 +1,6 @@
 import 'package:beholder_companion/screens/home/home.dart';
 import 'package:beholder_companion/screens/tela_de_cadastro/tela_de_cadastro_1.dart';
 import 'package:flutter/material.dart';
-import 'package:beholder_companion/screens/tela_de_pesquisa/tela_de_pesquisa.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class TelaDeLogin extends StatefulWidget {
@@ -64,9 +63,9 @@ class TelaDeLoginState extends State<TelaDeLogin> {
                     borderRadius: BorderRadius.circular(18.0),
                   ),
                 ),
-                child: Column(
+                child: const Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
+                  children: [
                     Icon(
                       Icons.arrow_upward,
                       color: Colors.white,
@@ -188,7 +187,7 @@ class TelaDeLoginState extends State<TelaDeLogin> {
                               } else {
                                 Navigator.push(
                                   context,
-                                  MaterialPageRoute(builder: (context) => Home()),
+                                  MaterialPageRoute(builder: (context) => const Home()),
                                 );
                               }
                             });

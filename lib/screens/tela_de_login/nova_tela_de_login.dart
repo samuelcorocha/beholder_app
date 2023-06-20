@@ -1,6 +1,5 @@
 import 'package:beholder_companion/screens/home/home.dart';
 import 'package:beholder_companion/screens/tela_de_cadastro/tela_de_cadastro_1.dart';
-import 'package:beholder_companion/screens/tela_de_pesquisa/tela_de_pesquisa.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -14,8 +13,6 @@ class NovaTelaDeLogin extends StatefulWidget {
 }
 
 class NovaTelaDeLoginState extends State<NovaTelaDeLogin> {
-  bool _isButtonPressed = false;
-  bool _isCheckboxChecked = false;
   String message = "";
   TextEditingController emailAddress = TextEditingController();
   TextEditingController password = TextEditingController();
@@ -43,9 +40,9 @@ class NovaTelaDeLoginState extends State<NovaTelaDeLogin> {
                     color: Colors.red,
                   ),
                 ),
-                Expanded(
+                const Expanded(
                   child: Column(
-                    children: const [
+                    children: [
                       Text('Beholder',
                           style: TextStyle(
                               fontSize: 32.0,
@@ -65,7 +62,7 @@ class NovaTelaDeLoginState extends State<NovaTelaDeLogin> {
             Column(
               children: [
                 CampoDeLoginVisivel(textoSuperior: 'Nome de usuário', emailAddress: emailAddress,),
-                SizedBox(height: 16.0),
+                const SizedBox(height: 16.0),
                 CampoDeLoginInvisivel(textoSuperior: 'Senha', password: password),
               ],
             ),
@@ -119,7 +116,7 @@ class NovaTelaDeLoginState extends State<NovaTelaDeLogin> {
                           } else {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => Home()),
+                              MaterialPageRoute(builder: (context) => const Home()),
                             );
                           }
                         });
@@ -304,28 +301,21 @@ class BotaoDeLogin extends StatelessWidget {
 }
 
 class CampoDeLoginInvisivel extends StatefulWidget {
-  CampoDeLoginInvisivel({
+  const CampoDeLoginInvisivel({
     super.key,
     required this.textoSuperior,
     required this.password
   });
 
   final String textoSuperior;
-  TextEditingController password = TextEditingController();
-
+  final TextEditingController password;
 
   @override
-  State<CampoDeLoginInvisivel> createState() =>
-      _CampoDeLoginInvisivelState(textoSuperior: textoSuperior, password: password);
+  CampoDeLoginInvisivelState createState() => CampoDeLoginInvisivelState();
 }
 
-class _CampoDeLoginInvisivelState extends State<CampoDeLoginInvisivel> {
-  _CampoDeLoginInvisivelState({
-    required this.textoSuperior,
-    required this.password
-  });
+class CampoDeLoginInvisivelState extends State<CampoDeLoginInvisivel> {
 
-  final String textoSuperior;
   bool passwordObscured = false;
   TextEditingController password = TextEditingController();
 
@@ -341,7 +331,7 @@ class _CampoDeLoginInvisivelState extends State<CampoDeLoginInvisivel> {
       Container(
         alignment: Alignment.centerLeft,
         child: Text(
-          textoSuperior,
+          widget.textoSuperior,
           style: const TextStyle(fontSize: 18),
           textAlign: TextAlign.center,
         ),
@@ -370,10 +360,14 @@ class _CampoDeLoginInvisivelState extends State<CampoDeLoginInvisivel> {
 }
 
 class CampoDeLoginVisivel extends StatelessWidget {
-  CampoDeLoginVisivel({super.key, required this.textoSuperior, required this.emailAddress});
+  const CampoDeLoginVisivel({
+    super.key,
+    required this.textoSuperior,
+    required this.emailAddress
+  });
 
   final String textoSuperior;
-  TextEditingController emailAddress = TextEditingController();
+  final TextEditingController emailAddress;
 
   @override
   Widget build(BuildContext context) {

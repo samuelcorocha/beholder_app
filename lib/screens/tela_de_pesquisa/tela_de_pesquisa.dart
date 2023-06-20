@@ -1,7 +1,6 @@
 import 'package:beholder_companion/screens/profile/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:beholder_companion/screens/tela_de_pesquisa/racas/tela_de_racas.dart';
-import '../tela_de_social/tela_de_social.dart';
 import 'classes/tela_de_classes.dart';
 import 'itens/tela_de_itens.dart';
 
@@ -31,9 +30,9 @@ class TelaDePesquisaState extends State<TelaDePesquisa> {
               const SizedBox(height: 16),
               BarraDePesquisa(textEditingController: _textEditingController),
               const SizedBox(height: 16),
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const <Widget>[
+                children: <Widget>[
                   ItensDaPesquisa(
                       titulo: 'Classes',
                       caminhoImagem:

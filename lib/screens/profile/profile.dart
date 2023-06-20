@@ -8,15 +8,15 @@ class ProfilePage extends StatefulWidget {
 }
 
 class ProfilePageState extends State<ProfilePage> {
-  String _nickname = "Arthur";
-  String _username = "arthur";
-  String _follows = "0";
-  String _followers = "1000000";
-  String _masterLevel = "1000000";
-  String _playerLevel = "1000000";
-  String _systemsCount = "3";
-  String _tablesCount = "4";
-  String _charsCount = "5";
+  final String _nickname = "Arthur";
+  final String _username = "arthur";
+  final String _follows = "0";
+  final String _followers = "1000000";
+  final String _masterLevel = "1000000";
+  final String _playerLevel = "1000000";
+  final String _systemsCount = "3";
+  final String _tablesCount = "4";
+  final String _charsCount = "5";
 
   @override
   Widget build(BuildContext context) {
@@ -26,12 +26,12 @@ class ProfilePageState extends State<ProfilePage> {
         elevation: 0,
         centerTitle: true,
         leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: const Icon(Icons.arrow_back_sharp, color: Color(0xff000000))),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(Icons.arrow_back_sharp, color: Color(0xff000000))),
         title:
-            const Text('Profile', style: TextStyle(color: Color(0xff000000))),
+          const Text('Profile', style: TextStyle(color: Color(0xff000000))),
       ),
       body: ListView(
         children: [
@@ -69,7 +69,7 @@ class ProfilePageState extends State<ProfilePage> {
                               height: 50,
                               child: IconButton(
                                 onPressed: () {
-                                  // Lógica do botão de edição
+
                                 },
                                 icon: Stack(
                                   alignment: Alignment.center,
@@ -103,7 +103,7 @@ class ProfilePageState extends State<ProfilePage> {
                               height: 50,
                               child: IconButton(
                                 onPressed: () {
-                                  // Lógica do botão de edição
+
                                 },
                                 icon: Stack(
                                   alignment: Alignment.center,
@@ -131,15 +131,11 @@ class ProfilePageState extends State<ProfilePage> {
                   ),
                 ],
               ),
-              const SizedBox(
-                width: 15,
-              ),
+              const SizedBox(width: 15),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  const SizedBox(
-                    width: 50,
-                  ),
+                  const SizedBox(width: 50),
                   SizedBox(
                     child: Text(
                       _nickname,
@@ -203,17 +199,14 @@ class ProfilePageState extends State<ProfilePage> {
               SizedBox(
                 width: 350,
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment
-                      .spaceBetween, // use whichever suits your need
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween, // use whichever suits your need
                   children: <Widget>[
                     Text("Seguidores: $_followers"),
                     Text("Seguindo: $_follows"),
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 20,
-              ),
+              const SizedBox(height: 20),
               const SizedBox(
                 width: 350,
                 child: Row(
@@ -222,44 +215,36 @@ class ProfilePageState extends State<ProfilePage> {
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 40,
-              ),
-              SizedBox(
-                height: 30,
-              ),
+              const SizedBox(height: 40),
+              const SizedBox(height: 30,),
               SizedBox(
                 width: 350,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.book),
-                    SizedBox(
+                    const Icon(Icons.book),
+                    const SizedBox(
                       width: 30,
                     ),
                     Text("Mestre Nível $_masterLevel")
                   ],
                 ),
               ),
-              SizedBox(
-                height: 30,
-              ),
+              const SizedBox(height: 30 ),
               SizedBox(
                 width: 350,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.play_arrow),
-                    SizedBox(
+                    const Icon(Icons.play_arrow),
+                    const SizedBox(
                       width: 30,
                     ),
                     Text("Mestre Nível $_playerLevel")
                   ],
                 ),
               ),
-              SizedBox(
-                height: 50,
-              ),
+              const SizedBox(height: 50),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   foregroundColor: Colors.white,
@@ -284,16 +269,12 @@ class ProfilePageState extends State<ProfilePage> {
                       'Seguir',
                       style: TextStyle(fontSize: 16.0),
                     ),
-                    SizedBox(
-                        width:
-                            8.0), // Define um espaçamento entre o texto e o símbolo "+"
+                    SizedBox(width: 8.0), // Define um espaçamento entre o texto e o símbolo "+"
                     Icon(Icons.add),
                   ],
                 ),
               ),
-              SizedBox(
-                height: 20,
-              ),
+              const SizedBox(height: 20),
               SizedBox(
                 width: 350,
                 child: Text(
@@ -305,9 +286,7 @@ class ProfilePageState extends State<ProfilePage> {
                 width: 350,
                 color: Colors.grey,
               ),
-              SizedBox(
-                height: 20,
-              ),
+              const SizedBox(height: 20),
               SizedBox(
                 width: 350,
                 child: Text(
@@ -319,9 +298,7 @@ class ProfilePageState extends State<ProfilePage> {
                 width: 350,
                 color: Colors.grey,
               ),
-              SizedBox(
-                height: 20,
-              ),
+              const SizedBox(height: 20),
               SizedBox(
                 width: 350,
                 child: Text(
@@ -333,14 +310,10 @@ class ProfilePageState extends State<ProfilePage> {
                 width: 350,
                 color: Colors.grey,
               ),
-              SizedBox(
-                height: 20,
-              ),
+              const SizedBox(height: 20),
             ],
           ),
-          SizedBox(
-            height: 75,
-          ),
+          const SizedBox(height: 75),
         ],
       ),
     );

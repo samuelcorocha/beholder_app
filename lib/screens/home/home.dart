@@ -19,37 +19,44 @@ class HomeState extends State<Home> {
     return MaterialApp(
       home: Scaffold(
         bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          showSelectedLabels: true,
+          showUnselectedLabels: false,
           currentIndex: _currentIndex,
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-                icon: Container(
-                  height: 32,
-                  color: null,
-                  child: Image.asset("assets/barra_de_navegacao/icone_mapa.png"),
-                ),
-                label: ''),
+              icon: Container(
+                height: 32,
+                color: null,
+                child: Image.asset("assets/barra_de_navegacao/icone_mapa.png"),
+              ),
+              label: ''
+            ),
             BottomNavigationBarItem(
-                icon: Container(
-                  height: 32,
-                  color: null,
-                  child:
-                  Image.asset("assets/barra_de_navegacao/icone_pesquisa.png"),
-                ),
-                label: ''),
+              icon: Container(
+                height: 32,
+                color: null,
+                child:
+                Image.asset("assets/barra_de_navegacao/icone_pesquisa.png"),
+              ),
+              label: ''
+            ),
             BottomNavigationBarItem(
-                icon: Container(
-                  height: 32,
-                  color: null,
-                  child: Image.asset("assets/barra_de_navegacao/icone_perfil.png"),
-                ),
-                label: ''),
+              icon: Container(
+                height: 32,
+                color: null,
+                child: Image.asset("assets/barra_de_navegacao/icone_perfil.png"),
+              ),
+              label: ''
+            ),
             BottomNavigationBarItem(
-                icon: Container(
-                  height: 32,
-                  color: null,
-                  child: Image.asset("assets/barra_de_navegacao/icone_jogar.png"),
-                ),
-                label: '')
+              icon: Container(
+                height: 32,
+                color: null,
+                child: Image.asset("assets/barra_de_navegacao/icone_jogar.png"),
+              ),
+              label: ''
+            )
           ],
           onTap: (index) {
             setState(() {
@@ -59,7 +66,7 @@ class HomeState extends State<Home> {
         ),
         body: IndexedStack(
           index: _currentIndex,
-          children: [
+          children: const [
             TelaDeSocial(),
             NovaTelaDePesquisa(),
           ],

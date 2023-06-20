@@ -1,5 +1,7 @@
+import 'package:beholder_companion/screens/profile/profile.dart';
 import 'package:flutter/material.dart';
 
+import '../tela_de_login/nova_tela_de_login.dart';
 import 'classes/tela_de_classes.dart';
 import 'itens/tela_de_itens.dart';
 import 'racas/tela_de_racas.dart';
@@ -20,21 +22,50 @@ class NovaTelaDePesquisa extends StatefulWidget {
 
 class NovaTelaDePesquisaState extends State<NovaTelaDePesquisa> {
 
+  final MaterialColor colorPalette = const MaterialColor(
+    0xFF0000FF,
+    <int, Color>{
+      50: Color(0xFFD72638),
+      100: Color(0xFFE05260),
+      200: Color(0xFF9C1C28),
+      300: Color(0xFF463239),
+      400: Color(0xFFEFE7E9),
+      500: Color(0xFF000000),
+      600: Color(0xFFDFDFDF),
+      700: Color(0xFFEAEAEA),
+      800: Color(0xFFFAFAFA),
+      900: Color(0xFFFFFFFF),
+      1000: Color(0x8C000000),
+    },
+  );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: CustomScrollView(
-        slivers: [
-          const BarraSuperior(),
-          method(),
+      appBar: AppBar(
+        iconTheme: const IconThemeData(
+          color: Colors.black
+        ),
+        elevation: 0,
+        centerTitle: true,
+        backgroundColor: Colors.white,
+        title: const Text('Pesquisa', style: TextStyle(color: Colors.black)),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.person),
+            color: Colors.black,
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const ProfilePage()
+                ),
+              );
+            },
+          ),
         ],
       ),
-    );
-  }
-  
-  Widget method() => SliverToBoxAdapter(
-    child: Column(
+      body: Column(
       children: [
         const SizedBox(height: 16.0),
         const Row(
@@ -95,7 +126,34 @@ class NovaTelaDePesquisaState extends State<NovaTelaDePesquisa> {
         const SizedBox(height:72.0),
       ],
     ),
-  );
+      drawer: Drawer(
+        backgroundColor: Colors.white,
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            const SizedBox(
+              height: 100,
+              child: DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                ),
+                child: Text('O que deseja fazer?', textAlign: TextAlign.center,),
+              ),
+            ),
+            ListTile(
+              title: const Text('Sair'),
+              onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => NovaTelaDeLogin(colorPalette: colorPalette)),
+                );
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
 
 class BotaoDeClasse extends StatefulWidget {
@@ -245,29 +303,6 @@ class DemoState extends State<Demo> {
           );
         }).toList(),
       ),
-    );
-  }
-}
-
-class BarraSuperior extends StatelessWidget {
-
-  const BarraSuperior({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return const SliverAppBar(
-      elevation: 0,
-      centerTitle: true,
-      backgroundColor: Colors.white,
-      pinned: true,
-      title: Text('Pesquisa', style: TextStyle(color: Colors.black)),
-      leading: Icon(Icons.person, color: Colors.black),
-      actions: [
-        Icon(Icons.list, color: Colors.black),
-        SizedBox(width: 18)
-      ],
     );
   }
 }

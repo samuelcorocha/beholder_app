@@ -1,11 +1,6 @@
 import 'package:beholder_companion/screens/tela_de_cadastro/tela_de_cadastro_3.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
-
-import 'package:beholder_companion/screens/tela_de_cadastro/tela_de_cadastro_1.dart';
-
-import '../tela_de_login/tela_de_login.dart';
 
 class TelaDeCadastro2 extends StatefulWidget {
   const TelaDeCadastro2({Key? key}) : super(key: key);
@@ -22,10 +17,11 @@ class TelaDeCadastro2State extends State<TelaDeCadastro2> {
           backgroundColor: Colors.white,
           elevation: 0,
           leading: IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: const Icon(Icons.arrow_back, color: Colors.black)),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(Icons.arrow_back, color: Colors.black)
+          ),
         ),
         body: Container(
           color: Colors.white,
@@ -48,22 +44,19 @@ class TelaDeCadastro2State extends State<TelaDeCadastro2> {
                 OtpTextField(
                   numberOfFields: 6,
                   borderColor: const Color(0xFF512DA8),
-                  //set to true to show as box or false to show as dash
                   showFieldAsBox: true,
-                  //runs when a code is typed in
                   onCodeChanged: (String code) {
-                    //handle validation or checks here
+
                   },
-                  //runs when every textfield is filled
                   onSubmit: (String verificationCode){
                     showDialog(
-                        context: context,
-                        builder: (context){
-                          return AlertDialog(
-                            title: const Text("Verification Code"),
-                            content: Text('Code entered is $verificationCode'),
-                          );
-                        }
+                      context: context,
+                      builder: (context){
+                        return AlertDialog(
+                          title: const Text("Verification Code"),
+                          content: Text('Code entered is $verificationCode'),
+                        );
+                      }
                     );
                   }, // end onSubmit
                 ),
@@ -72,11 +65,12 @@ class TelaDeCadastro2State extends State<TelaDeCadastro2> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const TelaDeCadastro3()));
+                      MaterialPageRoute(builder: (context) => const TelaDeCadastro3())
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(18.0)),
+                      borderRadius: BorderRadius.circular(18.0)),
                     backgroundColor: Colors.black,
                     textStyle: const TextStyle(fontSize: 20.0)),
                   child: const Text("Confirmar"),

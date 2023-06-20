@@ -1,6 +1,5 @@
 import 'package:beholder_companion/screens/tela_de_cadastro/tela_de_cadastro_2.dart';
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
 
 class TelaDeCadastro1 extends StatefulWidget {
   const TelaDeCadastro1({Key? key}) : super(key: key);
@@ -17,10 +16,11 @@ class TelaDeCadastro1State extends State<TelaDeCadastro1> {
         backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: const Icon(Icons.arrow_back, color: Colors.black)),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(Icons.arrow_back, color: Colors.black)
+        ),
       ),
       body: Container(
         color: Colors.white,
@@ -102,15 +102,11 @@ class CampoDeCadastroInvisivel extends StatefulWidget {
 
   @override
   State<CampoDeCadastroInvisivel> createState() =>
-      _CampoDeCadastroInvisivelState(textoSuperior: textoSuperior);
+      _CampoDeCadastroInvisivelState();
 }
 
 class _CampoDeCadastroInvisivelState extends State<CampoDeCadastroInvisivel> {
-  _CampoDeCadastroInvisivelState({
-    required this.textoSuperior,
-  });
 
-  final String textoSuperior;
   bool passwordObscured = false;
 
   @override
@@ -125,7 +121,7 @@ class _CampoDeCadastroInvisivelState extends State<CampoDeCadastroInvisivel> {
       Container(
         alignment: Alignment.centerLeft,
         child: Text(
-          textoSuperior,
+          widget.textoSuperior,
           style: const TextStyle(fontSize: 18),
           textAlign: TextAlign.center,
         ),

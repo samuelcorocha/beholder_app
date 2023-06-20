@@ -7,7 +7,6 @@ import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
 import '../../classes/geolocator.dart';
-import '../tela_de_pesquisa/tela_de_pesquisa.dart';
 
 class SectionNavigator extends StatefulWidget {
   const SectionNavigator({super.key});
@@ -76,7 +75,7 @@ class _SectionNavigatorState extends State<SectionNavigator>
                   : local.error;
 
               if (local.error == '' && local.lat != 0.0000000 && local.long != 0.0000000) {
-                return _SocialCards(local, message);
+                return socialCards(local, message);
               } else {
                 return Center(
                   child: Text(local.error),
@@ -92,7 +91,7 @@ class _SectionNavigatorState extends State<SectionNavigator>
     );
   }
 
-  _SocialCards(position, message) {
+  socialCards(position, message) {
     List<Container> cards = [];
 
     for (var i = 0; i < 10; i++) {
@@ -119,7 +118,7 @@ class _SectionNavigatorState extends State<SectionNavigator>
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Há ${distance} Km de você',
+                        'Há $distance Km de você',
                         style:
                             const TextStyle(fontSize: 20, fontFamily: 'Chivo'),
                       ),
@@ -257,11 +256,6 @@ class _SectionNavigatorState extends State<SectionNavigator>
     final CardSwiperController controller = CardSwiperController();
     final cardsList = cards;
 
-    @override
-    void dispose() {
-      controller.dispose();
-      super.dispose();
-    }
 
     return SafeArea(
       child: Column(
@@ -324,9 +318,6 @@ class _SectionNavigatorState extends State<SectionNavigator>
     return true;
   }
 
-  _SocialFind() {
-    return null;
-  }
 }
 
 class TelaDeSocial extends StatelessWidget {

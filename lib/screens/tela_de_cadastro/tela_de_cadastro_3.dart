@@ -1,4 +1,3 @@
-import 'package:beholder_companion/screens/tela_de_cadastro/tela_de_cadastro_2.dart';
 import 'package:beholder_companion/screens/tela_de_cadastro/tela_de_cadastro_4.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
@@ -55,9 +54,9 @@ class TelaDeCadastro3State extends State<TelaDeCadastro3> {
               )
             ),
             const SizedBox(height: 16.0),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: const [
+              children: [
                 BotaoTipoUsuario(text: 'Mestre', imagePath: 'assets/tela_de_cadastro/cadastro_3/cadastro_jogador.png'),
                 BotaoTipoUsuario(text: 'Jogador', imagePath: 'assets/tela_de_cadastro/cadastro_3/cadastro_mestre.png'),
               ],

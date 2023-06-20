@@ -1,11 +1,10 @@
 import 'package:beholder_companion/screens/tela_de_login/nova_tela_de_login.dart';
-import 'package:beholder_companion/screens/tela_de_login/tela_de_login.dart';
 import 'package:flutter/material.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   final MaterialColor colorPalette;
 
-  OnBoardingScreen({Key? key, required this.colorPalette}) : super(key: key);
+  const OnBoardingScreen({Key? key, required this.colorPalette}) : super(key: key);
 
   @override
   State<OnBoardingScreen> createState() => _OnBoardingScreenState();
@@ -37,7 +36,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         alignment: Alignment.topCenter,
         child: Stack(children: [
           PageView.builder(
-              itemCount: data_show.length,
+              itemCount: dataShow.length,
               controller: _pageController,
               onPageChanged: (index) {
                 setState(() {
@@ -45,8 +44,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 });
               },
               itemBuilder: (context, index) => OnBoardContent(
-                  image: data_show[index].image,
-                  description: data_show[index].description,
+                  image: dataShow[index].image,
+                  description: dataShow[index].description,
               )),
           Align(
             alignment: Alignment.bottomRight,
@@ -91,7 +90,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  ...List.generate(data_show.length, (index) => Padding(
+                  ...List.generate(dataShow.length, (index) => Padding(
                     padding: const EdgeInsets.only(right: 20.0),
                     child: DotIndicator(isActive: index == _pageIndex),
                   ))
@@ -133,7 +132,7 @@ class Onboard {
   Onboard({required this.image, required this.description});
 }
 
-final List<Onboard> data_show = [
+final List<Onboard> dataShow = [
   Onboard(
       image: "assets/onBoarding/Screen01.png",
       description:

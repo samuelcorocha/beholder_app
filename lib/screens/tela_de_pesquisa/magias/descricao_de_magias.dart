@@ -198,8 +198,6 @@ class DescricaoDeMagiaState extends State<DescricaoDeMagia> {
 
   void requisitarItem(String index) async {
 
-    String aux;
-
     if (kDebugMode) {
       print('A requisição dessa magia foi iniciada...');
     }
@@ -214,7 +212,7 @@ class DescricaoDeMagiaState extends State<DescricaoDeMagia> {
 
       try {
         possuiDano = true;
-        aux = dados['damage']['damage_type']['name'].toString();
+        dados['damage']['damage_type']['name'].toString();
       } catch (e) {
         possuiDano = false;
       }

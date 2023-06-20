@@ -131,8 +131,6 @@ class DescricaoDeItemState extends State<DescricaoDeItem> {
 
   void requisitarItem(String index) async {
 
-    String aux;
-
     if (kDebugMode) {
       print('A requisição desse item foi iniciada...');
     }
@@ -146,7 +144,7 @@ class DescricaoDeItemState extends State<DescricaoDeItem> {
       carregado = false;
       try {
         possuiDescricao = true;
-          aux = dados['desc'][0].toString();
+        dados['desc'][0].toString();
       } catch (e) {
         possuiDescricao = false;
       }

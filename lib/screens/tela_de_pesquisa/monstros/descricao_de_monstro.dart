@@ -136,8 +136,6 @@ class DescricaoDeMonstroState extends State<DescricaoDeMonstro> {
 
   void requisitarMonstro(String index) async {
 
-    String aux;
-
     if (kDebugMode) {
       print('A requisição desse monstro foi iniciada...');
     }
