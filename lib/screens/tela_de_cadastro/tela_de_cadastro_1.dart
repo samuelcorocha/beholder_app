@@ -111,103 +111,103 @@ class TelaDeCadastro1State extends State<TelaDeCadastro1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: const Icon(Icons.arrow_back, color: Colors.black)),
-      ),
-      body: Container(
-        color: Colors.white,
-        child: Padding(
-          padding: const EdgeInsets.only(left: 16,top: 8,right: 16,bottom: 16),
-          child: SingleChildScrollView(
-            child: Column(children: <Widget>[
-              const Text(
-                "Crie uma conta Beholder agora mesmo!",
-                style: TextStyle(fontSize: 25),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 20.0),
-              CampoDeLoginVisivel(textoSuperior: 'Nome de usuário', emailAddress: username),
-              const SizedBox(height: 16.0),
-              CampoDeLoginVisivel(textoSuperior: 'Email', emailAddress: email),
-              const SizedBox(height: 16.0),
-              CampoDeLoginInvisivel(textoSuperior: 'Senha', password: password),
-              const SizedBox(height: 16.0),
-              CampoDeLoginInvisivel(textoSuperior: 'Confirmar senha', password: passwordConfirm),
-              const SizedBox(height: 24.0),
-              ElevatedButton(
-                onPressed: () async {
-                  String mensagem = "";
-                  int? code = await send();
-                  if(code == 1) {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => TelaDeCadastro2()));
-                  } else if (code == 2) {
-                    mensagem = "Email já cadastrado no sistema";
-                    showDialog(
-                        context: context,
-                        builder: (context){
-                          return AlertDialog(
-                            title: const Text("Erro"),
-                            content: Text(mensagem),
-                          );
-                        }
-                    );
-                  } else if (code == 3) {
-                    mensagem = "Nome de usuario já em uso";
-                    showDialog(
-                        context: context,
-                        builder: (context){
-                          return AlertDialog(
-                            title: const Text("Erro"),
-                            content: Text(mensagem),
-                          );
-                        }
-                    );
-                  } else if (code == 4) {
-                    mensagem = "As senhas são diferentes";
-                    showDialog(
-                        context: context,
-                        builder: (context){
-                          return AlertDialog(
-                            title: const Text("Erro"),
-                            content: Text(mensagem),
-                          );
-                        }
-                    );
-                  } else {
-                    mensagem = "Um ou mais campos vazios";
-                    showDialog(
-                        context: context,
-                        builder: (context){
-                          return AlertDialog(
-                            title: const Text("Erro"),
-                            content: Text(mensagem),
-                          );
-                        }
-                    );
-                  }
-                },
-                style: ElevatedButton.styleFrom(
-                    shape:
-                    RoundedRectangleBorder(borderRadius: BorderRadius.circular(18.0)),
-                    backgroundColor: Colors.black,
-                    textStyle: const TextStyle(fontSize: 20.0)),
-                child: const Text("Confirmar"),
-              ),
-
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 54.0),
-                child: Image.asset('assets/tela_de_cadastro/cadastro_1/gato.png'),
-              ),
-            ]),
-          ),
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0,
+          leading: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: const Icon(Icons.arrow_back, color: Colors.black)),
         ),
-      )
+        body: Container(
+          color: Colors.white,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 16,top: 8,right: 16,bottom: 16),
+            child: SingleChildScrollView(
+              child: Column(children: <Widget>[
+                const Text(
+                  "Crie uma conta Beholder agora mesmo!",
+                  style: TextStyle(fontSize: 25),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 20.0),
+                CampoDeLoginVisivel(textoSuperior: 'Nome de usuário', emailAddress: username),
+                const SizedBox(height: 16.0),
+                CampoDeLoginVisivel(textoSuperior: 'Email', emailAddress: email),
+                const SizedBox(height: 16.0),
+                CampoDeLoginInvisivel(textoSuperior: 'Senha', password: password),
+                const SizedBox(height: 16.0),
+                CampoDeLoginInvisivel(textoSuperior: 'Confirmar senha', password: passwordConfirm),
+                const SizedBox(height: 24.0),
+                ElevatedButton(
+                  onPressed: () async {
+                    String mensagem = "";
+                    int? code = await send();
+                    if(code == 1) {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => TelaDeCadastro2()));
+                    } else if (code == 2) {
+                      mensagem = "Email já cadastrado no sistema";
+                      showDialog(
+                          context: context,
+                          builder: (context){
+                            return AlertDialog(
+                              title: const Text("Erro"),
+                              content: Text(mensagem),
+                            );
+                          }
+                      );
+                    } else if (code == 3) {
+                      mensagem = "Nome de usuario já em uso";
+                      showDialog(
+                          context: context,
+                          builder: (context){
+                            return AlertDialog(
+                              title: const Text("Erro"),
+                              content: Text(mensagem),
+                            );
+                          }
+                      );
+                    } else if (code == 4) {
+                      mensagem = "As senhas são diferentes";
+                      showDialog(
+                          context: context,
+                          builder: (context){
+                            return AlertDialog(
+                              title: const Text("Erro"),
+                              content: Text(mensagem),
+                            );
+                          }
+                      );
+                    } else {
+                      mensagem = "Um ou mais campos vazios";
+                      showDialog(
+                          context: context,
+                          builder: (context){
+                            return AlertDialog(
+                              title: const Text("Erro"),
+                              content: Text(mensagem),
+                            );
+                          }
+                      );
+                    }
+                  },
+                  style: ElevatedButton.styleFrom(
+                      shape:
+                      RoundedRectangleBorder(borderRadius: BorderRadius.circular(18.0)),
+                      backgroundColor: Colors.black,
+                      textStyle: const TextStyle(fontSize: 20.0)),
+                  child: const Text("Confirmar"),
+                ),
+
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 54.0),
+                  child: Image.asset('assets/tela_de_cadastro/cadastro_1/gato.png'),
+                ),
+              ]),
+            ),
+          ),
+        )
     );
   }
 }
@@ -250,11 +250,15 @@ class CampoDeCadastroInvisivel extends StatefulWidget {
 
   @override
   State<CampoDeCadastroInvisivel> createState() =>
-      _CampoDeCadastroInvisivelState();
+      _CampoDeCadastroInvisivelState(textoSuperior: textoSuperior);
 }
 
 class _CampoDeCadastroInvisivelState extends State<CampoDeCadastroInvisivel> {
+  _CampoDeCadastroInvisivelState({
+    required this.textoSuperior,
+  });
 
+  final String textoSuperior;
   bool passwordObscured = false;
 
   @override
@@ -269,7 +273,7 @@ class _CampoDeCadastroInvisivelState extends State<CampoDeCadastroInvisivel> {
       Container(
         alignment: Alignment.centerLeft,
         child: Text(
-          widget.textoSuperior,
+          textoSuperior,
           style: const TextStyle(fontSize: 18),
           textAlign: TextAlign.center,
         ),

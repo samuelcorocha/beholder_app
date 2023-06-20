@@ -41,22 +41,6 @@ class HomeState extends State<Home> {
               ),
               label: ''
             ),
-            BottomNavigationBarItem(
-              icon: Container(
-                height: 32,
-                color: null,
-                child: Image.asset("assets/barra_de_navegacao/icone_perfil.png"),
-              ),
-              label: ''
-            ),
-            BottomNavigationBarItem(
-              icon: Container(
-                height: 32,
-                color: null,
-                child: Image.asset("assets/barra_de_navegacao/icone_jogar.png"),
-              ),
-              label: ''
-            )
           ],
           onTap: (index) {
             setState(() {

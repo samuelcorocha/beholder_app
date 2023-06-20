@@ -46,9 +46,9 @@ class NovaTelaDeLoginState extends State<NovaTelaDeLogin> {
                     color: Colors.red,
                   ),
                 ),
-                const Expanded(
+                Expanded(
                   child: Column(
-                    children: [
+                    children: const [
                       Text('Beholder',
                           style: TextStyle(
                               fontSize: 32.0,
@@ -67,8 +67,8 @@ class NovaTelaDeLoginState extends State<NovaTelaDeLogin> {
             const SizedBox(height: 24.0),
             Column(
               children: [
-                CampoDeLoginVisivel(textoSuperior: 'Nome de usuário', emailAddress: emailAddress,),
-                const SizedBox(height: 16.0),
+                CampoDeLoginVisivel(textoSuperior: 'Email', emailAddress: emailAddress,),
+                SizedBox(height: 16.0),
                 CampoDeLoginInvisivel(textoSuperior: 'Senha', password: password),
               ],
             ),
@@ -93,19 +93,19 @@ class NovaTelaDeLoginState extends State<NovaTelaDeLogin> {
                   );
                 },
                 child: RichText(
-                  textAlign: TextAlign.center,
-                  text: const TextSpan(
-                    style: TextStyle(
-                      fontFamily: 'Chivo', fontSize: 16, color: Colors.black),
-                    children: <TextSpan>[
-                      TextSpan(text: "Esqueceu seu usuário ou senha?\n"),
-                      TextSpan(
-                        text: "Clique aqui.",
+                    textAlign: TextAlign.center,
+                    text: const TextSpan(
                         style: TextStyle(
-                          color: Colors.red, fontWeight: FontWeight.bold)
-                      ),
-                    ]
-                  )
+                            fontFamily: 'Chivo', fontSize: 16, color: Colors.black),
+                        children: <TextSpan>[
+                          TextSpan(text: "Esqueceu seu usuário ou senha?\n"),
+                          TextSpan(
+                              text: "Clique aqui.",
+                              style: TextStyle(
+                                  color: Colors.red, fontWeight: FontWeight.bold)
+                          ),
+                        ]
+                    )
                 ),
               ),
             ),
@@ -130,7 +130,7 @@ class NovaTelaDeLoginState extends State<NovaTelaDeLogin> {
                           } else {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => const Home()),
+                              MaterialPageRoute(builder: (context) => Home()),
                             );
                           }
                         });
@@ -315,21 +315,28 @@ class BotaoDeLogin extends StatelessWidget {
 }
 
 class CampoDeLoginInvisivel extends StatefulWidget {
-  const CampoDeLoginInvisivel({
+  CampoDeLoginInvisivel({
     super.key,
     required this.textoSuperior,
     required this.password
   });
 
   final String textoSuperior;
-  final TextEditingController password;
+  TextEditingController password = TextEditingController();
+
 
   @override
-  CampoDeLoginInvisivelState createState() => CampoDeLoginInvisivelState();
+  State<CampoDeLoginInvisivel> createState() =>
+      _CampoDeLoginInvisivelState(textoSuperior: textoSuperior, password: password);
 }
 
-class CampoDeLoginInvisivelState extends State<CampoDeLoginInvisivel> {
+class _CampoDeLoginInvisivelState extends State<CampoDeLoginInvisivel> {
+  _CampoDeLoginInvisivelState({
+    required this.textoSuperior,
+    required this.password
+  });
 
+  final String textoSuperior;
   bool passwordObscured = false;
   TextEditingController password = TextEditingController();
 
@@ -345,7 +352,7 @@ class CampoDeLoginInvisivelState extends State<CampoDeLoginInvisivel> {
       Container(
         alignment: Alignment.centerLeft,
         child: Text(
-          widget.textoSuperior,
+          textoSuperior,
           style: const TextStyle(fontSize: 18),
           textAlign: TextAlign.center,
         ),
@@ -374,14 +381,10 @@ class CampoDeLoginInvisivelState extends State<CampoDeLoginInvisivel> {
 }
 
 class CampoDeLoginVisivel extends StatelessWidget {
-  CampoDeLoginVisivel({
-    super.key,
-    required this.textoSuperior,
-    required this.emailAddress
-  });
+  CampoDeLoginVisivel({super.key, required this.textoSuperior, required this.emailAddress});
 
   final String textoSuperior;
-  final TextEditingController emailAddress;
+  TextEditingController emailAddress = TextEditingController();
 
   @override
   Widget build(BuildContext context) {

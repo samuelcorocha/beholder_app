@@ -65,81 +65,81 @@ class TelaDeCadastro3State extends State<TelaDeCadastro3> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
         backgroundColor: Colors.white,
-        elevation: 0,
-        leading:
-        IconButton(
-          onPressed: () =>
-            Navigator.of(context).pop(),
-            icon: const Icon(Icons.arrow_back, color: Colors.black),
-        ),
-        actions: [
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0,
+          leading:
           IconButton(
-            onPressed: () async => {
-              if(await sendData1()) {
-                Navigator.push(
-                    context,
-                    PageTransition(
-                        child: const TelaDeCadastro4(),
-                        type: PageTransitionType.rightToLeft,
-                        duration: const Duration(milliseconds: 300),
-                        reverseDuration: const Duration(milliseconds: 300)
-                    )
-                ),
-              }
-            },
-            icon: const Icon(Icons.arrow_forward, color: Colors.black)
+            onPressed: () =>
+                Navigator.of(context).pop(),
+            icon: const Icon(Icons.arrow_back, color: Colors.black),
           ),
-        ],
-      ),
-      body: Padding(
-        padding: const EdgeInsets.only(left: 32,top: 16,right: 32,bottom: 32),
-        child: SingleChildScrollView(
-          child: Column(children: <Widget>[
-            RichText(
-              textAlign: TextAlign.center,
-              text: const TextSpan(
-                style: TextStyle(
-                  fontFamily: 'Chivo', fontSize: 25, color: Colors.black),
-                children: <TextSpan>[
-                  TextSpan(text: "Agora, vamos criar o seu perfil. Você é mestre, jogador, ou ambos?"),
-                ]
-              )
+          actions: [
+            IconButton(
+                onPressed: () async => {
+                  if(await sendData1()) {
+                    Navigator.push(
+                        context,
+                        PageTransition(
+                            child: const TelaDeCadastro4(),
+                            type: PageTransitionType.rightToLeft,
+                            duration: const Duration(milliseconds: 300),
+                            reverseDuration: const Duration(milliseconds: 300)
+                        )
+                    ),
+                  }
+                },
+                icon: const Icon(Icons.arrow_forward, color: Colors.black)
             ),
-            const SizedBox(height: 16.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                BotaoTipoUsuario(text: 'Mestre', imagePath: 'assets/tela_de_cadastro/cadastro_3/cadastro_jogador.png', selectController: master),
-                BotaoTipoUsuario(text: 'Jogador', imagePath: 'assets/tela_de_cadastro/cadastro_3/cadastro_mestre.png', selectController: player),
-              ],
-            ),
-            const SizedBox(height: 16.0),
-            Column(
-              children: [
-                RichText(
+          ],
+        ),
+        body: Padding(
+          padding: const EdgeInsets.only(left: 32,top: 16,right: 32,bottom: 32),
+          child: SingleChildScrollView(
+            child: Column(children: <Widget>[
+              RichText(
                   textAlign: TextAlign.center,
                   text: const TextSpan(
-                    style: TextStyle(
-                      fontFamily: 'Chivo', fontSize: 25, color: Colors.black),
-                    children: <TextSpan>[
-                      TextSpan(text: "O quão experiente você é com RPG?"),
-                    ]
+                      style: TextStyle(
+                          fontFamily: 'Chivo', fontSize: 25, color: Colors.black),
+                      children: <TextSpan>[
+                        TextSpan(text: "Agora, vamos criar o seu perfil. Você é mestre, jogador, ou ambos?"),
+                      ]
                   )
-                ),
-                const SizedBox(height: 16.0),
-                BotaoDeExperiencia(buttonTexts: [
-                  'Novato, nunca joguei ou joguei pouco',
-                  'Veterano: joguei várias vezes',
-                  'Especialista: estou constantemente jogando'
-                ], selectController: experience),
-              ],
-            )
-          ]),
-        ),
-      )
+              ),
+              const SizedBox(height: 16.0),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  BotaoTipoUsuario(text: 'Mestre', imagePath: 'assets/tela_de_cadastro/cadastro_3/cadastro_jogador.png', selectController: master),
+                  BotaoTipoUsuario(text: 'Jogador', imagePath: 'assets/tela_de_cadastro/cadastro_3/cadastro_mestre.png', selectController: player),
+                ],
+              ),
+              const SizedBox(height: 16.0),
+              Column(
+                children: [
+                  RichText(
+                      textAlign: TextAlign.center,
+                      text: const TextSpan(
+                          style: TextStyle(
+                              fontFamily: 'Chivo', fontSize: 25, color: Colors.black),
+                          children: <TextSpan>[
+                            TextSpan(text: "O quão experiente você é com RPG?"),
+                          ]
+                      )
+                  ),
+                  const SizedBox(height: 16.0),
+                  BotaoDeExperiencia(buttonTexts: [
+                    'Novato, nunca joguei ou joguei pouco',
+                    'Veterano: joguei várias vezes',
+                    'Especialista: estou constantemente jogando'
+                  ], selectController: experience),
+                ],
+              )
+            ]),
+          ),
+        )
     );
   }
 }
@@ -147,26 +147,26 @@ class TelaDeCadastro3State extends State<TelaDeCadastro3> {
 class BotaoTipoUsuario extends StatefulWidget {
   final String text;
   final String imagePath;
+  final ValueNotifier<bool> selectController;
 
-  const BotaoTipoUsuario({super.key, required this.text, required this.imagePath});
+  BotaoTipoUsuario({super.key, required this.text, required this.imagePath, required this.selectController});
 
   @override
   BotaoTipoUsuarioState createState() => BotaoTipoUsuarioState();
 }
 
 class BotaoTipoUsuarioState extends State<BotaoTipoUsuario> {
-  bool _isSelected = false;
 
   @override
   Widget build(BuildContext context) {
     return OutlinedButton(
       onPressed: () {
         setState(() {
-          _isSelected = !_isSelected;
+          widget.selectController.value = !widget.selectController.value;
         });
       },
       style: OutlinedButton.styleFrom(
-        backgroundColor: _isSelected ? Colors.blue : Colors.white,
+        backgroundColor: widget.selectController.value ? Colors.blue : Colors.white,
         side: const BorderSide(color: Colors.black, width: 3),
         padding: const EdgeInsets.all(8.0),
       ),
@@ -189,8 +189,9 @@ class BotaoTipoUsuarioState extends State<BotaoTipoUsuario> {
 
 class BotaoDeExperiencia extends StatefulWidget {
   final List<String> buttonTexts;
+  final ValueNotifier<int> selectController;
 
-  const BotaoDeExperiencia({super.key, required this.buttonTexts});
+  BotaoDeExperiencia({super.key, required this.buttonTexts, required this.selectController});
 
   @override
   BotaoDeExperienciaState createState() => BotaoDeExperienciaState();
@@ -209,6 +210,7 @@ class BotaoDeExperienciaState extends State<BotaoDeExperiencia> {
               OutlinedButton(
                 onPressed: () {
                   setState(() {
+                    widget.selectController.value = i + 1;
                     _selectedButtonText = widget.buttonTexts[i];
                   });
                 },
@@ -236,7 +238,3 @@ class BotaoDeExperienciaState extends State<BotaoDeExperiencia> {
     );
   }
 }
-
-
-
-

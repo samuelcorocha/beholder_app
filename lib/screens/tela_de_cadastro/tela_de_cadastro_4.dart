@@ -94,10 +94,10 @@ class TelaDeCadastro4State extends State<TelaDeCadastro4> {
           backgroundColor: Colors.white,
           elevation: 0,
           leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: const Icon(Icons.arrow_back, color: Colors.black)),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: const Icon(Icons.arrow_back, color: Colors.black)),
         ),
         body: Padding(
           padding: const EdgeInsets.only(left: 32,top: 16,right: 32,bottom: 32),
@@ -107,11 +107,11 @@ class TelaDeCadastro4State extends State<TelaDeCadastro4> {
               RichText(
                 textAlign: TextAlign.center,
                 text: const TextSpan(
-                  style: TextStyle(
-                    fontFamily: 'Chivo', fontSize: 25, color: Colors.black),
-                  children: <TextSpan>[
-                    TextSpan(text: "Qual sua data de nascimento?"),
-                  ]
+                    style: TextStyle(
+                        fontFamily: 'Chivo', fontSize: 25, color: Colors.black),
+                    children: <TextSpan>[
+                      TextSpan(text: "Qual sua data de nascimento?"),
+                    ]
                 ),
               ),
               MaterialButton(
@@ -120,10 +120,10 @@ class TelaDeCadastro4State extends State<TelaDeCadastro4> {
                 color: Colors.grey,
                 onPressed: () {
                   showDatePicker(
-                    context: context,
-                    initialDate: DateTime.now(),
-                    firstDate: DateTime(1950),
-                    lastDate: DateTime.now()
+                      context: context,
+                      initialDate: DateTime.now(),
+                      firstDate: DateTime(1950),
+                      lastDate: DateTime.now()
                   ).then((value) {
                     setState(() {
                       data = value!;
@@ -139,7 +139,7 @@ class TelaDeCadastro4State extends State<TelaDeCadastro4> {
                         textAlign: TextAlign.center,
                         text: TextSpan(
                           style: const TextStyle(
-                            fontFamily: 'Chivo', fontSize: 25, color: Colors.black),
+                              fontFamily: 'Chivo', fontSize: 25, color: Colors.black),
                           children: <TextSpan>[
                             TextSpan(text: "${data.day}/${data.month}/${data.year}"),
                           ],
@@ -153,11 +153,11 @@ class TelaDeCadastro4State extends State<TelaDeCadastro4> {
               RichText(
                 textAlign: TextAlign.center,
                 text: const TextSpan(
-                  style: TextStyle(
-                      fontFamily: 'Chivo', fontSize: 25, color: Colors.black),
-                  children: <TextSpan>[
-                    TextSpan(text: "Qual seu gênero?"),
-                  ]
+                    style: TextStyle(
+                        fontFamily: 'Chivo', fontSize: 25, color: Colors.black),
+                    children: <TextSpan>[
+                      TextSpan(text: "Qual seu gênero?"),
+                    ]
                 ),
               ),
               BotaoDeGenero(
@@ -178,11 +178,11 @@ class TelaDeCadastro4State extends State<TelaDeCadastro4> {
                     child: RichText(
                       textAlign: TextAlign.center,
                       text: const TextSpan(
-                        style: TextStyle(
-                          fontFamily: 'Chivo', fontSize: 25, color: Colors.black),
-                        children: <TextSpan>[
-                          TextSpan(text: "Deseja carregar uma foto de perfil?"),
-                        ]
+                          style: TextStyle(
+                              fontFamily: 'Chivo', fontSize: 25, color: Colors.black),
+                          children: <TextSpan>[
+                            TextSpan(text: "Deseja carregar uma foto de perfil?"),
+                          ]
                       ),
                     ),
                   ),
@@ -195,82 +195,82 @@ class TelaDeCadastro4State extends State<TelaDeCadastro4> {
                     ),
                     onPressed: () {
                       showDialog(
-                        context: context,
-                        builder: (context) {
-                          return AlertDialog(
-                            shape: const RoundedRectangleBorder(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(
-                                  20.0,
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(
+                                    20.0,
+                                  ),
                                 ),
                               ),
-                            ),
-                            contentPadding: const EdgeInsets.only(
-                              top: 10.0,
-                            ),
-                            title: RichText(
-                              textAlign: TextAlign.center,
-                              text: const TextSpan(
-                                style: TextStyle(
-                                    fontFamily: 'Chivo', fontSize: 25, color: Colors.black),
-                                children: <TextSpan>[
-                                  TextSpan(text: "Escolha uma foto:"),
-                                ]
+                              contentPadding: const EdgeInsets.only(
+                                top: 10.0,
                               ),
-                            ),
-                            content: SizedBox(
-                              height: MediaQuery.of(context).size.width / 2.7,
-                              child: SingleChildScrollView(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    OutlinedButton(
-                                      onPressed: () {
-                                        pickImage(ImageSource.camera);
-                                      },
-                                      child: Row(
-                                        children: [
-                                          const Icon(Icons.photo_camera),
-                                          RichText(
-                                            textAlign: TextAlign.center,
-                                            text: const TextSpan(
-                                              style: TextStyle(
-                                                fontFamily: 'Chivo', fontSize: 25, color: Colors.black),
-                                              children: <TextSpan>[
-                                                TextSpan(text: "Câmera"),
-                                              ]
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    OutlinedButton(
-                                      onPressed: () {
-                                        pickImage(ImageSource.gallery);
-                                      },
-                                      child: Row(
-                                        children: [
-                                          const Icon(Icons.image),
-                                          RichText(
-                                            textAlign: TextAlign.center,
-                                            text: const TextSpan(
-                                              style: TextStyle(
-                                                fontFamily: 'Chivo', fontSize: 25, color: Colors.black),
-                                              children: <TextSpan>[
-                                                TextSpan(text: "Galeria"),
-                                              ]
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    )
-                                  ],
+                              title: RichText(
+                                textAlign: TextAlign.center,
+                                text: const TextSpan(
+                                    style: TextStyle(
+                                        fontFamily: 'Chivo', fontSize: 25, color: Colors.black),
+                                    children: <TextSpan>[
+                                      TextSpan(text: "Escolha uma foto:"),
+                                    ]
                                 ),
                               ),
-                            ),
-                          );
-                        }
+                              content: SizedBox(
+                                height: MediaQuery.of(context).size.width / 2.7,
+                                child: SingleChildScrollView(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      OutlinedButton(
+                                        onPressed: () {
+                                          pickImage(ImageSource.camera);
+                                        },
+                                        child: Row(
+                                          children: [
+                                            const Icon(Icons.photo_camera),
+                                            RichText(
+                                              textAlign: TextAlign.center,
+                                              text: const TextSpan(
+                                                  style: TextStyle(
+                                                      fontFamily: 'Chivo', fontSize: 25, color: Colors.black),
+                                                  children: <TextSpan>[
+                                                    TextSpan(text: "Câmera"),
+                                                  ]
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      OutlinedButton(
+                                        onPressed: () {
+                                          pickImage(ImageSource.gallery);
+                                        },
+                                        child: Row(
+                                          children: [
+                                            const Icon(Icons.image),
+                                            RichText(
+                                              textAlign: TextAlign.center,
+                                              text: const TextSpan(
+                                                  style: TextStyle(
+                                                      fontFamily: 'Chivo', fontSize: 25, color: Colors.black),
+                                                  children: <TextSpan>[
+                                                    TextSpan(text: "Galeria"),
+                                                  ]
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            );
+                          }
                       );
                     },
                     child:
@@ -283,12 +283,12 @@ class TelaDeCadastro4State extends State<TelaDeCadastro4> {
                             borderRadius: BorderRadius.circular(100),
                           ),
                           child: ClipOval(
-                            child: Image.file(
-                              image!,
-                              width: 120,
-                              height: 120,
-                              fit: BoxFit.cover
-                            )
+                              child: Image.file(
+                                  image!,
+                                  width: 120,
+                                  height: 120,
+                                  fit: BoxFit.cover
+                              )
                           ),
                         ) : Image.asset('assets/tela_de_cadastro/cadastro_4/foto_de_usuario.png'),
                       ],
@@ -311,10 +311,10 @@ class TelaDeCadastro4State extends State<TelaDeCadastro4> {
                   }
                 },
                 style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(18.0)),
-                  backgroundColor: Colors.black,
-                  textStyle: const TextStyle(fontSize: 20.0)),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(18.0)),
+                    backgroundColor: Colors.black,
+                    textStyle: const TextStyle(fontSize: 20.0)),
                 child: const Text("Confirmar"),
               ),
             ],
