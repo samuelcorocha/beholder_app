@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
 import '../tela_inicial/tela_inicial.dart';
@@ -6,10 +8,14 @@ class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
 
   @override
-  profilePageState createState() => profilePageState();
+  ProfilePageState createState() => ProfilePageState();
 }
 
-class profilePageState extends State<profilePage> {
+class ProfilePageState extends State<ProfilePage> {
+  TextEditingController email = new TextEditingController();
+
+  User? getCurrentUser() {
+    User? user = FirebaseAuth.instance.currentUser;
     return user;
   }
 
@@ -24,8 +30,16 @@ class profilePageState extends State<profilePage> {
   String _tablesCount = "4";
   String _charsCount = "5";
 
+  getUserInfo() {
+    User? currentUser = getCurrentUser();
+    if (currentUser != null) {
+      String uid = currentUser.uid;
+      _email = currentUser.email.toString();
+
+      print('UID: $uid');
       print('EMAIL: $_email');
     }
+  }
 
   @override
   Widget build(BuildContext context) {
