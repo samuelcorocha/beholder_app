@@ -59,7 +59,7 @@ class HomeState extends State<Home> {
         ),
         body: IndexedStack(
           index: _currentIndex,
-          children: [
+          children: const [
             TelaDeSocial(),
             NovaTelaDePesquisa(),
           ],
