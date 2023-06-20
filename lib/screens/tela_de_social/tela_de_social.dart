@@ -99,9 +99,7 @@ class _SectionNavigatorState extends State<SectionNavigator>
               }
             }),
           ),
-          const Center(
-            child: Text("O chat ainda não foi implementado!"),
-          ),
+          ConversationList(),
         ],
       ),
     );
@@ -459,6 +457,125 @@ class _Card extends StatelessWidget {
             ],
           ),
         ],
+      ),
+    );
+  }
+}
+
+class ConversationList extends StatefulWidget {
+  const ConversationList({Key? key}) : super(key: key);
+
+  @override
+  _ConversationListState createState() => _ConversationListState();
+}
+
+class _ConversationListState extends State<ConversationList> {
+  List<Widget> itemList = [];
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        ElevatedButton(
+          onPressed: () {
+            setState(() {
+              itemList.add(Conversation(clean: () {print("limpar o ${itemList.length}");}, delete: () {print("limpar o ${itemList.length}");}, index: itemList.length+1));
+            });
+          },
+          child: Text("teste"),
+        ),
+        Expanded(
+          child: ListView.builder(
+            scrollDirection: Axis.vertical,
+            itemCount: itemList.length,
+            itemBuilder: (context, index) {
+              return itemList[index];
+            },
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class Conversation extends StatefulWidget {
+  final VoidCallback? clean;
+  final VoidCallback? delete;
+  int index;
+
+  Conversation({Key? key, this.clean, this.delete, required this.index}) : super(key: key);
+
+  @override
+  State<Conversation> createState() => _ConversationState();
+}
+
+class _ConversationState extends State<Conversation> {
+
+  String? _selectedOption;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {},
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 24.0),
+        child: Container(
+          width: 363,
+          height: 68,
+          decoration: BoxDecoration(
+            color: const Color(0xFFC6A9B0),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Row(
+            children: [
+              const Icon(Icons.person),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("Nome do Arthur",
+                      style: Theme
+                          .of(context)
+                          .textTheme
+                          .headline6),
+                  Text("Envie uma mensagem...",
+                      style: Theme
+                          .of(context)
+                          .textTheme
+                          .subtitle1),
+                ],
+              ),
+              Spacer(),
+              InkWell(
+                onTap: () {
+                  print("Widget tocado!");
+                },
+                child: Container(
+                  width: 50,
+                  height: 50,
+                  child: PopupMenuButton<String>(
+                    onSelected: (String value) {
+                      print("Opção selecionada: $value");
+                    },
+                    itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
+                      PopupMenuItem<String>(
+                        onTap: widget.clean,
+                        value: 'option1',
+                        child: Text('Limpar conversa'),
+                      ),
+                      PopupMenuItem<String>(
+                        onTap: widget.delete,
+                        value: 'option2',
+                        child: Text('Excluir conversa'),
+                      ),
+                    ],
+                    child: const Icon(Icons.more_vert),
+                  ),
+                ),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }
