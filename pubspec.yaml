@@ -30,17 +30,26 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_otp_text_field: ^1.1.0+2
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   flutter_native_splash: ^2.2.19
+  firebase_core: ^2.13.0
+  firebase_auth: ^4.6.1
   google_fonts: ^4.0.4
   slide_popup_dialog_null_safety: ^1.0.0
   checkbox_grouped: ^1.9.0
-  http: ^0.13.0
-  flutter_cache_manager: ^3.3.0
-  cached_network_image: ^3.2.3
+  http: ^1.0.0
+  page_transition: ^2.0.9
+  otp_text_field: ^1.1.3
+  image_picker: ^0.8.7+5
+  path_provider: ^2.0.15
+  geolocator: ^9.0.2
+  provider: ^6.0.5
+  flutter_card_swiper: ^5.1.0
+  intl: ^0.18.1
 
 dev_dependencies:
   flutter_test:
@@ -65,18 +74,33 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
+    - assets/onBoarding/
+    - assets/icons/
     - assets/barra_de_navegacao/
     - assets/tela_de_carregamento/
+    - assets/tela_de_cadastro/
+    - assets/tela_de_cadastro/cadastro_1/
+    - assets/tela_de_cadastro/cadastro_2/
     - assets/tela_de_login/
     - assets/tela_de_login/metodos_de_login/
     - assets/tela_de_pesquisa/
+    - assets/tela_de_social/axalote.png
+    - assets/onBoarding/
+    - assets/Icons/
+    - assets/profile/
+    - assets/tela_de_cadastro/cadastro_1/
+    - assets/tela_de_cadastro/cadastro_2/
+    - assets/tela_de_cadastro/cadastro_3/
+    - assets/tela_de_cadastro/cadastro_4/
     - assets/tela_de_pesquisa/botoes/
     - assets/tela_de_pesquisa/sistemas/
     - assets/tela_de_pesquisa/classes/
   fonts:
     - family: Chivo
       fonts:
-        - asset: assets/fontes/Chivo.ttf
+        - asset: assets/fontes/Chivo-Regular.ttf
+        - asset: assets/fontes/Chivo-Italic.ttf
+          style: italic
 
   # To add assets to your application, add an assets section, like this:
   # assets:

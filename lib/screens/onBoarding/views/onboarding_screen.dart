@@ -1,13 +1,18 @@
+import 'package:beholder_companion/screens/tela_de_login/nova_tela_de_login.dart';
+import 'package:beholder_companion/screens/tela_de_login/tela_de_login.dart';
 import 'package:flutter/material.dart';
 
 class OnBoardingScreen extends StatefulWidget {
-  const OnBoardingScreen({Key? key}) : super(key: key);
+  final MaterialColor colorPalette;
+
+  OnBoardingScreen({Key? key, required this.colorPalette}) : super(key: key);
 
   @override
   State<OnBoardingScreen> createState() => _OnBoardingScreenState();
 }
 
 class _OnBoardingScreenState extends State<OnBoardingScreen> {
+
   late PageController _pageController;
 
   int _pageIndex = 0;
@@ -63,9 +68,16 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                                 borderRadius: BorderRadius.circular(30),
                               ))),
                   onPressed: () {
-                    _pageController.nextPage(
-                        duration: const Duration(milliseconds: 300),
-                        curve: Curves.ease);
+                    if (_pageIndex == 2) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) =>  NovaTelaDeLogin(colorPalette: widget.colorPalette)),
+                      );
+                    } else {
+                      _pageController.nextPage(
+                          duration: const Duration(milliseconds: 300),
+                          curve: Curves.ease);
+                    }
                   },
                   child: Image.asset("assets/icons/Arrow 1.png"),
                 ),
@@ -158,12 +170,7 @@ class OnBoardContent extends StatelessWidget {
         child: Text(
           description,
           textAlign: TextAlign.center,
-          style: const TextStyle(
-            fontFamily: 'Chivo',
-            fontSize: 19.0,
-            color: Color(0xffffffff),
-            fontWeight: FontWeight.normal,
-          ),
+          style: Theme.of(context).textTheme.displayLarge
         ),
       ),
     );
