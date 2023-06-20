@@ -345,7 +345,7 @@ class _ConversationListState extends State<ConversationList> {
         ElevatedButton(
           onPressed: () {
             setState(() {
-              itemList.add(Conversation());
+              itemList.add(Conversation(clean: () {print("limpar o ${itemList.length}")}, delete: ,));
             });
           },
           child: Text("teste"),
@@ -365,7 +365,11 @@ class _ConversationListState extends State<ConversationList> {
 }
 
 class Conversation extends StatefulWidget {
-  const Conversation({Key? key}) : super(key: key);
+  final VoidCallback? clean;
+  final VoidCallback? delete;
+  int index;
+
+  const Conversation({Key? key, this.clean, this.delete, required this.index}) : super(key: key);
 
   @override
   State<Conversation> createState() => _ConversationState();
@@ -408,52 +412,32 @@ class _ConversationState extends State<Conversation> {
                 ],
               ),
               Spacer(),
-              PopupMenuButton<String>(
-                  onSelected: (String value) {
-                    setState(() {
-                      _selectedOption = value;
-                    });
-                  },
-                  itemBuilder: (BuildContext context) =>
-                  <PopupMenuEntry<String>>[
-                    const PopupMenuItem<String>(
-                      value: 'option1',
-                      child: Text('Opção 1'),
-                    ),
-                    const PopupMenuItem<String>(
-                      value: 'option2',
-                      child: Text('Opção 2'),
-                    ),
-                  ],
-                  child: Ink(
-                    width: 50,
-                    height: 50,
-                    decoration: const ShapeDecoration(
-                      color: Colors.blue,
-                      shape: CircleBorder(),
-                    ),
-                    child: InkWell(
-                      onTap: () {
-                        print("Widget tocado!");
-                      },
-                      child: PopupMenuButton<String>(
-                        onSelected: (String value) {
-                          print("Opção selecionada: $value");
-                        },
-                        itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
-                          const PopupMenuItem<String>(
-                            value: 'option1',
-                            child: Text('Limpar conversa'),
-                          ),
-                          const PopupMenuItem<String>(
-                            value: 'option2',
-                            child: Text('Excluir conversa'),
-                          ),
-                        ],
-                        child: const Icon(Icons.more_vert),
+              InkWell(
+                onTap: () {
+                  print("Widget tocado!");
+                },
+                child: Container(
+                  width: 50,
+                  height: 50,
+                  child: PopupMenuButton<String>(
+                    onSelected: (String value) {
+                      print("Opção selecionada: $value");
+                    },
+                    itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
+                      PopupMenuItem<String>(
+                        onTap: widget.clean,
+                        value: 'option1',
+                        child: Text('Limpar conversa'),
                       ),
-                    ),
+                      PopupMenuItem<String>(
+                        onTap: widget.delete,
+                        value: 'option2',
+                        child: Text('Excluir conversa'),
+                      ),
+                    ],
+                    child: const Icon(Icons.more_vert),
                   ),
+                ),
               )
             ],
           ),
