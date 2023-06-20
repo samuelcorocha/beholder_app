@@ -38,16 +38,19 @@ class _SectionNavigatorState extends State<SectionNavigator>
         backgroundColor: const Color(0x00000000),
         elevation: 0,
         centerTitle: true,
-        leading: IconButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const ProfilePage(),
-                ),
-              );
-            },
-            icon: const Icon(Icons.person, color: Color(0xff000000))),
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ProfilePage(),
+                  ),
+                );
+              },
+              icon: const Icon(Icons.person, color: Color(0xff000000))
+          ),
+        ],
         title: const Text('Social', style: TextStyle(color: Color(0xff000000))),
         bottom: TabBar(
           controller: _tabController,

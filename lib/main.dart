@@ -39,30 +39,31 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         brightness: Brightness.light,
         textTheme: TextTheme(
-            displayLarge: TextStyle(
-              fontSize: 20.0,
-              fontFamily: 'Chivo',
-              color: colorPalette.shade900,
-              fontWeight: FontWeight.normal,
-            ),
-            displayMedium: TextStyle(
-              fontSize: 20.0,
-              fontFamily: 'Chivo',
-              color: colorPalette.shade500,
-              fontWeight: FontWeight.normal,
-            ),
-            headlineLarge: TextStyle(
-              fontSize: 24.0,
-              fontFamily: 'Chivo',
-              color: colorPalette.shade50,
-              fontWeight: FontWeight.normal,
-            ),
-            displaySmall: TextStyle(
-              fontSize: 20.0,
-              fontFamily: 'Chivo',
-              color: colorPalette.shade500,
-              fontWeight: FontWeight.normal,
-            )),
+          displayLarge: TextStyle(
+            fontSize: 20.0,
+            fontFamily: 'Chivo',
+            color: colorPalette.shade900,
+            fontWeight: FontWeight.normal,
+          ),
+          displayMedium: TextStyle(
+            fontSize: 20.0,
+            fontFamily: 'Chivo',
+            color: colorPalette.shade500,
+            fontWeight: FontWeight.normal,
+          ),
+          headlineLarge: TextStyle(
+            fontSize: 24.0,
+            fontFamily: 'Chivo',
+            color: colorPalette.shade50,
+            fontWeight: FontWeight.normal,
+          ),
+          displaySmall: TextStyle(
+            fontSize: 20.0,
+            fontFamily: 'Chivo',
+            color: colorPalette.shade500,
+            fontWeight: FontWeight.normal,
+          )
+        ),
         colorScheme: ColorScheme.fromSwatch(primarySwatch: colorPalette),
       ),
       home: const Home(),
