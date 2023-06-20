@@ -9,7 +9,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -30,12 +30,13 @@ class MyApp extends StatelessWidget {
     },
   );
 
-  const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      routes: {
+        '/Login': (context) => NovaTelaDeLogin(colorPalette: colorPalette),
+      },
       theme: ThemeData(
         brightness: Brightness.light,
         textTheme: TextTheme(
@@ -57,16 +58,28 @@ class MyApp extends StatelessWidget {
             color: colorPalette.shade50,
             fontWeight: FontWeight.normal,
           ),
+          headlineMedium: TextStyle(
+            fontSize: 24.0,
+            fontFamily: 'Chivo',
+            color: colorPalette.shade500,
+            fontWeight: FontWeight.normal,
+          ),
           displaySmall: TextStyle(
             fontSize: 20.0,
             fontFamily: 'Chivo',
             color: colorPalette.shade500,
             fontWeight: FontWeight.normal,
-          )
+          ),
+          headlineSmall: TextStyle(
+            fontSize: 20.0,
+            fontFamily: 'Chivo',
+            color: colorPalette.shade50,
+            fontWeight: FontWeight.normal,
+          ),
         ),
         colorScheme: ColorScheme.fromSwatch(primarySwatch: colorPalette),
       ),
-      home: const Home(),
+      home: OnBoardingScreen(colorPalette: colorPalette),
     );
   }
 }

@@ -19,7 +19,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: '>=2.19.6 <3.0.0'
+  sdk: '>=2.19.6 <=3.0.5'
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -51,6 +51,8 @@ dependencies:
   flutter_card_swiper: ^5.1.0
   intl: ^0.18.1
   path: ^1.8.3
+  firebase_database: ^10.2.3
+  firebase_storage: ^11.2.3
 
 dev_dependencies:
   flutter_test:
@@ -96,6 +98,7 @@ flutter:
     - assets/tela_de_pesquisa/botoes/
     - assets/tela_de_pesquisa/sistemas/
     - assets/tela_de_pesquisa/classes/
+    - assets/lembrar_senha/
   fonts:
     - family: Chivo
       fonts:

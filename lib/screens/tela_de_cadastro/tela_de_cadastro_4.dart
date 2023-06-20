@@ -1,8 +1,11 @@
 import 'dart:io';
-
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:beholder_companion/screens/tela_de_login/nova_tela_de_login.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:path/path.dart';
@@ -33,11 +36,55 @@ class TelaDeCadastro4State extends State<TelaDeCadastro4> {
     },
   );
 
+  late ValueNotifier<String> gender;
+
   DateTime data = DateTime.now();
 
   //Foto de perfil
   File? image;
   final imagePicker = ImagePicker();
+
+  Future<bool> sendData2() async {
+    if(gender.value == "") {
+      showDialog(
+          context: this.context,
+          builder: (context){
+            return const AlertDialog(
+              title: Text("Erro"),
+              content: Text("Selecione se você é jogador, mestre ou ambos"),
+            );
+          }
+      );
+      return false;
+    } else {
+      FirebaseAuth auth = FirebaseAuth.instance;
+      User? currentUser = auth.currentUser;
+      String emailFormatted = currentUser!.email!.substring(0, currentUser!.email!.indexOf('@'));
+      final ref = FirebaseDatabase.instance.ref("users/$emailFormatted");
+      final storageRef = FirebaseStorage.instance.ref("profilePhoto/$emailFormatted/profilePhoto_$emailFormatted.png");
+      if(image == null) {
+        final bytes = await rootBundle.load('assets/tela_de_cadastro/cadastro_4/foto_de_usuario.png');
+        final tempDir = await getTemporaryDirectory();
+        final tempPath = '${tempDir.path}/foto_de_usuario.png';
+        final file = File(tempPath);
+        await file.writeAsBytes(bytes.buffer.asUint8List());
+        await storageRef.putFile(file);
+      } else {
+        await storageRef.putFile(image!);
+      }
+      await ref.update({
+        "bornDate": data.toString().substring(0, data.toString().indexOf(' ')),
+        "gender": gender.value,
+      });
+      return true;
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    gender = ValueNotifier<String>("");
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -113,7 +160,7 @@ class TelaDeCadastro4State extends State<TelaDeCadastro4> {
                   ]
                 ),
               ),
-              const BotaoDeGenero(
+              BotaoDeGenero(
                 buttonTexts: [
                   'Feminino',
                   'Masculino'
@@ -121,7 +168,7 @@ class TelaDeCadastro4State extends State<TelaDeCadastro4> {
                 imagens: [
                   'assets/tela_de_cadastro/cadastro_4/genero_feminino.png',
                   'assets/tela_de_cadastro/cadastro_4/genero_masculino.png'
-                ]
+                ], selectController: gender,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -250,15 +297,19 @@ class TelaDeCadastro4State extends State<TelaDeCadastro4> {
                 ],
               ),
               ElevatedButton(
-                onPressed: () => Navigator.push(
-                  context,
-                  PageTransition(
-                    child: NovaTelaDeLogin(colorPalette: colorPalette),
-                    type: PageTransitionType.rightToLeft,
-                    duration: const Duration(milliseconds: 300),
-                    reverseDuration: const Duration(milliseconds: 300)
-                  )
-                ),
+                onPressed: () async => {
+                  if(await sendData2()) {
+                    Navigator.push(
+                        context,
+                        PageTransition(
+                            child: NovaTelaDeLogin(colorPalette: colorPalette),
+                            type: PageTransitionType.rightToLeft,
+                            duration: const Duration(milliseconds: 300),
+                            reverseDuration: const Duration(milliseconds: 300)
+                        )
+                    ),
+                  }
+                },
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(18.0)),
@@ -296,8 +347,9 @@ class BotaoDeGenero extends StatefulWidget {
 
   final List<String> buttonTexts;
   final List<String> imagens;
+  final ValueNotifier<String> selectController;
 
-  const BotaoDeGenero({super.key, required this.buttonTexts, required this.imagens});
+  BotaoDeGenero({super.key, required this.buttonTexts, required this.imagens, required this.selectController});
 
   @override
   BotaoDeGeneroState createState() => BotaoDeGeneroState();
@@ -320,6 +372,7 @@ class BotaoDeGeneroState extends State<BotaoDeGenero> {
                   onPressed: () {
                     setState(() {
                       _selectedButtonText = widget.buttonTexts[i];
+                      widget.selectController.value = widget.buttonTexts[i];
                     });
                   },
                   style: OutlinedButton.styleFrom(

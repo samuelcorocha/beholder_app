@@ -1,5 +1,7 @@
 import 'package:beholder_companion/screens/home/home.dart';
+import 'package:beholder_companion/screens/lembrar_senha/lembrar_senha_1.dart';
 import 'package:beholder_companion/screens/tela_de_cadastro/tela_de_cadastro_1.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -13,6 +15,10 @@ class NovaTelaDeLogin extends StatefulWidget {
 }
 
 class NovaTelaDeLoginState extends State<NovaTelaDeLogin> {
+  FirebaseDatabase database = FirebaseDatabase.instance;
+
+  bool _isButtonPressed = false;
+  bool _isCheckboxChecked = false;
   String message = "";
   TextEditingController emailAddress = TextEditingController();
   TextEditingController password = TextEditingController();
@@ -79,20 +85,28 @@ class NovaTelaDeLoginState extends State<NovaTelaDeLogin> {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 23.0),
-              child: RichText(
-                textAlign: TextAlign.center,
-                text: const TextSpan(
-                  style: TextStyle(
-                    fontFamily: 'Chivo', fontSize: 16, color: Colors.black),
-                  children: <TextSpan>[
-                    TextSpan(text: "Esqueceu seu usuário ou senha?\n"),
-                    TextSpan(
-                      text: "Clique aqui.",
-                      style: TextStyle(
-                        color: Colors.red, fontWeight: FontWeight.bold)
-                    ),
-                  ]
-                )
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => TelaDeLembrarSenha(colorPalette: widget.colorPalette)),
+                  );
+                },
+                child: RichText(
+                  textAlign: TextAlign.center,
+                  text: const TextSpan(
+                    style: TextStyle(
+                      fontFamily: 'Chivo', fontSize: 16, color: Colors.black),
+                    children: <TextSpan>[
+                      TextSpan(text: "Esqueceu seu usuário ou senha?\n"),
+                      TextSpan(
+                        text: "Clique aqui.",
+                        style: TextStyle(
+                          color: Colors.red, fontWeight: FontWeight.bold)
+                      ),
+                    ]
+                  )
+                ),
               ),
             ),
             const SizedBox(height: 16.0),
@@ -360,7 +374,7 @@ class CampoDeLoginInvisivelState extends State<CampoDeLoginInvisivel> {
 }
 
 class CampoDeLoginVisivel extends StatelessWidget {
-  const CampoDeLoginVisivel({
+  CampoDeLoginVisivel({
     super.key,
     required this.textoSuperior,
     required this.emailAddress

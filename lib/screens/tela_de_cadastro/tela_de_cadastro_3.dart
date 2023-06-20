@@ -1,4 +1,6 @@
 import 'package:beholder_companion/screens/tela_de_cadastro/tela_de_cadastro_4.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 
@@ -10,6 +12,55 @@ class TelaDeCadastro3 extends StatefulWidget {
 }
 
 class TelaDeCadastro3State extends State<TelaDeCadastro3> {
+
+  late ValueNotifier<bool> master;
+  late ValueNotifier<bool> player;
+  late ValueNotifier<int> experience;
+
+  Future<bool> sendData1() async {
+    if(master.value == false && player.value == false) {
+      showDialog(
+          context: context,
+          builder: (context){
+            return const AlertDialog(
+              title: Text("Erro"),
+              content: Text("Selecione se você é jogador, mestre ou ambos"),
+            );
+          }
+      );
+      return false;
+    } else if (experience.value == 0){
+      showDialog(
+          context: context,
+          builder: (context){
+            return const AlertDialog(
+              title: Text("Erro"),
+              content: Text("Selecione sua experiência em RPG"),
+            );
+          }
+      );
+      return false;
+    } else {
+      FirebaseAuth auth = FirebaseAuth.instance;
+      User? currentUser = auth.currentUser;
+      String emailFormated = currentUser!.email!.substring(0, currentUser.email!.indexOf('@'));
+      final ref = FirebaseDatabase.instance.ref("users/${emailFormated}");
+      await ref.update({
+        "isMaster": master.value,
+        "isPlayer": player.value,
+        "experience": experience.value,
+      });
+      return true;
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    master = ValueNotifier<bool>(false);
+    player = ValueNotifier<bool>(false);
+    experience = ValueNotifier<int>(0);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,15 +77,19 @@ class TelaDeCadastro3State extends State<TelaDeCadastro3> {
         ),
         actions: [
           IconButton(
-            onPressed: () => Navigator.push(
-              context,
-              PageTransition(
-                child: const TelaDeCadastro4(),
-                type: PageTransitionType.rightToLeft,
-                duration: const Duration(milliseconds: 300),
-                reverseDuration: const Duration(milliseconds: 300)
-              )
-            ),
+            onPressed: () async => {
+              if(await sendData1()) {
+                Navigator.push(
+                    context,
+                    PageTransition(
+                        child: const TelaDeCadastro4(),
+                        type: PageTransitionType.rightToLeft,
+                        duration: const Duration(milliseconds: 300),
+                        reverseDuration: const Duration(milliseconds: 300)
+                    )
+                ),
+              }
+            },
             icon: const Icon(Icons.arrow_forward, color: Colors.black)
           ),
         ],
@@ -54,11 +109,11 @@ class TelaDeCadastro3State extends State<TelaDeCadastro3> {
               )
             ),
             const SizedBox(height: 16.0),
-            const Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                BotaoTipoUsuario(text: 'Mestre', imagePath: 'assets/tela_de_cadastro/cadastro_3/cadastro_jogador.png'),
-                BotaoTipoUsuario(text: 'Jogador', imagePath: 'assets/tela_de_cadastro/cadastro_3/cadastro_mestre.png'),
+                BotaoTipoUsuario(text: 'Mestre', imagePath: 'assets/tela_de_cadastro/cadastro_3/cadastro_jogador.png', selectController: master),
+                BotaoTipoUsuario(text: 'Jogador', imagePath: 'assets/tela_de_cadastro/cadastro_3/cadastro_mestre.png', selectController: player),
               ],
             ),
             const SizedBox(height: 16.0),
@@ -75,11 +130,11 @@ class TelaDeCadastro3State extends State<TelaDeCadastro3> {
                   )
                 ),
                 const SizedBox(height: 16.0),
-                const BotaoDeExperiencia(buttonTexts: [
+                BotaoDeExperiencia(buttonTexts: [
                   'Novato, nunca joguei ou joguei pouco',
                   'Veterano: joguei várias vezes',
                   'Especialista: estou constantemente jogando'
-                ]),
+                ], selectController: experience),
               ],
             )
           ]),
