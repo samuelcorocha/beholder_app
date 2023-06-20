@@ -30,7 +30,6 @@ class NovaTelaDePesquisaState extends State<NovaTelaDePesquisa> {
           method(),
         ],
       ),
-      bottomNavigationBar: const BarraInferior(),
     );
   }
   
@@ -41,27 +40,27 @@ class NovaTelaDePesquisaState extends State<NovaTelaDePesquisa> {
         const Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            BotaoDeClasse(caminhoImagem: 'assets/tela_de_pesquisa/botoes/necromante.png', texto: 'Classes', caminhoResultado: 'classes'),
-            BotaoDeClasse(caminhoImagem: 'assets/tela_de_pesquisa/botoes/cajado.png', texto: 'Itens', caminhoResultado: 'itens'),
-            BotaoDeClasse(caminhoImagem: 'assets/tela_de_pesquisa/botoes/elfa.png', texto: 'Raças', caminhoResultado: 'racas'),
+            BotaoDeClasse(caminhoImagem: 'assets/tela_de_pesquisa/botoes/necromante.png', texto: 'Classes', caminhoResultado: 'classes', emBreve: false),
+            BotaoDeClasse(caminhoImagem: 'assets/tela_de_pesquisa/botoes/cajado.png', texto: 'Itens', caminhoResultado: 'itens', emBreve: false),
+            BotaoDeClasse(caminhoImagem: 'assets/tela_de_pesquisa/botoes/elfa.png', texto: 'Raças', caminhoResultado: 'racas', emBreve: false),
           ],
         ),
         const SizedBox(height: 28.0),
         const Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            BotaoDeClasse(caminhoImagem: 'assets/tela_de_pesquisa/botoes/grifo.png', texto: 'Monstros', caminhoResultado: 'monstros'),
-            BotaoDeClasse(caminhoImagem: 'assets/tela_de_pesquisa/botoes/chama_rosa.png', texto: 'Magias', caminhoResultado: 'magias'),
-            BotaoDeClasse(caminhoImagem: 'assets/tela_de_pesquisa/botoes/anel_magico.png', texto: 'Artefatos', caminhoResultado: 'artefatos'),
+            BotaoDeClasse(caminhoImagem: 'assets/tela_de_pesquisa/botoes/grifo.png', texto: 'Monstros', caminhoResultado: 'monstros', emBreve: false),
+            BotaoDeClasse(caminhoImagem: 'assets/tela_de_pesquisa/botoes/chama_rosa.png', texto: 'Magias', caminhoResultado: 'magias', emBreve: false),
+            BotaoDeClasse(caminhoImagem: 'assets/tela_de_pesquisa/botoes/anel_magico.png', texto: 'Artefatos', caminhoResultado: 'artefatos', emBreve: true),
           ],
         ),
         const SizedBox(height: 28.0),
         const Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            BotaoDeClasse(caminhoImagem: 'assets/tela_de_pesquisa/botoes/dado.png', texto: 'Outros', caminhoResultado: 'outros'),
-            BotaoDeClasse(caminhoImagem: 'assets/tela_de_pesquisa/botoes/ampulheta.png', texto: 'Histórico', caminhoResultado: 'historico'),
-            BotaoDeClasse(caminhoImagem: 'assets/tela_de_pesquisa/botoes/estrela.png', texto: 'Favoritos', caminhoResultado: 'favoritos'),
+            BotaoDeClasse(caminhoImagem: 'assets/tela_de_pesquisa/botoes/dado.png', texto: 'Outros', caminhoResultado: 'outros', emBreve: true),
+            BotaoDeClasse(caminhoImagem: 'assets/tela_de_pesquisa/botoes/ampulheta.png', texto: 'Histórico', caminhoResultado: 'historico', emBreve: true),
+            BotaoDeClasse(caminhoImagem: 'assets/tela_de_pesquisa/botoes/estrela.png', texto: 'Favoritos', caminhoResultado: 'favoritos', emBreve: true),
           ],
         ),
         const SizedBox(height:80.0),
@@ -99,90 +98,20 @@ class NovaTelaDePesquisaState extends State<NovaTelaDePesquisa> {
   );
 }
 
-class BarraInferior extends StatelessWidget {
-
-  const BarraInferior({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      type: BottomNavigationBarType.fixed,
-      backgroundColor: Colors.grey[400],
-      unselectedItemColor: Colors.black,
-      selectedItemColor: Colors.black,
-      onTap: (index) {
-        if(index == 0) {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (context) => const NovaTelaDePesquisa()),
-          );
-        } else if(index == 1) {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (context) => const NovaTelaDePesquisa()),
-          );
-        } else if(index == 2) {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (context) => const NovaTelaDePesquisa()),
-          );
-        } else if(index == 3) {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (context) => const NovaTelaDePesquisa()),
-          );
-        } else if(index == 4) {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (context) => const NovaTelaDePesquisa()),
-          );
-        }
-      },
-      items: const <BottomNavigationBarItem> [
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          label: 'Início',
-          backgroundColor: Colors.white,
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.map),
-          label: 'Encontrar',
-          backgroundColor: Colors.white
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.search),
-          label: 'Pesquisar',
-          backgroundColor: Colors.white
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.person),
-          label: 'Personagens',
-          backgroundColor: Colors.white
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.play_arrow),
-          label: 'Mesas',
-          backgroundColor: Colors.white
-        ),
-      ]
-    );
-  }
-}
-
 class BotaoDeClasse extends StatefulWidget {
 
   const BotaoDeClasse ({
     super.key,
     required this.caminhoImagem,
     required this.texto,
-    required this.caminhoResultado
+    required this.caminhoResultado,
+    required this.emBreve
   });
 
   final String caminhoImagem;
   final String texto;
   final String caminhoResultado;
+  final bool emBreve;
 
   @override
   BotaoDeClasseState createState() => BotaoDeClasseState();
@@ -196,58 +125,53 @@ class BotaoDeClasseState extends State<BotaoDeClasse> {
       height: 110,
       width: 110,
       child: ElevatedButton(
-        style: ElevatedButton.styleFrom(backgroundColor: Colors.grey[400], elevation: 10),
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.grey[400],
+          elevation: 15,
+          padding: const EdgeInsets.all(0)
+        ),
         onPressed: () {
-          if(widget.caminhoResultado == 'classes')
-          {
+          if(widget.caminhoResultado == 'classes') {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const TelaDeClasses()),
             );
-          } else if(widget.caminhoResultado == 'itens')
-          {
+          } else if(widget.caminhoResultado == 'itens') {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const TelaDeItens()),
             );
-          } else if(widget.caminhoResultado == 'racas')
-          {
+          } else if(widget.caminhoResultado == 'racas') {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const TelaDeRacas()),
             );
-          } else if(widget.caminhoResultado == 'monstros')
-          {
+          } else if(widget.caminhoResultado == 'monstros') {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const TelaDeMonstros()),
             );
-          } else if(widget.caminhoResultado == 'magias')
-          {
+          } else if(widget.caminhoResultado == 'magias') {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const TelaDeMagias()),
             );
-          } else if(widget.caminhoResultado == 'artefatos')
-          {
+          } else if(widget.caminhoResultado == 'artefatos') {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const TelaDeArtefatos()),
             );
-          } else if(widget.caminhoResultado == 'outros')
-          {
+          } else if(widget.caminhoResultado == 'outros') {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const TelaDeOutros()),
             );
-          } else if(widget.caminhoResultado == 'historico')
-          {
+          } else if(widget.caminhoResultado == 'historico') {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const TelaDeHistorico()),
             );
-          } else if(widget.caminhoResultado == 'favoritos')
-          {
+          } else if(widget.caminhoResultado == 'favoritos') {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const TelaDeFavoritos()),
@@ -257,8 +181,22 @@ class BotaoDeClasseState extends State<BotaoDeClasse> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Image.asset(widget.caminhoImagem, height: 60.0),
-            Text(widget.texto, style: const TextStyle(color: Colors.black, fontSize: 16.6, fontWeight: FontWeight.bold))
+            widget.emBreve
+            ? Container(
+              width: 110,
+              color: Colors.red,
+              child: const Text(
+                'Em Breve...',
+                textAlign: TextAlign.center,
+              ),
+            )
+            : Container(),
+            widget.emBreve
+            ? Opacity(
+              opacity: 0.3,
+              child: Image.asset(widget.caminhoImagem, height: 60.0))
+            : Image.asset(widget.caminhoImagem, height: 60.0),
+            Text(widget.texto, style: const TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.bold))
           ],
         ),
       ),
