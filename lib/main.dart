@@ -1,4 +1,6 @@
 import 'package:beholder_companion/screens/home/home.dart';
+import 'package:beholder_companion/screens/on_boarding/onboarding_screen.dart';
+import 'package:beholder_companion/screens/tela_de_login/nova_tela_de_login.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
