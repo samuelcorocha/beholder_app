@@ -75,7 +75,9 @@ class _SectionNavigatorState extends State<SectionNavigator>
                   ? 'Latitude: ${local.lat} | Longitude: ${local.long}'
                   : local.error;
 
-              if (local.error == '' && local.lat != 0.0000000 && local.long != 0.0000000) {
+              if (local.error == '' &&
+                  local.lat != 0.0000000 &&
+                  local.long != 0.0000000) {
                 return _SocialCards(local, message);
               } else {
                 return Center(
@@ -95,12 +97,14 @@ class _SectionNavigatorState extends State<SectionNavigator>
 
     for (var i = 0; i < 10; i++) {
       final random = Random();
-      double randomNumber = (random.nextInt(600) + 0) - (random.nextInt(600) + 0);
-      double randomNumber2 = (random.nextInt(600) + 0) - (random.nextInt(600) + 0);
+      double randomNumber =
+          (random.nextInt(600) + 0) - (random.nextInt(600) + 0);
+      double randomNumber2 =
+          (random.nextInt(600) + 0) - (random.nextInt(600) + 0);
       NumberFormat formatter = NumberFormat("00");
       String distance = formatter.format(num.parse((Geolocator.distanceBetween(
-                  position.lat, position.long, randomNumber, randomNumber2) /
-              1000)
+          position.lat, position.long, randomNumber, randomNumber2) /
+          1000)
           .toStringAsPrecision(2)));
       cards.add(
         Container(
@@ -119,7 +123,7 @@ class _SectionNavigatorState extends State<SectionNavigator>
                       Text(
                         'Há ${distance} Km de você',
                         style:
-                            const TextStyle(fontSize: 20, fontFamily: 'Chivo'),
+                        const TextStyle(fontSize: 20, fontFamily: 'Chivo'),
                       ),
                     ],
                   ),
@@ -300,22 +304,19 @@ class _SectionNavigatorState extends State<SectionNavigator>
     );
   }
 
-  bool _onSwipe(
-    int previousIndex,
-    int? currentIndex,
-    CardSwiperDirection direction,
-  ) {
+  bool _onSwipe(int previousIndex,
+      int? currentIndex,
+      CardSwiperDirection direction,) {
     debugPrint(
-      'The card $previousIndex was swiped to the ${direction.name}. Now the card $currentIndex is on top',
+      'The card $previousIndex was swiped to the ${direction
+          .name}. Now the card $currentIndex is on top',
     );
     return true;
   }
 
-  bool _onUndo(
-    int? previousIndex,
-    int currentIndex,
-    CardSwiperDirection direction,
-  ) {
+  bool _onUndo(int? previousIndex,
+      int currentIndex,
+      CardSwiperDirection direction,) {
     debugPrint(
       'The card $currentIndex was undod from the ${direction.name}',
     );
@@ -327,82 +328,136 @@ class _SectionNavigatorState extends State<SectionNavigator>
   }
 }
 
-class ConversationList extends StatefulWidget{
-  const ConversationList({super.key});
+class ConversationList extends StatefulWidget {
+  const ConversationList({Key? key}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _ConversationList();
-
+  _ConversationListState createState() => _ConversationListState();
 }
 
-class _ConversationList extends State<ConversationList>{
-
+class _ConversationListState extends State<ConversationList> {
   List<Widget> itemList = [];
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-        scrollDirection: Axis.vertical,
-        shrinkWrap: true,
+    return Column(
       children: [
-        Column(
-          children: [
-            ElevatedButton(
-              onPressed: () {
-                setState(() {
-                  itemList.add(Conversation());
-                });
-              },
-              child: Text("teste"),
-            ),
-            ListView.builder(
-              scrollDirection: Axis.vertical,
-              shrinkWrap: true,
-              itemCount: itemList.length,
-              itemBuilder: (context, index) {
-                return itemList[index];
-              },
-            ),
-          ],
+        ElevatedButton(
+          onPressed: () {
+            setState(() {
+              itemList.add(Conversation());
+            });
+          },
+          child: Text("teste"),
         ),
-      ]
+        Expanded(
+          child: ListView.builder(
+            scrollDirection: Axis.vertical,
+            itemCount: itemList.length,
+            itemBuilder: (context, index) {
+              return itemList[index];
+            },
+          ),
+        ),
+      ],
     );
   }
 }
 
 class Conversation extends StatefulWidget {
-
-  const Conversation({super.key});
+  const Conversation({Key? key}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _Conversation();
+  State<Conversation> createState() => _ConversationState();
 }
 
-class _Conversation extends State<Conversation> {
+class _ConversationState extends State<Conversation> {
+
+  String? _selectedOption;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 8.0, bottom: 8.0, left: 24.0, right: 24.0),
-      child: Container(
-        color: const Color(0xFFC6A9B0),
-        width: 363,
-        height: 68,
-        child: Row(
-          children: [
-            const IconeDoApp(),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text("Nome do Arthur", style: Theme.of(context).textTheme.headlineMedium),
-                Text("Envie uma mensagem...", style: Theme.of(context).textTheme.headlineSmall),
-              ],
-            ),
-            Spacer(),
-            const Icon(Icons.more_vert)
-          ],
-        )
+    return GestureDetector(
+      onTap: () {},
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 24.0),
+        child: Container(
+          width: 363,
+          height: 68,
+          decoration: BoxDecoration(
+            color: const Color(0xFFC6A9B0),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Row(
+            children: [
+              const Icon(Icons.person),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("Nome do Arthur",
+                      style: Theme
+                          .of(context)
+                          .textTheme
+                          .headline6),
+                  Text("Envie uma mensagem...",
+                      style: Theme
+                          .of(context)
+                          .textTheme
+                          .subtitle1),
+                ],
+              ),
+              Spacer(),
+              PopupMenuButton<String>(
+                  onSelected: (String value) {
+                    setState(() {
+                      _selectedOption = value;
+                    });
+                  },
+                  itemBuilder: (BuildContext context) =>
+                  <PopupMenuEntry<String>>[
+                    const PopupMenuItem<String>(
+                      value: 'option1',
+                      child: Text('Opção 1'),
+                    ),
+                    const PopupMenuItem<String>(
+                      value: 'option2',
+                      child: Text('Opção 2'),
+                    ),
+                  ],
+                  child: Ink(
+                    width: 50,
+                    height: 50,
+                    decoration: const ShapeDecoration(
+                      color: Colors.blue,
+                      shape: CircleBorder(),
+                    ),
+                    child: InkWell(
+                      onTap: () {
+                        print("Widget tocado!");
+                      },
+                      child: PopupMenuButton<String>(
+                        onSelected: (String value) {
+                          print("Opção selecionada: $value");
+                        },
+                        itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
+                          const PopupMenuItem<String>(
+                            value: 'option1',
+                            child: Text('Limpar conversa'),
+                          ),
+                          const PopupMenuItem<String>(
+                            value: 'option2',
+                            child: Text('Excluir conversa'),
+                          ),
+                        ],
+                        child: const Icon(Icons.more_vert),
+                      ),
+                    ),
+                  ),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }
