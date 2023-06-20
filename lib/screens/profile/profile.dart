@@ -2,14 +2,18 @@ import 'package:flutter/material.dart';
 
 import '../tela_inicial/tela_inicial.dart';
 
-class profilePage extends StatefulWidget {
-  const profilePage({Key? key}) : super(key: key);
+class ProfilePage extends StatefulWidget {
+  const ProfilePage({Key? key}) : super(key: key);
 
   @override
   profilePageState createState() => profilePageState();
 }
 
 class profilePageState extends State<profilePage> {
+    return user;
+  }
+
+  String _email = '';
   String _nickname = "Arthur";
   String _username = "arthur";
   String _follows = "0";
@@ -20,8 +24,12 @@ class profilePageState extends State<profilePage> {
   String _tablesCount = "4";
   String _charsCount = "5";
 
+      print('EMAIL: $_email');
+    }
+
   @override
   Widget build(BuildContext context) {
+    getUserInfo();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0x00000000),
