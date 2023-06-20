@@ -345,7 +345,7 @@ class _ConversationListState extends State<ConversationList> {
         ElevatedButton(
           onPressed: () {
             setState(() {
-              itemList.add(Conversation(clean: () {print("limpar o ${itemList.length}")}, delete: ,));
+              itemList.add(Conversation(clean: () {print("limpar o ${itemList.length}");}, delete: () {print("limpar o ${itemList.length}");}, index: itemList.length+1));
             });
           },
           child: Text("teste"),
@@ -369,7 +369,7 @@ class Conversation extends StatefulWidget {
   final VoidCallback? delete;
   int index;
 
-  const Conversation({Key? key, this.clean, this.delete, required this.index}) : super(key: key);
+  Conversation({Key? key, this.clean, this.delete, required this.index}) : super(key: key);
 
   @override
   State<Conversation> createState() => _ConversationState();
