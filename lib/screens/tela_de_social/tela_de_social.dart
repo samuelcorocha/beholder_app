@@ -83,11 +83,9 @@ class _SectionNavigatorState extends State<SectionNavigator>
                   future: _SocialCards(local, message),
                   builder: (context, snapshot) {
                     SafeArea? card = snapshot.data;
-                    print(card);
-                    return ListView(
-                      children: [
-                        if (card != null) card,
-                      ],
+                    print("AQUIIIIIIIIIIIIII " + snapshot.toString());
+                    return Container(
+                      child: snapshot.data,
                     );
                   },
                 );
@@ -109,7 +107,7 @@ class _SectionNavigatorState extends State<SectionNavigator>
   }
 
   Future<SafeArea> _SocialCards(position, message) async {
-    List<Widget> cards = [];
+    List<_Card> cards = [];
 
     Future<List<Widget>> getDados() async {
       final ref = FirebaseDatabase.instance.ref();
@@ -172,17 +170,17 @@ class _SectionNavigatorState extends State<SectionNavigator>
           if (distance == "1" || distance == "0") {
             distance = "menos de 1";
           }
+          final teste = _Card(message: message, distance: distance, username: username, experienceText: experienceText, gender: gender, isMaster: isMaster, isPlayer: isPlayer);
           cards.add(
-            _Card(message: message, distance: distance, username: username, experienceText: experienceText, gender: gender, isMaster: isMaster, isPlayer: isPlayer),
+              teste,
           );
         }
       });
       print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + cards.toString());
       print(cards.last.toString());
-      return cards!;
+      print(cards[0].username);
+      return cards;
     }
-
-
 
     final CardSwiperController controller = CardSwiperController();
 
@@ -198,7 +196,7 @@ class _SectionNavigatorState extends State<SectionNavigator>
                 cardsCount: cardsList.length,
                 onSwipe: _onSwipe,
                 onUndo: _onUndo,
-                numberOfCardsDisplayed: 10,
+                numberOfCardsDisplayed: 1,
                 backCardOffset: const Offset(20, 20),
                 padding: const EdgeInsets.all(8.0),
                 cardBuilder: (context, index) => cardsList[index],
